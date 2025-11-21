@@ -1,0 +1,66 @@
+/* COULEURS */
+@import "colors.css";
+/* LOADER */
+#loader {
+    width: 88px;
+    height: 88px;
+    display: grid;
+    border: 7px solid #0000;
+    border-radius: 50%;
+    border-color: #AB274F #0000;
+    animation: loader-e04l1k 1s infinite linear;
+  /* Styles pour centrer le loader */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  /*  transform: translate(-50%, -50%); */
+}
+
+#loader::before,
+#loader::after {
+   content: "";
+   grid-area: 1/1;
+   margin: 3.5px;
+   border: inherit;
+   border-radius: 50%;
+}
+
+#loader::before {
+   border-color: #679436 #0000;
+   animation: inherit;
+   animation-duration: 0.5s;
+   animation-direction: reverse;
+}
+
+#loader::after {
+   margin: 14px;
+}
+
+@keyframes loader-e04l1k {
+   100% {
+      transform: rotate(1turn);
+   }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+}

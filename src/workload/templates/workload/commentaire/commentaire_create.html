@@ -1,0 +1,40 @@
+{% extends 'public/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+
+{% block titre %}{% if '/modifier/' in request.path %}Modifier {% else %}Ajouter {% endif %} un Commentaire{% endblock %}
+
+{% block css_supp %}
+{% endblock %}
+
+{% block contenu %}
+<div class="container min-vh-100 col-lg-6 mx-auto">
+    <div class="row mb-3">
+        <div class="col">
+            <h3>{% if '/modifier/' in request.path %}Modifier {% else %}Ajouter {% endif %} un Commentaire</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="row">
+                            <div class="d-grid gap-2 d-md-block mt-3 text-center">
+                                <button class="btn btn-primary" type="submit"><i class="bi bi-save me-2"></i>{% if '/modifier/' in request.path %}Modifier{% else %}Créer{% endif %}</button>
+                                <button class="btn btn-secondary" onclick="history.back();"><i class="bi bi-arrow-left-circle me-2"></i>Annuler</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_supp %}
+{% endblock %}

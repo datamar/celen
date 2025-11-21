@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html data-bs-theme="light"
+      lang="{{request.LANGUAGE_CODE}}" 
+      dir="{% if request.LANGUAGE_CODE in 'ar he fa ur' %}rtl{% else %}ltr{% endif %}">
+  <head>
+    {% include 'public/meta.html' %}
+    <title>{% block titre %}{% endblock %}</title>
+    {% include 'public/style.html' %}
+    {% block css_supp %}{% endblock %}
+  </head>
+  <body class="d-flex flex-column min-vh-100" id="page-top">
+    <div id="loader"></div>
+    <div style="display:none;" id="myDiv" class="animate-bottom"> 
+    {% include 'public/navbar.html' %}
+    {% block contenu %}{% endblock %}
+    {% include 'public/messages.html' %}
+    {% include 'public/scrolltop.html' %}
+    {% include 'public/footer.html' %}
+    {% include 'public/js.html' %}
+    {% block js_supp %}{% endblock %}
+    </div>
+  </body>
+</html>

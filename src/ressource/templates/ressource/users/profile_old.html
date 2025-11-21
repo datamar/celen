@@ -1,0 +1,297 @@
+{% extends 'public/base.html' %}
+{% load static %}
+{% load i18n account %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% load utility %}
+
+{% block css_supp %}
+<link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+{% endblock %}
+
+{% block titre %}{% trans "Tableau de bord" %}{% endblock %}
+
+{% block contenu %}
+<div class="container section min-vh-100">
+    <!-- Bandeau d'entête -->
+    <div class="row mb-3">
+        <div class="col">
+            <div class="d-flex align-items-center">
+                <div class="flex-shrink-0">
+                    <img class="rounded-circle mx-auto d-block position-relative img-thumbnail" src="{{ profil.photo.url }}" alt="{{ profil }}" style="width: 100px;height: 100px;">
+                </div>
+                <div class="flex-grow-1 ms-3">
+                    <h1>
+                        {% if profil.user.last_name or profil.user.first_name %}
+                        {{ profil.user.get_full_name }}
+                        {% else %}
+                        {{ profil.user }}
+                        {% endif %}
+                    </h1>
+                    <small>{{ profil.user.groups.first }} - Créé {{ profil.created|naturaltime }} et modifié {{ profil.modified|naturaltime }} -
+                        Dernière connexion {{ profil.user.last_login|naturaltime }}
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- bloc principal-->
+    <div class="row mb-3 g-3">
+        <!-- sidebar -->
+        <div class="col-lg-2 col-md-4 d-md-block text-start">
+            <div class="sticky-top sticky-side">
+                <div class="card bg-body shadow-lg mb-3">
+                    <div class="card-body">
+                        <nav class="nav flex-lg-column">
+                            <a class="nav-link" href="#activites"><i class="bi bi-list-stars me-2"></i>Activités</a>
+                            <a class="nav-link" href="#users"><i class="bi bi-people me-2"></i>Utilisateurs</a>
+                            <a class="nav-link" href="#profil"><i class="bi bi-person-circle me-2"></i>Profil</a>
+                        </nav>
+                    </div>
+                </div>
+                {% if not profil.user.is_superuser %}
+                <img src="{{ profil.espace.image.url }}" class="img-fluid" alt="{{ profil.espace }}" style="border-radius:0;">
+                {% endif %}
+            </div>
+        </div>    
+        <!-- contenu -->
+        <div class="col-lg-10 col-md-8">
+            <div class="row mb-3 g-3">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card shadow-lg bg-body">
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <h3 class="card-title mb-3" id="projets">
+                                        {{ projets|length }} Projets
+                                    </h3>
+                                    <ul class="list-inline small">
+                                        <li class="list-inline-item">
+                                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'projet:projet_create' %}">
+                                            <i class="bi bi-plus-circle"></i>
+                                            Ajouter
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="">
+                                            <i class="bi bi-list-columns-reverse"></i>
+                                            Liste
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <ul class="list-group list-group-flush">
+                                        {% for p in projets|slice:":3" %}
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <a href="{% url 'projet:projet_details' p.pk %}">{{ p }}</a></br>
+                                                <span class="fst-italic small">Modifié {{ p.modified|naturaltime }}</span>
+                                            </div>
+                                            <span class="badge bg-{{ p.get_badge_class }}-subtle text-{{ p.get_badge_class }}-emphasis border border-{{ p.get_badge_class }}-subtle" data-bs-toggle="tooltip" data-bs-title="Priorité">{{ p.get_priorite_display }}</span>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card shadow-lg bg-body">
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <h3 class="card-title mb-3" id="affectation">Affectations</h3>
+                                    <ul class="list-inline small">
+                                        <li class="list-inline-item">
+                                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="">
+                                            <i class="bi bi-plus-circle"></i>
+                                            Ajouter
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="">
+                                            <i class="bi bi-list-columns-reverse"></i>
+                                            Liste
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card shadow-lg bg-body">
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <h3 class="card-title mb-3" id="livrables">Livrables</h3>
+                                    <ul class="list-inline small">
+                                        <li class="list-inline-item">
+                                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="">
+                                            <i class="bi bi-plus-circle"></i>
+                                            Ajouter
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="">
+                                            <i class="bi bi-list-columns-reverse"></i>
+                                            Liste
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <!-- Activités -->
+                     <div class="card bg-body shaodw-lg mb-3">
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <h3 class="card-title mb-3" id="activites">{% trans 'Activités' %}</h3>
+                                </div>
+                            </div>
+                            <ul class="list-unstyled">
+                            {% for element in historique|slice:":3" %}
+                            <li>
+                                {% if element.is_modified %}
+                                <i class="bi bi-pencil-square me-2 text-warning"></i>Un objet <strong>{{ element|model_name }}</strong> a été 
+                                modifié {{ element.modified|naturaltime }}
+                                par {% if element.modified_by %}{{ element.modified_by }}{% else %} un SuperAdministrateur{% endif %}
+                                {% else %}
+                                <i class="bi bi-plus-lg me-2 text-success"></i>Un objet <strong>{{ element|model_name }}</strong> a été 
+                                créé {{ element.created|naturaltime }} 
+                                par {% if element.created_by %}{{ element.created_by }}{% else %} un SuperAdministrateur{% endif %}
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                            </ul>
+                            {% if historique|length > 5 %}
+                            <a class="text-reset fw-bold" data-bs-toggle="collapse" href="#collapseHistorique" role="button" aria-expanded="false" aria-controls="collapseHistorique">Voir plus...</a>
+                            <div class="collapse" id="collapseHistorique">
+                            <ul class="list-unstyled">
+                                {% for element in historique|slice:"3:" %}
+                                <li>
+                                {% if element.is_modified %}
+                                <i class="bi bi-pencil-square me-2 text-warning"></i>Un objet <strong>{{ element|model_name }}</strong> a été 
+                                modifié {{ element.modified|naturaltime }}
+                                {% else %}
+                                <i class="bi bi-plus-lg me-2 text-success"></i>Un objet <strong>{{ element|model_name }}</strong> a été 
+                                créé {{ element.created|naturaltime }} 
+                                {% endif %}
+                                par {% if element.created_by %}{{ element.created_by }}{% else %} un SuperAdministrateur{% endif %}
+                                </li>
+                                {% endfor %}
+                            </ul>              
+                            </div>
+                            {% endif %}
+                        </div>
+                     </div>
+                    <!-- Utilisateurs -->
+                     <div class="card bg-body shadow-lg mb-3" id="users">
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <h3 class="card-title mb-3">{% trans 'Utilisateurs' %}</h3>
+                                    {% if not request.user|has_group:"Utilisateur" %}
+                                    <ul class="list-inline small">
+                                        <li class="list-inline-item">
+                                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'ressource:new-user' %}?next={{ request.path }}">
+                                            <i class="bi bi-plus-circle"></i>
+                                            {% trans "Ajouter" %}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="row mb-3 align-items-center">
+                                <ul class="list-unstyled">
+                                    {% for mbr in users %}
+                                    <li class="mb-2">
+                                        <img class="me-2 img-fluid rounded-3" src="{{ mbr.profile.photo.url }}" style="width:24px;height:24px;">
+                                        <a href="{% url "ressource:user-details" mbr.pk %}">
+                                        {% if mbr.first_name or mbr_last_name %}{{ mbr.first_name }} {{ mbr.last_name }}{% else %}{{ mbr.username }}{% endif %}</a>, {{ mbr.groups.first }}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                     </div>
+                    <!-- Profil -->
+                    <div class="card bg-body shadow-lg mb-3" id="profil">
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <h3 class="card-title mb-3">{% trans 'Profil' %}</h3>
+                                    <ul class="list-inline small">
+                                        <li class="list-inline-item">
+                                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'account_change_password' %}">
+                                            <i class="bi bi-shield-lock"></i>
+                                            {% trans "Changer le mot de passe" %}
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'account_email' %}">
+                                            <i class="bi bi-at"></i>
+                                            {% trans "Gérer les adresses de courriel" %}
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'socialaccount_connections' %}">
+                                            <i class="bi bi-cloud"></i>
+                                            {% trans "Comptes sociaux connectés" %}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    {{ u_form.username|as_crispy_field }}
+                                </div>
+                                <div class="col-lg-6">
+                                    {{ u_form.email|as_crispy_field }}
+                                </div>                  
+                            </div>                 
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    {{ u_form.first_name|as_crispy_field }}
+                                </div>
+                                <div class="col-lg-6">
+                                    {{ u_form.last_name|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    {{ p_form.bio|as_crispy_field }}
+                                    {{ p_form.photo|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="d-grid gap-2 d-lg-block mt-3 text-center">
+                                    <button class="btn btn-sm btn-primary rounded-3" type="submit"><i class="bi bi-save me-2"></i>Sauvegarder</button>
+                                    <button class="btn btn-sm btn-secondary rounded-3" onclick="history.back();"><i class="bi bi-arrow-left-circle me-2"></i>Retour</button>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_supp %}
+
+{% endblock %}

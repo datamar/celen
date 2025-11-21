@@ -1,0 +1,61 @@
+{% extends 'public/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% load utility %}
+
+{% block css_supp %}
+{% endblock %}
+
+{% block titre %}{{ object }}{% endblock %}
+
+{% block contenu %}
+<div class="container">
+    <div class="row mb-3 align-items-center">
+        <div class="col">
+            <div class="card bg-body shadow-lg">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <img class="rounded-circle mx-auto d-block position-relative img-thumbnail" src="{{ object.photo.url }}" alt="{{ object }}" style="width: 100px;height: 100px;">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h1>
+                                {% if object.user.get_full_name %}
+                                    {{ object.user.get_full_name }}
+                                {% else %}
+                                    {{ object.user }}
+                                {% endif %}
+                            </h1>
+                            UserType: <b>{{ object.user.groups.first }}</b> - UserName: <b>{{ object.user.username }}</b> {% if object.phone %} - UserPhone: <a href="tel:{{ object.phone }}">{{ object.phone }}</a>{% endif %}<br>
+                            <small>Créé {{ object.created|naturaltime }} et modifié {{ object.modified|naturaltime }}</small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            {% if object.bio %}
+                            <p class="fst-italic">{{ object.bio }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="d-grid gap-3 d-md-block mt-3 text-center">
+            <button class="btn btn-secondary rounded-3" onclick="history.back();"><i class="bi bi-arrow-left-circle me-2"></i>Retour</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js_supp %}
+<script type="text/javascript">
+window.setTimeout(function() {
+    $(".alert").slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 3000);
+</script>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'public/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% block titre %}{% if '/modifier/' in request.path %}Modifier le {% else %}Nouveau {% endif %}Projet{% endblock %}
+
+{% block css_supp %}
+{% endblock %}
+
+{% block contenu %}
+<div class="container min-vh-100 section col-lg-8 mx-auto">
+    <div class="row mb-3">
+        <div class="col">
+            <h3>{% if '/modifier/' in request.path %}Modifier le {% else %}Nouveau {% endif %}Projet</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row mb-3">
+                            <div class="col-md-6">            
+                                {{ form.nom|as_crispy_field }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form.status|as_crispy_field }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form.percent_complete|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-lg-6 h-100">            
+                                {{ form.description|as_crispy_field }}
+                            </div>
+                            <div class="col-lg-6">
+                                {{ form.mission|as_crispy_field }}
+                                <a class="float-end" href="{% url 'workload:mission_create' %}">Ajouter une Mission</a>
+                                {{ form.priorite|as_crispy_field }}
+                                {{ form.tags|as_crispy_field }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row mb-3">
+                            <div class="col">
+                                {{ form.start_date_prevue|as_crispy_field }}
+                                {{ form.end_date_prevue|as_crispy_field }}
+                            </div>
+                            <div class="col">
+                                {{ form.start_date_reel|as_crispy_field }}
+                                {{ form.end_date_reel|as_crispy_field }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row mb-3">
+                            <div class="col-lg-6">
+                                {{ form.r1|as_crispy_field }}
+                            </div>
+                            <div class="col-lg-6">
+                                {{ form.r2|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="d-grid gap-2 d-md-block mt-3 text-center">
+                                <button class="btn btn-primary rounded-3" type="submit"><i class="bi bi-save me-2"></i>Créer</button>
+                                <button class="btn btn-secondary rounded-3" onclick="history.back();"><i class="bi bi-arrow-left-circle me-2"></i>Annuler</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_supp %}
+{% endblock %}

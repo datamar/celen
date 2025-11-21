@@ -1,0 +1,289 @@
+{% extends 'public/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load l10n %}
+{% load utility %}
+{% load crispy_forms_tags %}
+
+
+{% block css_supp %}
+{% endblock %}
+
+{% block titre %}Tableau de bord{% endblock %}
+
+{% block contenu %}
+{% now "m" as MOIS_ACTUEL %}
+<div class="container">
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-lg-4 col-md-6">
+                            <h2>Bonjour, {% if request.user.first_name %}{{ request.user.first_name }}{% else %}{{ request.user.username }}{% endif %}</h2>
+                            <span class="small fst-italic">
+                                Nous sommes le {% now "l j F Y" %} et il est {% now "H:i" %}<br>
+                                UserType: <b>{{ request.user.groups.first }}</b> - UserName: <b>{{ request.user.username }}</b>
+                            </span>
+                        </div>
+                        <div class="col-lg-8 col-md-6">
+                            <h3>Ce mois ci</h3>
+                            <div class="row justify-content-evenly">
+                                {% if ce_mois_ci.projets%}
+                                <div class="col-lg-4">
+                                    <h5>Projet(s)</h5>
+                                    <ul class="list-unstyled">
+                                    {% for projet in ce_mois_ci.projets %}
+                                        <li>
+                                        {% for label, dates in projet.get_all_dates.items %}
+                                            {% if dates and dates|date:"m" == MOIS_ACTUEL %}
+                                                <i class="bi bi-calendar-week me-2" data-bs-toggle="tooltip" data-bs-title="{{ label }}"></i> <b>{{ dates|date:"d/m" }}</b>
+                                            {% endif %}
+                                        {% endfor %}
+                                            <a href="{% url 'workload:projet_details' projet.pk %}">{{ projet }}</a>
+                                        </li>
+                                    {% endfor %}
+                                    </ul>
+                                </div>
+                                {% endif %}
+                                {% if ce_mois_ci.livrables %}
+                                <div class="col-lg-4">
+                                    <h5>Livrable(s)</h5>
+                                    <ul class="list-unstyled">
+                                    {% for livrable in ce_mois_ci.livrables %}
+                                        <li>
+                                            {% for label, dates in livrable.get_all_dates.items %}
+                                                {% if dates and dates|date:"m" == MOIS_ACTUEL %}
+                                                    <i class="bi bi-calendar-week me-2" data-bs-toggle="tooltip" data-bs-title="{{ label }}"></i> <b>{{ dates|date:"d/m" }}</b>
+                                                {% endif %}
+                                            {% endfor %}
+                                            <a href="{% url 'workload:livrable_details' livrable.pk %}">{{ livrable }}</a>
+                                        </li>
+                                    {% endfor %}
+                                    </ul>
+                                </div>
+                                {% endif %}
+                                {% if ce_mois_ci.implications %}
+                                <div class="col-lg-4">
+                                    <ul>
+                                    {% for impl in ce_mois_ci.implications %}
+                                        <li>
+                                        {% for label, dates in impl.get_all_dates.items %}
+                                            {% if dates and dates|date:"m" == MOIS_ACTUEL %}
+                                                <i class="bi bi-calendar-week me-2" data-bs-toggle="tooltip" data-bs-title="{{ label }}"></i> <b>{{ dates|date:"d/m" }}</b>
+                                            {% endif %}
+                                        {% endfor %}
+                                            {{ impl }}
+                                        </li>
+                                    {% endfor %}
+                                    </ul>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3 justify-content-evenly g-3">
+        {% if mon_activite.livrables %}
+        <div class="col-lg-4 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <h3>Mes livrables</h3>
+                    <ul class="list-unstyled small">
+                        {% for l in mon_activite.livrables %}
+                        <li><a href="{% url 'workload:livrable_details' l.pk %}">{{ l }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        {% endif %}
+        {% if mon_activite.projets %}
+        <div class="col-lg-4 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <h3>Mes projets</h3>
+                    <ul class="list-unstyled small">
+                        {% for p in mon_activite.projets %}
+                        <li><a href="{% url 'workload:projet_details' p.pk %}">{{ p }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if mon_activite.taches %}
+        <div class="col-lg-4 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <h3>Mes tâches</h3>
+                    <ul class="list-unstyled small">
+                        {% for t in mon_activite.taches %}
+                        <li><a href="{% url 'workload:tache_details' t.pk %}">{{ t }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <div class="row mb-3 g-3">
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body text-center">
+                    <h3>Utilisateurs</h3>
+                    <span class="display-4 fw-bold">{{ users|length }}</span>
+                    <ul class="list-inline small mt-3 d-flex justify-content-evenly">
+                        <li class="list-inline-item">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'ressource:new-user' %}?next={{ request.path }}">
+                            <i class="bi bi-plus-square"></i>
+                            Ajouter
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'ressource:users-import' %}">
+                            <i class="bi bi-download"></i>Importer
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'ressource:users-list' %}">
+                            <i class="bi bi-list-task"></i>
+                            Liste
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body text-center">
+                    <h3>Missions</h3>
+                    <span class="display-4 fw-bold">{{ missions|length }}</span>
+                    <ul class="list-inline small mt-3 d-flex justify-content-evenly">
+                        <li class="list-inline-item">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'workload:mission_create' %}">
+                            <i class="bi bi-plus-square"></i>
+                            Ajouter
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'workload:missions_list' %}">
+                            <i class="bi bi-list-task"></i>
+                            Liste
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body text-center">
+                    <h3>Documents</h3>
+                    <span class="display-4 fw-bold">{{ documents|length }}</span>
+                    <ul class="list-inline small mt-3 d-flex justify-content-evenly">
+                        <li class="list-inline-item">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'workload:documents_list' %}">
+                            <i class="bi bi-list-task"></i>
+                            Liste
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body text-center">
+                    <h3>Notes</h3>
+                    <span class="display-4 fw-bold">{{ commentaires|length }}</span>
+                    <ul class="list-inline small mt-3 d-flex justify-content-evenly">
+                        <li class="list-inline-item">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'workload:commentaire_list' %}">
+                            <i class="bi bi-list-task"></i>
+                            Liste
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body text-center">
+                    <h3>Projets</h3>
+                    <span class="display-4 fw-bold">{{ projets|length }}</span>
+                    <ul class="list-inline small mt-3 d-flex justify-content-evenly">
+                        <li class="list-inline-item">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'workload:projet_create' %}">
+                            <i class="bi bi-plus-square"></i>
+                            Ajouter
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'workload:projet_list' %}">
+                            <i class="bi bi-list-task"></i>
+                            Liste
+                            </a>
+                        </li>
+                    </ul>                    
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body text-center">
+                    <h3>Tâches</h3>
+                    <span class="display-4 fw-bold">{{ taches|length }}</span>
+                    <ul class="list-inline small mt-3 d-flex justify-content-evenly">
+                        <li class="list-inline-item">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'workload:tache_create' %}">
+                            <i class="bi bi-plus-square"></i>
+                            Ajouter
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'workload:tache_list' %}">
+                            <i class="bi bi-list-task"></i>
+                            Liste
+                            </a>
+                        </li>
+                    </ul>                    
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body text-center">
+                    <h3>Livrables</h3>
+                    <span class="display-4 fw-bold">{{ livrables|length }}</span>
+                    <ul class="list-inline small mt-3 d-flex justify-content-evenly">
+                        <li class="list-inline-item">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'workload:livrable_create' %}">
+                            <i class="bi bi-plus-square"></i>
+                            Ajouter
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'workload:livrable_list' %}">
+                            <i class="bi bi-list-task"></i>
+                            Liste
+                            </a>
+                        </li>
+                    </ul>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_supp %}
+
+{% endblock %}

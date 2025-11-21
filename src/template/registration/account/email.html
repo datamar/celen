@@ -1,0 +1,91 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n crispy_forms_tags static %}
+
+{% block head_title %}
+  {% trans "Adresses email" %}
+{% endblock %}
+
+{% block content %}
+<div class="container min-vh-100 section">
+    <div class="row">
+        <div class="col-lg-6 col-md-10 mx-auto">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <h2 class="mb-4 text-center">{% trans "Gestion des adresses email" %}</h2>
+
+                    {% if emailaddresses %}
+                        <p>{% trans 'Les adresses suivantes sont associées à votre compte :' %}</p>
+                        <form method="post" action="{% url 'account_email' %}">
+                            {% csrf_token %}
+                            {{ redirect_field }}
+
+                            <div class="list-group mb-3">
+                                {% for radio in emailaddress_radios %}
+                                    {% with emailaddress=radio.emailaddress %}
+                                        <label class="list-group-item d-flex justify-content-between align-items-center">
+                                            <input class="form-check-input me-2" type="radio" name="email" value="{{ emailaddress.email }}" {% if radio.checked %}checked{% endif %}>
+                                            <span>
+                                                {{ emailaddress.email }}
+                                                {% if emailaddress.verified %}
+                                                    <span class="badge bg-success ms-2">{% trans "Vérifiée" %}</span>
+                                                {% else %}
+                                                    <span class="badge bg-warning text-dark ms-2">{% trans "Non vérifiée" %}</span>
+                                                {% endif %}
+                                                {% if emailaddress.primary %}
+                                                    <span class="badge bg-primary ms-2">{% trans "Principale" %}</span>
+                                                {% endif %}
+                                            </span>
+                                        </label>
+                                    {% endwith %}
+                                {% endfor %}
+                            </div>
+
+                            <div class="d-flex flex-wrap justify-content-between gap-2">
+                                <button type="submit" name="action_primary" class="btn btn-outline-primary">
+                                    {% trans "Définir comme principale" %}
+                                </button>
+                                <button type="submit" name="action_send" class="btn btn-outline-secondary">
+                                    {% trans "Renvoyer la vérification" %}
+                                </button>
+                                <button type="submit" name="action_remove" class="btn btn-outline-danger">
+                                    {% trans "Supprimer" %}
+                                </button>
+                            </div>
+                        </form>
+                    {% else %}
+                        <div class="alert alert-warning text-center" role="alert">
+                            {% include "account/snippets/warn_no_email.html" %}
+                        </div>
+                    {% endif %}
+
+                    {% if can_add_email %}
+                        <hr>
+                        <h4 class="mt-4">{% trans "Ajouter une adresse email" %}</h4>
+                        <form method="post" action="{% url 'account_email' %}">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <div class="d-grid d-md-block text-center mt-3">
+                                <button type="submit" name="action_add" class="btn btn-success">
+                                    {% trans "Ajouter" %}
+                                </button>
+                            </div>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_body %}
+<script src="{% static 'account/js/account.js' %}"></script>
+<script src="{% static 'account/js/onload.js' %}"></script>
+<script data-allauth-onload="allauth.account.forms.manageEmailForm" type="application/json">
+{
+  "i18n": {
+    "confirmDelete": "{% trans 'Do you really want to remove the selected email address?' %}"
+  }
+}
+</script>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'public/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load utility %}
+
+{% block titre %}Missions{% endblock %}
+
+{% block css_supp %}
+<link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+{% endblock %}
+
+{% block contenu %}
+<div class="container min-vh-100">
+    <div class="row mb-3 align-items-center">
+        <div class="col">
+            <h1>Missions</h1>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <table id="table_id" class="display" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Mission</th>
+                                <th>Description</th>
+                                <th>Date</th>
+                                <th><i class="bi bi-person-badge"></i></th>
+                                <th><i class="bi bi-paperclip"></i></th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for m in object_list %}
+                            <tr class="align-items-center">
+                                <td><a href="{% url 'workload:mission_details' m.pk %}">{{ m.nom }}</a></td>
+                                <td>{{ m.description|slice:"75" }}...</td>
+                                <td>{{ m.created|naturaltime }}</td>
+                                <td>{{ m.created_by }}</td>
+                                <td>{{ m.documents.all|length }}</td>
+                                <td>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-title="Ajouter un commentaire">
+                                            <a href=""><i class="bi bi-chat-dots text-warning"></i></a>
+                                        </li>
+                                        <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-title="Ajouter un document">
+                                            <a href="{% url 'workload:document_create' m.get_content_type_id m.pk %}?next={{ request.path }}"><i class="bi bi-file-plus text-primary"></i></a>
+                                        </li>
+                                        <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-title="Editer la mission">
+                                            <a href="{% url 'workload:mission_update' m.pk %}"><i class="bi bi-pencil-square text-success"></i></a>
+                                        </li>
+                                        <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-title="Supprimer la mission">
+                                            <a href="{% url 'workload:mission_delete' m.pk %}"><i class="bi bi-trash3 text-danger"></i></a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>        
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body py-2">
+                    <div class="d-grid gap-2 d-md-block text-center">
+                        <a class="btn btn-sm btn-primary" role="button" href="{% url 'workload:mission_create' %}"><i class="bi bi-plus-circle me-1"></i>Ajouter une Mission</a>
+                        <a class="btn btn-sm btn-secondary" role="button" href="{% url 'workload:accueil' %}"><i class="bi bi-arrow-left-circle me-1"></i>Retour</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_supp %}
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript">
+	$(document).ready( function () {
+    $('#table_id').DataTable({
+    responsive: true
+});
+} );
+</script>
+
+{% endblock %}

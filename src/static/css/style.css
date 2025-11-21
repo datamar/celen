@@ -1,0 +1,111 @@
+/* COULEURS */
+@import "colors.css";
+.text-violet {
+  color:var(--violet);
+}
+.card {
+  border-radius: 0;
+}
+/* HEADER & SECTION */
+.header {
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    margin-top: 56px;
+  }
+@media (max-width: 768px) {
+    .header {
+        padding-top: 5rem;
+    }
+}
+.section {
+  padding-top: 5rem;
+}
+/* CORPS */
+body {
+  padding-top: 56px;
+}
+/* SCROLL TO TOP */
+#btn-back-to-top {
+    position: fixed;
+    z-index: 1000;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    --bs-btn-border-color: none;
+    background-color: var(--rouge);
+    color:var(--blanc);
+}
+/* POSITIONNEMENT DES MESSAGES */
+.message-container {
+    position: fixed;
+    margin: 0 10px 10px 0;
+    bottom: 0;
+    left:0;
+    z-index: 1050;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column-reverse; /* Empile de bas en haut */
+}
+.message-alert {
+  padding-left: 10px;
+  margin-bottom: 5px; /* Ajoute de l'espace entre les messages */
+}
+.alert {
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+/* MENU LANGUAGES SELECTOR */
+.selected {
+  font-weight: bolder;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+/* NAVBAR */
+.navbar {
+  background-color: var(--bs-navbar-bg);
+  color: var(--bs-navbar-color);
+}
+.navbar .nav-link {
+  color: var(--bs-navbar-color);
+}
+.sticky-side {
+  position: sticky;
+  top: 65px;
+}
+/* LOGO */
+.navbar-brand img {
+  height: 35px;
+}
+@media (max-width: 768px) {
+  .navbar-brand img {
+    height: 28px;
+  }
+}
+/* DIVIDERS  */
+.hr-text {
+  line-height: 1em;
+  position: relative;
+  outline: 0;
+  border: 0;
+  text-align: center;
+  height: 1.75em;
+}
+.hr-text:before {
+  content: '';
+  background: linear-gradient(to right, transparent, var(--bs-body-color), transparent);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+}
+.hr-text:after {
+  content: attr(data-content);
+  position: relative;
+  display: inline-block;
+  padding: 0 .5em;
+  line-height: 1.5em;
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+}

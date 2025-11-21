@@ -1,0 +1,43 @@
+/* Palette https://coolors.co/05668d-427aa1-ebf2fa-679436-a5be00 */
+:root {
+    --turquoise: #05668d;
+    --bleu: #427aa1;
+    --blanc: #fff;
+    --vert1: #679436;
+    --vert2: #a5be00;
+    --orange: #fd5631;
+    --noir : #000;
+    --jaune: #FCF75E;
+    --rouge: #AB274F;
+    --vert: #138808;
+    --violet: #880085;
+    --beige: #edeae0;
+    --gris:#555555;
+}
+ 
+:root[data-bs-theme="light"] {
+    /* Couleurs de texte/fond */
+    --bs-body-bg: var(--blanc);
+    --bs-body-color: var(--noir);
+    --bs-navbar-bg: var(--blanc);
+    --bs-navbar-color: var(--noir);
+}
+  
+:root[data-bs-theme="dark"] {
+    --bs-body-bg: var(--noir);
+    --bs-body-color: var(--blanc);
+    --bs-navbar-bg: var(--noir);
+    --bs-navbar-color: var(--blanc);
+}
+  
+:root[data-bs-theme="dark"] .leaflet-control-search .search-input {
+    color: var(--noir);
+}
+  
+:root[data-bs-theme="dark"] .carousel-caption {
+    color: var(--blanc)!important;
+}
+/*
+:root[data-bs-theme="dark"] .bandeau {
+    background-color: var(--blanc)!important;
+}

@@ -1,0 +1,31 @@
+{% extends 'public/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% block titre %}Tâche {{ object }}{% endblock %}
+
+{% block css_supp %}
+{% endblock %}
+
+{% block contenu %}
+<div class="container">
+    <div class="row mb-3 align-items-center">
+        <div class="col">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <h2>Tâche : {{ object }}</h2>
+                    <span class="small fst-italic">Créée {{ object.created|naturaltime }} par {{ object.created_by }} 
+                        {% if object.modified_by %}
+                        et modifiée {{ object.modified|naturaltime }} par {{ object.modified_by }}
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_supp %}
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+{% endblock %}

@@ -1,0 +1,207 @@
+{% extends 'public/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% block titre %}Projet {{ object }}{% endblock %}
+
+{% block css_supp %}
+<script src="{% static 'js/circles.min.js' %}"></script>
+<style>
+.avatar {
+    display: inline-block;
+    vertical-align: middle;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+}
+.avatars {
+    display: flex;
+    gap: 2px; /* ou 0 si tu veux collés */
+    align-items: center;
+}
+</style>
+{% endblock %}
+
+{% block contenu %}
+<div class="container">
+    <div class="row mb-3 align-items-center">
+        <div class="col">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8 col-md-6">
+                            <h2>Projet : {{ object }}</h2>
+                            <span class="small fst-italic">Créé {{ object.created|naturaltime }} par {{ object.created_by }} 
+                                {% if object.modified_by %}
+                                et modifiée {{ object.modified|naturaltime }} par {{ object.modified_by }}
+                                {% endif %}
+                            </span>
+                            {% if object.duree_prevue or object.duree_reelle %}
+                            <ul class="list-unstyled">
+                                {% if object.duree_prevue %}
+                                <li><b>Durée prévue</b>: {{ object.duree_prevue }} jours</li>
+                                {% elif object.duree_reelle %}
+                                <li><b>Durée réelle</b>: {{ object.duree_reelle }} jours</li>
+                                {% endif %}
+                            </ul>
+                            {% endif %}
+                        </div>
+                        <div class="col-lg-2 col-md-3">
+                            <ul class="list-unstyled">
+                                <li><b>responsable</b>: <a href="{% url 'ressource:user-details' object.r1.pk %}">{{ object.r1 }}</a></li>
+                                {% if object.r2 %}
+                                <li><b>backup</b>: <a href="{% url 'ressource:user-details' object.r2.pk %}">{{ object.r2 }}</a></li>
+                                {% endif %}
+                                <li>
+                                    <b>statut</b>: <span class="badge {{ object.get_status_color }}">{{ object.get_status_display }}</span>
+                                </li>
+                                {% if object.duree_prevue %}
+                                <li>
+                                    <b>Durée prévue</b>: {{ object.duree_prevue }} jours
+                                </li>
+                                {% endif %}
+                                {% if object.duree_reelle %}
+                                <li>
+                                    <b>Durée réelle</b>: {{ object.duree_reelle }} jours
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <div class="col-lg-2 col-md-3">
+                            <div class="circle" id="circles-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3 g-3" data-masonry='{"percentPosition": true }'>
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <h3>Description</h3>
+                    <ul class="list-inline small mb-3">
+                        <li class="list-inline-item">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'workload:projet_update' object.pk %}?next={{ request.path }}">
+                            <i class="bi bi-pencil-square"></i>
+                            Editer
+                            </a>
+                        </li>
+                    </ul>
+                    <p>{{ object.description }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <h3>Equipe</h3>
+                    <ul class="list-inline small mb-3">
+                        <li class="list-inline-item">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'workload:implication_create' object.get_content_type_id object.pk %}?next={{ request.path }}">
+                            <i class="bi bi-plus-circle"></i>
+                            Ajouter
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled">
+                        {% for membre in object.implications.all %}
+                        <li class="py-1">
+                            <a href="{% url 'ressource:user-details' membre.agent.pk %}" class="text-decoration-none">
+                                <img src="{{ membre.agent.profile.photo.url }}" alt="{{ membre.agent }}" class="avatar me-2" data-bs-toggle="tooltip" data-bs-title="{{ membre.agent }}"
+                                <small>{{ membre.agent }}</small>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <h3>{{ object.documents.all|length }} Documents</h3>
+                    <ul class="list-inline small mb-3">
+                        <li class="list-inline-item">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'workload:document_create' object.get_content_type_id object.pk %}?next={{ request.path }}">
+                            <i class="bi bi-plus-circle"></i>
+                            Ajouter
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled">
+                        {% for doc in object.documents.all %}
+                        <li class="d-flex justify-content-between">
+                            <a target="_blank" href="{{ doc.url }}" class="small">{{ doc.nom|slice:"25" }}...</a>
+                            <ul class="list-unstyled">
+                                <li class="list-inline-item">
+                                    <a href="{% url 'workload:document_update' pk=doc.pk %}?next={{ request.path }}"><i class="bi bi-pencil-square text-warning"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="{% url 'workload:document_delete' pk=doc.pk %}?next={{ request.path }}"><i class="bi bi-trash3 text-danger"></i></a>
+                                </li>
+                            </ul>
+                            
+                        </li>
+                        {% endfor %}
+                    </ul>                    
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <h3>{{ object.commentaires.all|length }} Commentaire{% if object.commentaires.all|length > 1 %}s{% endif %}</h3>
+                    <ul class="list-inline small mb-3">
+                        <li class="list-inline-item">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'workload:commentaire_create' object.get_content_type_id object.pk %}?next={{ request.path }}">
+                            <i class="bi bi-plus-circle"></i>
+                            Ajouter
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled">
+                        {% for com in object.commentaires.all %}
+                        <li class="d-flex justify-content-between">
+                            <a href="{% url 'workload:commentaire_details' com.pk %}" class="small">
+                                {{ com.get_type_display }} {{ com.created|naturaltime }}
+                            </a>
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <a href="{% url 'workload:commentaire_update' pk=com.pk %}?next={{ request.path }}"><i class="bi bi-pencil-square text-warning"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="{% url 'workload:commentaire_delete' pk=com.pk %}?next={{ request.path }}"><i class="bi bi-trash3 text-danger"></i></a>
+                                </li>
+                            </ul>                            
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_supp %}
+<script>
+var myCircle = Circles.create({
+  id:                  'circles-1',
+  radius:              60,
+  value:               '{{ object.percent_complete }}',
+  maxValue:            100,
+  width:               10,
+  text:                function(value){return value + '%';},
+  /*colors:              ['#D3B6C6', '#4B253A'],*/
+  duration:            400,
+  wrpClass:            'circles-wrp',
+  textClass:           'circles-text',
+  valueStrokeClass:    'circles-valueStroke',
+  maxValueStrokeClass: 'circles-maxValueStroke',
+  styleWrapper:        true,
+  styleText:           true
+});   
+</script>
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+{% endblock %}

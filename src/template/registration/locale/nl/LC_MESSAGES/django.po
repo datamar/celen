@@ -1,0 +1,1823 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-08 20:47+0200\n"
+"PO-Revision-Date: 2025-03-14 11:45+0100\n"
+"Last-Translator: Jos van Leeuwen <jos.van.leeuwen@proton.me>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/allauth/django-"
+"allauth/nl/>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.11-dev\n"
+
+#: .\gabarits\registration\account\account_inactive.html:5
+#: .\gabarits\registration\account\account_inactive.html:9
+msgid "Account Inactive"
+msgstr "Account inactief"
+
+#: .\gabarits\registration\account\account_inactive.html:12
+msgid "This account is inactive."
+msgstr "Dit account is niet actief"
+
+#: .\gabarits\registration\account\base_confirm_code.html:27
+#, python-format
+msgid ""
+"We've sent a code to %(recipient)s. The code expires shortly, so please "
+"enter it soon."
+msgstr ""
+"We hebben een code naar %(recipient)s gestuurd. De code verloopt binnenkort, "
+"dus voer hem snel in."
+
+#: .\gabarits\registration\account\base_confirm_code.html:38
+#: .\gabarits\registration\account\email_confirm.html:24
+#: .\gabarits\registration\account\reauthenticate.html:18
+#: .\gabarits\registration\mfa\reauthenticate.html:18
+msgid "Confirm"
+msgstr "Bevestigen"
+
+#: .\gabarits\registration\account\base_confirm_code.html:42
+#: .\gabarits\registration\account\base_confirm_code.html:46
+#: .\gabarits\registration\account\password_reset_from_key.html:33
+#: .\gabarits\registration\mfa\authenticate.html:28
+#: .\gabarits\registration\mfa\authenticate.html:44
+#: .\gabarits\registration\mfa\trust.html:29
+#: .\gabarits\registration\mfa\webauthn\signup_form.html:26
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: .\gabarits\registration\account\base_reauthenticate.html:5
+#: .\gabarits\registration\account\base_reauthenticate.html:9
+msgid "Confirm Access"
+msgstr "Toegang bevestigen"
+
+#: .\gabarits\registration\account\base_reauthenticate.html:12
+msgid "Please reauthenticate to safeguard your account."
+msgstr "Authenticeer opnieuw om de beveiliging van je account te waarborgen."
+
+#: .\gabarits\registration\account\base_reauthenticate.html:19
+#: .\gabarits\registration\mfa\authenticate.html:37
+msgid "Alternative options"
+msgstr "Andere opties"
+
+#: .\gabarits\registration\account\confirm_email_verification_code.html:5
+msgid "Email Verification"
+msgstr "E-mailadres verificatie"
+
+#: .\gabarits\registration\account\confirm_email_verification_code.html:8
+msgid "Enter Email Verification Code"
+msgstr "Voer de e-emailadres verificatie code in:"
+
+#: .\gabarits\registration\account\confirm_login_code.html:5
+#: .\gabarits\registration\account\request_login_code.html:5
+#: .\gabarits\registration\allauth\layouts\base.html:63
+#: .\gabarits\registration\mfa\authenticate.html:6
+#: .\gabarits\registration\mfa\authenticate.html:24
+#: .\gabarits\registration\socialaccount\login.html:5
+#: .\gabarits\registration\socialaccount\login_redirect.html:5
+msgid "Sign In"
+msgstr "Aanmelden"
+
+#: .\gabarits\registration\account\confirm_login_code.html:8
+msgid "Enter Sign-In Code"
+msgstr "Aanmeldcode invullen"
+
+#: .\gabarits\registration\account\confirm_password_reset_code.html:5
+#: .\gabarits\registration\account\email\password_reset_subject.txt:3
+#: .\gabarits\registration\account\password_reset_done.html:6
+#: .\gabarits\registration\account\password_reset_done.html:10
+msgid "Password Reset"
+msgstr "Nieuw wachtwoord"
+
+#: .\gabarits\registration\account\confirm_password_reset_code.html:8
+msgid "Enter Password Reset Code"
+msgstr "Voer wachtwoordherstelcode in"
+
+#: .\gabarits\registration\account\confirm_phone_verification_code.html:5
+msgid "Phone Verification"
+msgstr "Telefoonverificatie"
+
+#: .\gabarits\registration\account\confirm_phone_verification_code.html:8
+msgid "Enter Phone Verification Code"
+msgstr "Telefoonverificatiecode invoeren"
+
+#: .\gabarits\registration\account\email.html:5
+#, fuzzy
+#| msgid "Add Email"
+msgid "Adresses email"
+msgstr "E-mail toevoegen"
+
+#: .\gabarits\registration\account\email.html:14
+msgid "Gestion des adresses email"
+msgstr ""
+
+#: .\gabarits\registration\account\email.html:17
+msgid "Les adresses suivantes sont associées à votre compte :"
+msgstr ""
+
+#: .\gabarits\registration\account\email.html:30
+#, fuzzy
+#| msgid "Verified"
+msgid "Vérifiée"
+msgstr "Geverifieerd"
+
+#: .\gabarits\registration\account\email.html:32
+msgid "Non vérifiée"
+msgstr ""
+
+#: .\gabarits\registration\account\email.html:35
+msgid "Principale"
+msgstr ""
+
+#: .\gabarits\registration\account\email.html:45
+msgid "Définir comme principale"
+msgstr ""
+
+#: .\gabarits\registration\account\email.html:48
+#, fuzzy
+#| msgid "Re-send Verification"
+msgid "Renvoyer la vérification"
+msgstr "Stuur verificatie e-mail opnieuw"
+
+#: .\gabarits\registration\account\email.html:51
+#, fuzzy
+#| msgid "primary"
+msgid "Supprimer"
+msgstr "Primair"
+
+#: .\gabarits\registration\account\email.html:63
+msgid "Ajouter une adresse email"
+msgstr ""
+
+#: .\gabarits\registration\account\email.html:69
+msgid "Ajouter"
+msgstr ""
+
+#: .\gabarits\registration\account\email.html:87
+msgid "Do you really want to remove the selected email address?"
+msgstr "Wil je het geselecteerde e-mailadres echt verwijderen?"
+
+#: .\gabarits\registration\account\email\account_already_exists_message.txt:4
+#, python-format
+msgid ""
+"You are receiving this email because you or someone else tried to signup for "
+"an\n"
+"account using email address:\n"
+"\n"
+"%(email)s\n"
+"\n"
+"However, an account using that email address already exists.  In case you "
+"have\n"
+"forgotten about this, please use the password forgotten procedure to "
+"recover\n"
+"your account:\n"
+"\n"
+"%(password_reset_url)s"
+msgstr ""
+"Je ontvangt deze e-mail omdat jij of iemand anders geprobeerd heeft een "
+"account\n"
+"te registreren met dit e-mail adres:\n"
+"\n"
+"%(email)s\n"
+"\n"
+"Echter, er bestaat al een account met dit e-mail adres.  Als je dit "
+"vergeten\n"
+"was, gebruik dan de wachtwoord vergeten procedure om de toegang tot je "
+"account\n"
+"te herstellen:\n"
+"\n"
+"%(password_reset_url)s"
+
+#: .\gabarits\registration\account\email\account_already_exists_subject.txt:3
+msgid "Account Already Exists"
+msgstr "Account bestaat al"
+
+#: .\gabarits\registration\account\email\base_message.txt:1
+#, python-format
+msgid "Hello from %(site_name)s!"
+msgstr "Hallo van %(site_name)s!"
+
+#: .\gabarits\registration\account\email\base_message.txt:5
+#, python-format
+msgid ""
+"Thank you for using %(site_name)s!\n"
+"%(site_domain)s"
+msgstr ""
+"Bedankt voor het gebruiken van %(site_name)s!\n"
+"%(site_domain)s"
+
+#: .\gabarits\registration\account\email\base_notification.txt:5
+msgid ""
+"You are receiving this mail because the following change was made to your "
+"account:"
+msgstr "Je ontvangt deze e-mail vanwege de volgende wijziging aan je account:"
+
+#: .\gabarits\registration\account\email\base_notification.txt:10
+#, python-format
+msgid ""
+"If you do not recognize this change then please take proper security "
+"precautions immediately. The change to your account originates from:\n"
+"\n"
+"- IP address: %(ip)s\n"
+"- Browser: %(user_agent)s\n"
+"- Date: %(timestamp)s"
+msgstr ""
+"Herken je deze wijziging niet? Neem dan onmiddelijk voorzorgsmaatregelen en "
+"beveilig je account. Deze wijzigingen komen van:\n"
+"\n"
+"- IP adres: %(ip)s\n"
+"- Browser: %(user_agent)s\n"
+"- Datum: %(timestamp)s"
+
+#: .\gabarits\registration\account\email\email_changed_message.txt:4
+#, python-format
+msgid "Your email has been changed from %(from_email)s to %(to_email)s."
+msgstr "Je email adres is gewijzigd van %(from_email)s naar %(to_email)s."
+
+#: .\gabarits\registration\account\email\email_changed_subject.txt:3
+msgid "Email Changed"
+msgstr "E-mailadres gewijzigd"
+
+#: .\gabarits\registration\account\email\email_confirm_message.txt:4
+msgid "Your email has been confirmed."
+msgstr "Je e-mailadres is bevestigd."
+
+#: .\gabarits\registration\account\email\email_confirm_subject.txt:3
+msgid "Email Confirmation"
+msgstr "E-mailadres bevestiging"
+
+#: .\gabarits\registration\account\email\email_confirmation_message.txt:5
+#, python-format
+msgid ""
+"You're receiving this email because user %(user_display)s has given your "
+"email address to register an account on %(site_domain)s."
+msgstr ""
+"Je ontvangt deze e-mail omdat gebruiker %(user_display)s van\n"
+"%(site_domain)s dit als e-mailadres heeft opgegeven om te koppelen\n"
+"aan zijn of haar account."
+
+#: .\gabarits\registration\account\email\email_confirmation_message.txt:7
+msgid ""
+"Your email verification code is listed below. Please enter it in your open "
+"browser window."
+msgstr ""
+"Hieronder staat je e-mailadres verificatiecode. Vul deze in in het browser "
+"venster dat nog open staat."
+
+#: .\gabarits\registration\account\email\email_confirmation_message.txt:9
+#, python-format
+msgid "To confirm this is correct, go to %(activate_url)s"
+msgstr "Om te bevestigen dat dit correct is, bezoek: %(activate_url)s"
+
+#: .\gabarits\registration\account\email\email_confirmation_subject.txt:3
+msgid "Please Confirm Your Email Address"
+msgstr "Bevestig je e-mailadres"
+
+#: .\gabarits\registration\account\email\email_deleted_message.txt:4
+#, python-format
+msgid "Email address %(deleted_email)s has been removed from your account."
+msgstr "Email adres %(deleted_email)s is ontkoppeld van je account."
+
+#: .\gabarits\registration\account\email\email_deleted_subject.txt:3
+msgid "Email Removed"
+msgstr "E-mailadres verwijderd"
+
+#: .\gabarits\registration\account\email\login_code_message.txt:5
+msgid ""
+"Your sign-in code is listed below. Please enter it in your open browser "
+"window."
+msgstr ""
+"Hieronder staat je aanmeldcode. Vul deze in in het browser venster dat nog "
+"open staat."
+
+#: .\gabarits\registration\account\email\login_code_message.txt:9
+#: .\gabarits\registration\account\email\password_reset_code_message.txt:9
+#: .\gabarits\registration\account\email\unknown_account_message.txt:6
+msgid "This mail can be safely ignored if you did not initiate this action."
+msgstr "Je kunt deze mail gerust negeren als je dit niet zelf gedaan hebt."
+
+#: .\gabarits\registration\account\email\login_code_subject.txt:3
+msgid "Sign-In Code"
+msgstr "Aanmeldcode"
+
+#: .\gabarits\registration\account\email\password_changed_message.txt:4
+msgid "Your password has been changed."
+msgstr "Je wachtwoord is gewijzigd."
+
+#: .\gabarits\registration\account\email\password_changed_subject.txt:3
+msgid "Password Changed"
+msgstr "Wachtwoord gewijzigd"
+
+#: .\gabarits\registration\account\email\password_reset_code_message.txt:5
+msgid ""
+"Your password reset code is listed below. Please enter it in your open "
+"browser window."
+msgstr ""
+"Je wachtwoordherstelcode staat hieronder. Voer deze code in je geopende "
+"browservenster in."
+
+#: .\gabarits\registration\account\email\password_reset_code_subject.txt:3
+msgid "Password Reset Code"
+msgstr "Wachtwoordherstelcode"
+
+#: .\gabarits\registration\account\email\password_reset_key_message.txt:4
+msgid ""
+"You're receiving this email because you or someone else has requested a "
+"password reset for your user account.\n"
+"It can be safely ignored if you did not request a password reset. Click the "
+"link below to reset your password."
+msgstr ""
+"Je ontvangt deze mail omdat er een verzoek is ingelegd om je wachtwoord "
+"opnieuw\n"
+"in te stellen. Je kunt deze mail gerust negeren als je dit niet zelf gedaan\n"
+"hebt. Anders, klik op de volgende link om je wachtwoord opnieuw in te "
+"stellen."
+
+#: .\gabarits\registration\account\email\password_reset_key_message.txt:9
+#, python-format
+msgid "In case you forgot, your username is %(username)s."
+msgstr "Deze link hoort bij je account met gebruikersnaam %(username)s."
+
+#: .\gabarits\registration\account\email\password_reset_key_subject.txt:3
+msgid "Password Reset Email"
+msgstr "Nieuw wachtwoord"
+
+#: .\gabarits\registration\account\email\password_reset_message.txt:4
+msgid "Your password has been reset."
+msgstr "Je wachtwoord is opnieuw ingesteld."
+
+#: .\gabarits\registration\account\email\password_set_message.txt:4
+msgid "Your password has been set."
+msgstr "Je wachtwoord is ingesteld."
+
+#: .\gabarits\registration\account\email\password_set_subject.txt:3
+msgid "Password Set"
+msgstr "Wachtwoord ingesteld"
+
+#: .\gabarits\registration\account\email\unknown_account_message.txt:4
+#, python-format
+msgid ""
+"You are receiving this email because you, or someone else, tried to access "
+"an account with email %(email)s. However, we do not have any record of such "
+"an account in our database."
+msgstr ""
+"Je ontvang deze e-mail omdat jij, of iemand anders, een poging gedaan heeft "
+"een account met e-mailadres %(email)s te gebruiken. Echter, dit account "
+"bestaat niet."
+
+#: .\gabarits\registration\account\email\unknown_account_message.txt:8
+msgid "If it was you, you can sign up for an account using the link below."
+msgstr ""
+"Als jij dit wel hebt gedaan, dan kun je je via de volgende link registreren."
+
+#: .\gabarits\registration\account\email\unknown_account_subject.txt:3
+msgid "Unknown Account"
+msgstr "Onbekend account"
+
+#: .\gabarits\registration\account\email_change.html:5
+#: .\gabarits\registration\account\email_change.html:9
+msgid "Email Address"
+msgstr "E-mailadres"
+
+#: .\gabarits\registration\account\email_change.html:21
+#: .\gabarits\registration\account\email_change.html:29
+msgid "Current email"
+msgstr "Huidig email"
+
+#: .\gabarits\registration\account\email_change.html:31
+msgid "Changing to"
+msgstr "Wordt veranderd in"
+
+#: .\gabarits\registration\account\email_change.html:35
+msgid "Your email address is still pending verification."
+msgstr "Je e-mailadres wacht op verificatie."
+
+#: .\gabarits\registration\account\email_change.html:37
+#: .\gabarits\registration\account\phone_change.html:24
+msgid "Re-send Verification"
+msgstr "Stuur verificatie e-mail opnieuw"
+
+#: .\gabarits\registration\account\email_change.html:41
+msgid "Cancel Change"
+msgstr "Annuleer wijziging"
+
+#: .\gabarits\registration\account\email_change.html:49
+#: .\gabarits\registration\account\phone_change.html:32
+msgid "Change to"
+msgstr "Wijzig naar"
+
+#: .\gabarits\registration\account\email_change.html:55
+#: .\gabarits\registration\allauth\layouts\base.html:26
+msgid "Change Email"
+msgstr "E-mail wijzigen"
+
+#: .\gabarits\registration\account\email_confirm.html:6
+#: .\gabarits\registration\account\email_confirm.html:10
+msgid "Confirm Email Address"
+msgstr "Bevestig e-mailadres"
+
+#: .\gabarits\registration\account\email_confirm.html:16
+#, python-format
+msgid ""
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an email "
+"address for user %(user_display)s."
+msgstr ""
+"Bevestig dat <a href=\"mailto:%(email)s\">%(email)s</a> een e-mailadres is "
+"voor gebruiker %(user_display)s."
+
+#: .\gabarits\registration\account\email_confirm.html:30
+#: .\gabarits\registration\account\messages\email_confirmation_failed.txt:2
+#, python-format
+msgid ""
+"Unable to confirm %(email)s because it is already confirmed by a different "
+"account."
+msgstr ""
+"Het e-mail adres %(email)s kon niet worden geverifieerd omdat het gekoppeld "
+"is aan een ander account."
+
+#: .\gabarits\registration\account\email_confirm.html:36
+#, python-format
+msgid ""
+"This email confirmation link expired or is invalid. Please <a "
+"href=\"%(email_url)s\">issue a new email confirmation request</a>."
+msgstr ""
+"Deze e-mail verificatie link is verlopen of niet geldig. Dien een\n"
+"<a href=\"%(email_url)s\">nieuw e-mail verificatie verzoek</a> in."
+
+#: .\gabarits\registration\account\login.html:6
+msgid "Connexion"
+msgstr ""
+
+#: .\gabarits\registration\account\login.html:14
+#: .\gabarits\registration\account\login.html:20
+msgid "Se connecter"
+msgstr ""
+
+#: .\gabarits\registration\account\logout.html:5
+#: .\gabarits\registration\account\logout.html:11
+msgid "Déconnexion"
+msgstr ""
+
+#: .\gabarits\registration\account\logout.html:12
+msgid "Êtes-vous sûr de vouloir vous déconnecter ?"
+msgstr ""
+
+#: .\gabarits\registration\account\logout.html:15
+msgid "Se déconnecter"
+msgstr ""
+
+#: .\gabarits\registration\account\logout.html:16
+msgid "Annuler"
+msgstr ""
+
+#: .\gabarits\registration\account\messages\cannot_delete_primary_email.txt:2
+#, python-format
+msgid "You cannot remove your primary email address (%(email)s)."
+msgstr "You kunt je primaire e-mailadres (%(email)s) niet verwijderen."
+
+#: .\gabarits\registration\account\messages\email_confirmation_sent.txt:2
+#, python-format
+msgid "Confirmation email sent to %(email)s."
+msgstr "Bevestigings e-mail verzonden aan %(email)s."
+
+#: .\gabarits\registration\account\messages\email_confirmed.txt:2
+#, python-format
+msgid "You have confirmed %(email)s."
+msgstr "Je hebt het e-mailadres %(email)s bevestigd"
+
+#: .\gabarits\registration\account\messages\email_deleted.txt:2
+#, python-format
+msgid "Removed email address %(email)s."
+msgstr "E-mailadres %(email)s verwijderd."
+
+#: .\gabarits\registration\account\messages\logged_in.txt:4
+#, python-format
+msgid "Successfully signed in as %(name)s."
+msgstr "Je bent nu ingelogd als %(name)s."
+
+#: .\gabarits\registration\account\messages\logged_out.txt:2
+msgid "You have signed out."
+msgstr "Je bent afgemeld."
+
+#: .\gabarits\registration\account\messages\login_code_sent.txt:2
+#, python-format
+msgid "A sign-in code has been sent to %(recipient)s."
+msgstr "Er is een aanmeldcode verzonden naar %(recipient)s."
+
+#: .\gabarits\registration\account\messages\password_changed.txt:2
+msgid "Password successfully changed."
+msgstr "Wachtwoord wijziging geslaagd."
+
+#: .\gabarits\registration\account\messages\password_set.txt:2
+msgid "Password successfully set."
+msgstr "Je wachtwoord is gewijzigd."
+
+#: .\gabarits\registration\account\messages\phone_verified.txt:2
+#, python-format
+msgid "You have verified phone number %(phone)s."
+msgstr "Je hebt telefoonnummer %(phone)s geverifieerd."
+
+#: .\gabarits\registration\account\messages\primary_email_set.txt:2
+msgid "Primary email address set."
+msgstr "Primair e-mailadres ingesteld."
+
+#: .\gabarits\registration\account\messages\unverified_primary_email.txt:2
+msgid "Your primary email address must be verified."
+msgstr "Je primaire e-mailadres moet geverifieerd zijn."
+
+#: .\gabarits\registration\account\password_change.html:6
+#: .\gabarits\registration\account\password_change.html:15
+#: .\gabarits\registration\account\password_change.html:24
+#, fuzzy
+#| msgid "Change Email Address"
+msgid "Changer le mot de passe"
+msgstr "Wijzig e-mailadres"
+
+#: .\gabarits\registration\account\password_change.html:30
+msgid "Mot de passe oublié ?"
+msgstr ""
+
+#: .\gabarits\registration\account\password_reset.html:6
+#: .\gabarits\registration\account\password_reset.html:15
+msgid "Réinitialisation du mot de passe"
+msgstr ""
+
+#: .\gabarits\registration\account\password_reset.html:20
+msgid ""
+"Vous avez oublié votre mot de passe ? Entrez votre adresse email ci-dessous "
+"et nous vous enverrons un lien pour le réinitialiser."
+msgstr ""
+
+#: .\gabarits\registration\account\password_reset.html:27
+msgid "Réinitialiser mon mot de passe"
+msgstr ""
+
+#: .\gabarits\registration\account\password_reset.html:31
+msgid ""
+"Veuillez nous contacter si vous avez des difficultés à réinitialiser votre "
+"mot de passe."
+msgstr ""
+
+#: .\gabarits\registration\account\password_reset_done.html:16
+msgid ""
+"We have sent you an email. If you have not received it please check your "
+"spam folder. Otherwise contact us if you do not receive it in a few minutes."
+msgstr ""
+"Volg de link in de verificatie e-mail om de controle af te ronden. Neem "
+"a.u.b. contact met ons op als je de e-mail niet binnen enkele minuten "
+"ontvangt."
+
+#: .\gabarits\registration\account\password_reset_from_key.html:5
+#: .\gabarits\registration\account\password_reset_from_key.html:12
+#: .\gabarits\registration\account\password_reset_from_key.html:30
+#: .\gabarits\registration\account\password_reset_from_key_done.html:5
+#: .\gabarits\registration\account\password_reset_from_key_done.html:9
+#: .\gabarits\registration\allauth\layouts\base.html:32
+msgid "Change Password"
+msgstr "Wachtwoord wijzigen"
+
+#: .\gabarits\registration\account\password_reset_from_key.html:10
+msgid "Bad Token"
+msgstr "Ongeldige sleutel"
+
+#: .\gabarits\registration\account\password_reset_from_key.html:18
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
+msgstr ""
+"De link om je wachtwoord opnieuw in te stellen is niet geldig. Mogelijk is "
+"deze al een keer gebruikt. <a href=\"%(passwd_reset_url)s\">Herstel je "
+"wachtwoord</a> opnieuw."
+
+#: .\gabarits\registration\account\password_reset_from_key_done.html:12
+msgid "Your password is now changed."
+msgstr "Je wachtwoord is gewijzigd."
+
+#: .\gabarits\registration\account\password_set.html:5
+#: .\gabarits\registration\account\password_set.html:9
+#: .\gabarits\registration\account\password_set.html:21
+msgid "Set Password"
+msgstr "Zet wachtwoord"
+
+#: .\gabarits\registration\account\phone_change.html:5
+#: .\gabarits\registration\account\phone_change.html:9
+#: .\gabarits\registration\account\phone_change.html:38
+msgid "Change Phone"
+msgstr "Telefoon wijzigen"
+
+#: .\gabarits\registration\account\phone_change.html:18
+msgid "Current phone"
+msgstr "Huidig telefoonnummer"
+
+#: .\gabarits\registration\account\phone_change.html:22
+msgid "Your phone number is still pending verification."
+msgstr "Je telefoonnummer wacht op verificatie."
+
+#: .\gabarits\registration\account\reauthenticate.html:6
+msgid "Enter your password:"
+msgstr "Voer je wachtwoord in:"
+
+#: .\gabarits\registration\account\request_login_code.html:9
+msgid "Send me a sign-in code"
+msgstr "Stuur een aanmeldcode"
+
+#: .\gabarits\registration\account\request_login_code.html:12
+msgid "You will receive a special code for a password-free sign-in."
+msgstr "Je ontvangt een speciale code om je zonder wachtwoord aan te melden."
+
+#: .\gabarits\registration\account\request_login_code.html:24
+msgid "Request Code"
+msgstr "Code aanvragen"
+
+#: .\gabarits\registration\account\request_login_code.html:30
+msgid "Other sign-in options"
+msgstr "Andere aanmeld-opties"
+
+#: .\gabarits\registration\account\signup.html:4
+#: .\gabarits\registration\account\signup_by_passkey.html:4
+#: .\gabarits\registration\socialaccount\signup.html:5
+msgid "Signup"
+msgstr "Registreren"
+
+#: .\gabarits\registration\account\signup.html:8
+#: .\gabarits\registration\account\signup.html:30
+#: .\gabarits\registration\account\signup_by_passkey.html:29
+#: .\gabarits\registration\allauth\layouts\base.html:69
+#: .\gabarits\registration\socialaccount\signup.html:9
+#: .\gabarits\registration\socialaccount\signup.html:25
+msgid "Sign Up"
+msgstr "Registreren"
+
+#: .\gabarits\registration\account\signup.html:17
+#: .\gabarits\registration\account\signup_by_passkey.html:17
+#, python-format
+msgid "Already have an account? Then please %(link)ssign in%(end_link)s."
+msgstr "Heb je al een account? %(link)sMeld je dan aan%(end_link)s."
+
+#: .\gabarits\registration\account\signup.html:39
+msgid "Sign up using a passkey"
+msgstr "Registreren met een passkey"
+
+#: .\gabarits\registration\account\signup_by_passkey.html:8
+msgid "Passkey Sign Up"
+msgstr "Passkey registratie"
+
+#: .\gabarits\registration\account\signup_by_passkey.html:36
+msgid "Other options"
+msgstr "Andere opties"
+
+#: .\gabarits\registration\account\signup_closed.html:5
+#: .\gabarits\registration\account\signup_closed.html:9
+msgid "Sign Up Closed"
+msgstr "Registratie gesloten"
+
+#: .\gabarits\registration\account\signup_closed.html:12
+msgid "We are sorry, but the sign up is currently closed."
+msgstr "Helaas, maar je kunt je momenteel niet registreren."
+
+#: .\gabarits\registration\account\snippets\already_logged_in.html:7
+msgid "Note"
+msgstr "Notitie"
+
+#: .\gabarits\registration\account\snippets\already_logged_in.html:7
+#, python-format
+msgid "You are already logged in as %(user_display)s."
+msgstr "Je bent al ingelogd als %(user_display)s."
+
+#: .\gabarits\registration\account\snippets\warn_no_email.html:3
+msgid "Warning:"
+msgstr "Waarschuwing:"
+
+#: .\gabarits\registration\account\snippets\warn_no_email.html:3
+msgid ""
+"You currently do not have any email address set up. You should really add an "
+"email address so you can receive notifications, reset your password, etc."
+msgstr ""
+"Het is raadzaam een e-mailadres toe te voegen zodat je notificaties kunt "
+"ontvangen, je wachtwoord opnieuw kunt instellen, enz."
+
+#: .\gabarits\registration\account\verification_sent.html:5
+#: .\gabarits\registration\account\verification_sent.html:9
+#: .\gabarits\registration\account\verified_email_required.html:5
+#: .\gabarits\registration\account\verified_email_required.html:9
+msgid "Verify Your Email Address"
+msgstr "Verifieer je e-mailadres"
+
+#: .\gabarits\registration\account\verification_sent.html:12
+msgid ""
+"We have sent an email to you for verification. Follow the link provided to "
+"finalize the signup process. If you do not see the verification email in "
+"your main inbox, check your spam folder. Please contact us if you do not "
+"receive the verification email within a few minutes."
+msgstr ""
+"We hebben een e-mail verstuurd ter verificatie. Volg de link in deze mail om "
+"je registratie af te ronden. Neem a.u.b. contact met ons op als je deze e-"
+"mail niet binnen enkele minuten ontvangt."
+
+#: .\gabarits\registration\account\verified_email_required.html:13
+msgid ""
+"This part of the site requires us to verify that\n"
+"you are who you claim to be. For this purpose, we require that you\n"
+"verify ownership of your email address. "
+msgstr ""
+"Voor dit gedeelte van de site is het nodig dat we je identiteit\n"
+"verifiëren. Via een verificatie e-mail kunnen we controleren dat je\n"
+"daadwerkelijk toegang hebt tot het opgegeven e-mailadres."
+
+#: .\gabarits\registration\account\verified_email_required.html:18
+msgid ""
+"We have sent an email to you for\n"
+"verification. Please click on the link inside that email. If you do not see "
+"the verification email in your main inbox, check your spam folder. "
+"Otherwise\n"
+"contact us if you do not receive it within a few minutes."
+msgstr ""
+"Volg de link in de verificatie e-mail om de controle af te ronden. Neem "
+"a.u.b. contact met ons op als je de e-mail niet binnen enkele minuten "
+"ontvangt."
+
+#: .\gabarits\registration\account\verified_email_required.html:23
+#, python-format
+msgid ""
+"<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your "
+"email address</a>."
+msgstr ""
+"<strong>Merk op:</strong> je kunt altijd <a href=\"%(email_url)s\">je e-mail "
+"adres wijzigen</a>."
+
+#: .\gabarits\registration\allauth\layouts\base.html:20
+msgid "Menu:"
+msgstr "Menu:"
+
+#: .\gabarits\registration\allauth\layouts\base.html:38
+msgid "Account Connections"
+msgstr "Account Connecties"
+
+#: .\gabarits\registration\allauth\layouts\base.html:44
+#: .\gabarits\registration\mfa\authenticate.html:10
+#: .\gabarits\registration\mfa\index.html:5
+#: .\gabarits\registration\mfa\index.html:9
+msgid "Two-Factor Authentication"
+msgstr "Twee-factor-authenticatie"
+
+#: .\gabarits\registration\allauth\layouts\base.html:50
+msgid "Sessions"
+msgstr "Sessies"
+
+#: .\gabarits\registration\allauth\layouts\base.html:56
+msgid "Sign Out"
+msgstr "Afmelden"
+
+#: .\gabarits\registration\mfa\authenticate.html:13
+msgid ""
+"Your account is protected by two-factor authentication. Please enter an "
+"authenticator code:"
+msgstr ""
+"Je account is beveiligd met twee-factor-authenticatie. Voer alstublieft een "
+"authenticatiecode in:"
+
+#: .\gabarits\registration\mfa\authenticate.html:41
+#: .\gabarits\registration\mfa\webauthn\reauthenticate.html:15
+msgid "Use a security key"
+msgstr "Gebruik een beveiligingssleutel"
+
+#: .\gabarits\registration\mfa\email\recovery_codes_generated_message.txt:4
+msgid ""
+"A new set of Two-Factor Authentication recovery codes has been generated."
+msgstr "Er zijn nieuwe herstelcodes gegenereerd."
+
+#: .\gabarits\registration\mfa\email\recovery_codes_generated_subject.txt:3
+msgid "New Recovery Codes Generated"
+msgstr "Nieuwe herstelcodes gegenereerd"
+
+#: .\gabarits\registration\mfa\email\totp_activated_message.txt:4
+#: .\gabarits\registration\mfa\messages\totp_activated.txt:2
+msgid "Authenticator app activated."
+msgstr "Authenticator-app geactiveerd."
+
+#: .\gabarits\registration\mfa\email\totp_activated_subject.txt:3
+msgid "Authenticator App Activated"
+msgstr "Authenticator-app geactiveerd"
+
+#: .\gabarits\registration\mfa\email\totp_deactivated_message.txt:4
+#: .\gabarits\registration\mfa\messages\totp_deactivated.txt:2
+msgid "Authenticator app deactivated."
+msgstr "Authenticator-app gedeactiveerd."
+
+#: .\gabarits\registration\mfa\email\totp_deactivated_subject.txt:3
+msgid "Authenticator App Deactivated"
+msgstr "Authenticator-app gedeactiveerd"
+
+#: .\gabarits\registration\mfa\email\webauthn_added_message.txt:4
+msgid "A new security key has been added."
+msgstr "Een nieuwe beveiligingssleutel is toegevoegd."
+
+#: .\gabarits\registration\mfa\email\webauthn_added_subject.txt:3
+msgid "Security Key Added"
+msgstr "Beveiligingssleutel toegevoegd"
+
+#: .\gabarits\registration\mfa\email\webauthn_removed_message.txt:4
+msgid "A security key has been removed."
+msgstr "Een beveiligingssleutel is verwijderd."
+
+#: .\gabarits\registration\mfa\email\webauthn_removed_subject.txt:3
+msgid "Security Key Removed"
+msgstr "Beveiligingssleutel verwijderd"
+
+#: .\gabarits\registration\mfa\index.html:14
+#: .\gabarits\registration\mfa\totp\base.html:4
+msgid "Authenticator App"
+msgstr "Authenticator-app"
+
+#: .\gabarits\registration\mfa\index.html:19
+msgid "Authentication using an authenticator app is active."
+msgstr "Authenticatie middels een authenticator-app is actief."
+
+#: .\gabarits\registration\mfa\index.html:23
+msgid "An authenticator app is not active."
+msgstr "Een authenticator-app is niet geactiveerd."
+
+#: .\gabarits\registration\mfa\index.html:32
+#: .\gabarits\registration\mfa\totp\deactivate_form.html:24
+msgid "Deactivate"
+msgstr "Deactiveer"
+
+#: .\gabarits\registration\mfa\index.html:36
+#: .\gabarits\registration\mfa\totp\activate_form.html:32
+msgid "Activate"
+msgstr "Activeer"
+
+#: .\gabarits\registration\mfa\index.html:45
+#: .\gabarits\registration\mfa\webauthn\authenticator_list.html:8
+#: .\gabarits\registration\mfa\webauthn\base.html:4
+msgid "Security Keys"
+msgstr "Beveiligingssleutels"
+
+#: .\gabarits\registration\mfa\index.html:50
+#, python-format
+msgid "You have added %(count)s security key."
+msgid_plural "You have added %(count)s security keys."
+msgstr[0] "Je hebt %(count)s beveiligingssleutel toegevoegd."
+msgstr[1] "Je hebt %(count)s beveiligingssleutels toegevoegd."
+
+#: .\gabarits\registration\mfa\index.html:54
+#: .\gabarits\registration\mfa\webauthn\authenticator_list.html:12
+msgid "No security keys have been added."
+msgstr "Er zijn geen beveiligingssleutels gekoppeld."
+
+#: .\gabarits\registration\mfa\index.html:62
+msgid "Manage"
+msgstr "Beheren"
+
+#: .\gabarits\registration\mfa\index.html:67
+#: .\gabarits\registration\mfa\webauthn\add_form.html:18
+#: .\gabarits\registration\mfa\webauthn\authenticator_list.html:70
+msgid "Add"
+msgstr "Voeg toe"
+
+#: .\gabarits\registration\mfa\index.html:77
+#: .\gabarits\registration\mfa\recovery_codes\base.html:4
+#: .\gabarits\registration\mfa\recovery_codes\generate.html:6
+#: .\gabarits\registration\mfa\recovery_codes\index.html:6
+msgid "Recovery Codes"
+msgstr "Herstelcodes"
+
+#: .\gabarits\registration\mfa\index.html:82
+#: .\gabarits\registration\mfa\recovery_codes\index.html:9
+#, python-format
+msgid ""
+"There is %(unused_count)s out of %(total_count)s recovery codes available."
+msgid_plural ""
+"There are %(unused_count)s out of %(total_count)s recovery codes available."
+msgstr[0] ""
+"Er is nog %(unused_count)s van de %(total_count)s herstelcodes beschikbaar."
+msgstr[1] ""
+"Er zijn nog %(unused_count)s van de %(total_count)s herstelcodes beschikbaar."
+
+#: .\gabarits\registration\mfa\index.html:86
+msgid "No recovery codes set up."
+msgstr "Er zijn geen herstelcodes ingesteld."
+
+#: .\gabarits\registration\mfa\index.html:96
+msgid "View"
+msgstr "Bekijk"
+
+#: .\gabarits\registration\mfa\index.html:102
+msgid "Download"
+msgstr "Downloaden"
+
+#: .\gabarits\registration\mfa\index.html:110
+#: .\gabarits\registration\mfa\recovery_codes\generate.html:29
+msgid "Generate"
+msgstr "Genereer"
+
+#: .\gabarits\registration\mfa\messages\recovery_codes_generated.txt:2
+msgid "A new set of recovery codes has been generated."
+msgstr "Er zijn nieuwe herstelcodes gegenereerd."
+
+#: .\gabarits\registration\mfa\messages\webauthn_added.txt:2
+msgid "Security key added."
+msgstr "Beveiligingssleutel toegevoegd."
+
+#: .\gabarits\registration\mfa\messages\webauthn_removed.txt:2
+msgid "Security key removed."
+msgstr "Beveiligingssleutel verwijderd."
+
+#: .\gabarits\registration\mfa\reauthenticate.html:6
+msgid "Enter an authenticator code:"
+msgstr "Voer een authenticator code in:"
+
+#: .\gabarits\registration\mfa\recovery_codes\generate.html:9
+msgid "You are about to generate a new set of recovery codes for your account."
+msgstr "Je staat op het punt nieuwe herstelcodes te genereren voor je account."
+
+#: .\gabarits\registration\mfa\recovery_codes\generate.html:11
+msgid "This action will invalidate your existing codes."
+msgstr "Hierdoor zullen eerdere herstelcodes niet langer werken."
+
+#: .\gabarits\registration\mfa\recovery_codes\generate.html:13
+msgid "Are you sure?"
+msgstr "Weet je dit zeker?"
+
+#: .\gabarits\registration\mfa\recovery_codes\index.html:13
+msgid "Unused codes"
+msgstr "Ongebruikte codes"
+
+#: .\gabarits\registration\mfa\recovery_codes\index.html:25
+msgid "Download codes"
+msgstr "Codes downloaden"
+
+#: .\gabarits\registration\mfa\recovery_codes\index.html:30
+msgid "Generate new codes"
+msgstr "Nieuwe codes genereren"
+
+#: .\gabarits\registration\mfa\totp\activate_form.html:4
+#: .\gabarits\registration\mfa\totp\activate_form.html:8
+msgid "Activate Authenticator App"
+msgstr "Activeer authenticator-app"
+
+#: .\gabarits\registration\mfa\totp\activate_form.html:11
+msgid ""
+"To protect your account with two-factor authentication, scan the QR code "
+"below with your authenticator app. Then, input the verification code "
+"generated by the app below."
+msgstr ""
+"Beveilig je account met twee-factor-authenticatie. Scan eerst de "
+"onderstaande QR code met je authenticator app, en vul vervolgens de "
+"resulterende verificatie code in."
+
+#: .\gabarits\registration\mfa\totp\activate_form.html:21
+msgid "Authenticator secret"
+msgstr "Authenticator geheim"
+
+#: .\gabarits\registration\mfa\totp\activate_form.html:24
+msgid ""
+"You can store this secret and use it to reinstall your authenticator app at "
+"a later time."
+msgstr ""
+"Je kunt deze code bewaren en later gebruiken om je authenticator app opnieuw "
+"te installeren."
+
+#: .\gabarits\registration\mfa\totp\deactivate_form.html:5
+#: .\gabarits\registration\mfa\totp\deactivate_form.html:9
+msgid "Deactivate Authenticator App"
+msgstr "Deactiveer authenticator-app"
+
+#: .\gabarits\registration\mfa\totp\deactivate_form.html:12
+msgid ""
+"You are about to deactivate authenticator app based authentication. Are you "
+"sure?"
+msgstr ""
+"Je staat op het punt authenticatie middels een authenticator-app te "
+"deactiveren. Wil je dit echt?"
+
+#: .\gabarits\registration\mfa\trust.html:4
+#: .\gabarits\registration\mfa\trust.html:8
+msgid "Trust this Browser?"
+msgstr ""
+
+#: .\gabarits\registration\mfa\trust.html:11
+msgid ""
+"If you choose to trust this browser, you will not be asked for a "
+"verification code the next time you sign in."
+msgstr ""
+
+#: .\gabarits\registration\mfa\trust.html:23
+#, python-format
+msgid "Trust for %(period)s"
+msgstr ""
+
+#: .\gabarits\registration\mfa\trust.html:26
+msgid "Don't Trust"
+msgstr ""
+
+#: .\gabarits\registration\mfa\webauthn\add_form.html:7
+msgid "Add Security Key"
+msgstr "Voeg beveiligingssleutel toe"
+
+#: .\gabarits\registration\mfa\webauthn\authenticator_confirm_delete.html:6
+msgid "Remove Security Key"
+msgstr "Verwijder beveiligingssleutel"
+
+#: .\gabarits\registration\mfa\webauthn\authenticator_confirm_delete.html:9
+msgid "Are you sure you want to remove this security key?"
+msgstr "Weet je zeker dat je deze beveiligingssleutel wilt verwijderen?"
+
+#: .\gabarits\registration\mfa\webauthn\authenticator_confirm_delete.html:16
+#: .\gabarits\registration\mfa\webauthn\authenticator_list.html:60
+msgid "Remove"
+msgstr "Verwijder"
+
+#: .\gabarits\registration\mfa\webauthn\authenticator_list.html:18
+msgid "Key"
+msgstr "Sleutel"
+
+#: .\gabarits\registration\mfa\webauthn\authenticator_list.html:21
+msgid "Usage"
+msgstr "Gebruik"
+
+#: .\gabarits\registration\mfa\webauthn\authenticator_list.html:33
+msgid "Passkey"
+msgstr "Passkey"
+
+#: .\gabarits\registration\mfa\webauthn\authenticator_list.html:37
+msgid "Security key"
+msgstr "Beveiligingssleutel"
+
+#: .\gabarits\registration\mfa\webauthn\authenticator_list.html:40
+msgid "This key does not indicate whether it is a passkey."
+msgstr "Het is onduidelijk of deze sleutel een passkey betreft."
+
+#: .\gabarits\registration\mfa\webauthn\authenticator_list.html:41
+msgid "Unspecified"
+msgstr "Ongespecificeerd"
+
+#: .\gabarits\registration\mfa\webauthn\authenticator_list.html:46
+#, python-format
+msgid "Added on %(created_at)s"
+msgstr "Toegevoegd op %(created_at)s"
+
+#: .\gabarits\registration\mfa\webauthn\authenticator_list.html:48
+#, python-format
+msgid "Last used %(last_used)s"
+msgstr "Laatst gebruikt %(last_used)s"
+
+#: .\gabarits\registration\mfa\webauthn\authenticator_list.html:56
+msgid "Edit"
+msgstr "Bewerken"
+
+#: .\gabarits\registration\mfa\webauthn\edit_form.html:7
+msgid "Edit Security Key"
+msgstr "Bewerk beveiligingssleutel"
+
+#: .\gabarits\registration\mfa\webauthn\edit_form.html:18
+msgid "Save"
+msgstr "Opslaan"
+
+#: .\gabarits\registration\mfa\webauthn\signup_form.html:7
+msgid "Create Passkey"
+msgstr "Passkey aanmaken"
+
+#: .\gabarits\registration\mfa\webauthn\signup_form.html:10
+msgid ""
+"You are about to create a passkey for your account. As you can add "
+"additional keys later on, you can use a descriptive name to tell the keys "
+"apart."
+msgstr ""
+"Je staat op het punt een passkey aan te maken. Aangezen je later extra "
+"sleutels kunt toevoegen kun je deze een herkenbare naam geven om de sleutels "
+"uit elkaar te kunnen houden."
+
+#: .\gabarits\registration\mfa\webauthn\signup_form.html:21
+msgid "Create"
+msgstr "Maak aan"
+
+#: .\gabarits\registration\mfa\webauthn\snippets\scripts.html:2
+msgid "This functionality requires JavaScript."
+msgstr "Deze functionaliteit vereist JavaScript."
+
+#: .\gabarits\registration\socialaccount\authentication_error.html:5
+#: .\gabarits\registration\socialaccount\authentication_error.html:9
+msgid "Third-Party Login Failure"
+msgstr "Aanmelden Mislukt"
+
+#: .\gabarits\registration\socialaccount\authentication_error.html:12
+msgid ""
+"An error occurred while attempting to login via your third-party account."
+msgstr ""
+"Er is een fout opgetreden toen we je wilde inloggen via je externe account."
+
+#: .\gabarits\registration\socialaccount\connections.html:5
+msgid "Connexions sociales"
+msgstr ""
+
+#: .\gabarits\registration\socialaccount\connections.html:14
+msgid "Connexions au compte"
+msgstr ""
+
+#: .\gabarits\registration\socialaccount\connections.html:18
+msgid ""
+"\n"
+"                Vous pouvez vous connecter à votre compte à l'aide de l'un "
+"des comptes tiers suivants :\n"
+"              "
+msgstr ""
+
+#: .\gabarits\registration\socialaccount\connections.html:42
+msgid "Supprimer la connexion sélectionnée"
+msgstr ""
+
+#: .\gabarits\registration\socialaccount\connections.html:48
+msgid "Aucun compte tiers connecté pour l’instant."
+msgstr ""
+
+#: .\gabarits\registration\socialaccount\connections.html:53
+#, fuzzy
+#| msgid "Account Connections"
+msgid "Ajouter une connexion"
+msgstr "Account Connecties"
+
+#: .\gabarits\registration\socialaccount\email\account_connected_message.txt:4
+#, python-format
+msgid ""
+"A third-party account from %(provider)s has been connected to your account."
+msgstr "Een extern account van %(provider)s is gekoppeld aan je account."
+
+#: .\gabarits\registration\socialaccount\email\account_connected_subject.txt:3
+msgid "Third-Party Account Connected"
+msgstr "Extern account gekoppeld"
+
+#: .\gabarits\registration\socialaccount\email\account_disconnected_message.txt:4
+#, python-format
+msgid ""
+"A third-party account from %(provider)s has been disconnected from your "
+"account."
+msgstr "Een extern account van %(provider)s is ontkoppeld van je account."
+
+#: .\gabarits\registration\socialaccount\email\account_disconnected_subject.txt:3
+msgid "Third-Party Account Disconnected"
+msgstr "Extern account ontkoppeld"
+
+#: .\gabarits\registration\socialaccount\login.html:10
+#, python-format
+msgid "Connect %(provider)s"
+msgstr "Koppel %(provider)s"
+
+#: .\gabarits\registration\socialaccount\login.html:13
+#, python-format
+msgid "You are about to connect a new third-party account from %(provider)s."
+msgstr ""
+"Je staat op het punt om een nieuw account van %(provider)s aan je account te "
+"koppelen."
+
+#: .\gabarits\registration\socialaccount\login.html:17
+#, python-format
+msgid "Sign In Via %(provider)s"
+msgstr "Aanmelden via %(provider)s"
+
+#: .\gabarits\registration\socialaccount\login.html:20
+#, python-format
+msgid "You are about to sign in using a third-party account from %(provider)s."
+msgstr "Je staat op het punt om jezelf aan te melden via %(provider)s."
+
+#: .\gabarits\registration\socialaccount\login.html:27
+#: .\gabarits\registration\socialaccount\login_redirect.html:10
+msgid "Continue"
+msgstr "Ga verder"
+
+#: .\gabarits\registration\socialaccount\login_cancelled.html:5
+#: .\gabarits\registration\socialaccount\login_cancelled.html:9
+msgid "Login Cancelled"
+msgstr "Aanmelden geannuleerd"
+
+#: .\gabarits\registration\socialaccount\login_cancelled.html:13
+#, python-format
+msgid ""
+"You decided to cancel logging in to our site using one of your existing "
+"accounts. If this was a mistake, please proceed to <a "
+"href=\"%(login_url)s\">sign in</a>."
+msgstr ""
+"Je hebt het aanmelden via een extern account geannuleerd. Als dit een "
+"vergissing was, <a href=\"%(login_url)s\">meld je dan opnieuw aan</a>."
+
+#: .\gabarits\registration\socialaccount\messages\account_connected.txt:2
+msgid "The third-party account has been connected."
+msgstr "Het externe account is gekoppeld."
+
+#: .\gabarits\registration\socialaccount\messages\account_connected_other.txt:2
+msgid "The third-party account is already connected to a different account."
+msgstr "Dit externe account is al gekoppeld aan een ander account."
+
+#: .\gabarits\registration\socialaccount\messages\account_disconnected.txt:2
+msgid "The third-party account has been disconnected."
+msgstr "Het externe account is ontkoppeld."
+
+#: .\gabarits\registration\socialaccount\signup.html:12
+#, python-format
+msgid ""
+"You are about to use your %(provider_name)s account to login to\n"
+"%(site_name)s. As a final step, please complete the following form:"
+msgstr ""
+"Om bij %(site_name)s in te kunnen loggen via %(provider_name)s hebben we de "
+"volgende gegevens nodig:"
+
+#: .\gabarits\registration\socialaccount\snippets\login.html:10
+msgid "Or use a third-party"
+msgstr "Of gebruik een derde partij"
+
+#~ msgid "This account is currently inactive."
+#~ msgstr "Dit account is momenteel inactief."
+
+#~ msgid "You cannot remove your primary email address."
+#~ msgstr "Je kunt je primaire e-mailadres niet verwijderen."
+
+#~ msgid "This email address is already associated with this account."
+#~ msgstr "Dit e-mailadres is al aan dit account gekoppeld."
+
+#~ msgid "The email address and/or password you specified are not correct."
+#~ msgstr ""
+#~ "Het door jou opgegeven e-mailadres en/of wachtwoord is niet correct."
+
+#~ msgid "The phone number and/or password you specified are not correct."
+#~ msgstr ""
+#~ "Het door jou opgegeven telefoonnummer en/of wachtwoord is niet correct."
+
+#~ msgid "A user is already registered with this email address."
+#~ msgstr "Er is al een gebruiker geregistreerd met dit e-mailadres."
+
+#~ msgid "Please type your current password."
+#~ msgstr "Geef je huidige wachtwoord op."
+
+#~ msgid "Incorrect code."
+#~ msgstr "Ongeldige code."
+
+#~ msgid "Incorrect password."
+#~ msgstr "Ongeldig wachtwoord."
+
+#~ msgid "Invalid or expired key."
+#~ msgstr "Ongeldige of verlopen sleutel."
+
+#~ msgid "Invalid login."
+#~ msgstr "Ongeldige login."
+
+#~ msgid "The password reset token was invalid."
+#~ msgstr "De wachtwoordherstel-sleutel is niet geldig."
+
+#, python-format
+#~ msgid "You cannot add more than %d email addresses."
+#~ msgstr "Je kunt niet meer dan %d e-mailadressen toevoegen."
+
+#~ msgid "Too many failed login attempts. Try again later."
+#~ msgstr "Te veel inlogpogingen. Probeer het later nogmaals."
+
+#~ msgid "The email address is not assigned to any user account."
+#~ msgstr "Dit e-mailadres is niet bij ons bekend."
+
+#~ msgid "The phone number is not assigned to any user account."
+#~ msgstr "Het telefoonnummer is niet aan een gebruikersaccount toegewezen."
+
+#~ msgid "Username can not be used. Please use other username."
+#~ msgstr "Deze gebruikersnaam mag je niet gebruiken, kies een andere."
+
+#~ msgid "The username and/or password you specified are not correct."
+#~ msgstr "Je gebruikersnaam en/of wachtwoord zijn incorrect."
+
+#~ msgid "Please select only one."
+#~ msgstr "Selecteer er slechts één."
+
+#~ msgid "The new value must be different from the current one."
+#~ msgstr "De nieuwe waarde moet verschillen van de huidige waarde."
+
+#~ msgid "Use your password"
+#~ msgstr "Gebruik je wachtwoord"
+
+#~ msgid "Use authenticator app or code"
+#~ msgstr "Gebruik authenticator-app of code"
+
+#~ msgid "Mark selected email addresses as verified"
+#~ msgstr "Markeer de geselecteerde email addressen als geverifieerd"
+
+#~ msgid "Accounts"
+#~ msgstr "Accounts"
+
+#~ msgid "Enter a phone number including country code (e.g. +1 for the US)."
+#~ msgstr "Voer een telefoonnummer in, inclusief landcode (bijv. +31 voor NL)."
+
+#~ msgid "Phone"
+#~ msgstr "Telefoon"
+
+#~ msgid "You must type the same password each time."
+#~ msgstr "Je moet hetzelfde wachtwoord twee keer intoetsen."
+
+#~ msgid "Password"
+#~ msgstr "Wachtwoord"
+
+#~ msgid "Remember Me"
+#~ msgstr "Onthouden"
+
+#~ msgid "Email address"
+#~ msgstr "E-mailadres"
+
+#~ msgid "Email"
+#~ msgstr "E-mail"
+
+#~ msgid "Username"
+#~ msgstr "Gebruikersnaam"
+
+#~ msgctxt "field label"
+#~ msgid "Login"
+#~ msgstr "Login"
+
+#~ msgid "Username, email or phone"
+#~ msgstr "Gebruikersnaam, e-mail, of telefoonnummer"
+
+#~ msgid "Username or email"
+#~ msgstr "Gebruikersnaam of e-mail"
+
+#~ msgid "Username or phone"
+#~ msgstr "Gebruikersnaam of telefoonnummer"
+
+#~ msgid "Email or phone"
+#~ msgstr "E-mail of telefoonnummer"
+
+#~ msgid "Forgot your password?"
+#~ msgstr "Wachtwoord vergeten?"
+
+#~ msgid "Email (again)"
+#~ msgstr "E-mail (bevestigen)"
+
+#~ msgid "Email address confirmation"
+#~ msgstr "Bevestig e-mailadres"
+
+#~ msgid "Email (optional)"
+#~ msgstr "E-mail (optioneel)"
+
+#~ msgid "Username (optional)"
+#~ msgstr "Gebruikersnaam (optioneel)"
+
+#~ msgid "You must type the same email each time."
+#~ msgstr "Je moet hetzelfde e-mailadres twee keer intoetsen."
+
+#~ msgid "Password (again)"
+#~ msgstr "Wachtwoord (bevestigen)"
+
+#~ msgid "Current Password"
+#~ msgstr "Huidig wachtwoord"
+
+#~ msgid "New Password"
+#~ msgstr "Nieuw wachtwoord"
+
+#~ msgid "New Password (again)"
+#~ msgstr "Nieuw wachtwoord (bevestigen)"
+
+#~ msgid "Code"
+#~ msgstr "Code"
+
+#~ msgid "user"
+#~ msgstr "gebruiker"
+
+#~ msgid "email address"
+#~ msgstr "e-mailadres"
+
+#~ msgid "verified"
+#~ msgstr "geverifieerd"
+
+#~ msgid "email addresses"
+#~ msgstr "e-mailadressen"
+
+#~ msgid "created"
+#~ msgstr "aangemaakt"
+
+#~ msgid "sent"
+#~ msgstr "verstuurd"
+
+#~ msgid "key"
+#~ msgstr "sleutel"
+
+#~ msgid "email confirmation"
+#~ msgstr "e-mailadres bevestiging"
+
+#~ msgid "email confirmations"
+#~ msgstr "e-mailadres bevestigingen"
+
+#~ msgid "Headless"
+#~ msgstr "Headless"
+
+#~ msgid ""
+#~ "You cannot add an email address to an account protected by two-factor "
+#~ "authentication."
+#~ msgstr ""
+#~ "Je kunt geen e-mailadres toevoegen aan een account dat beveiligd is met "
+#~ "twee-factor-authenticatie is."
+
+#~ msgid "You cannot deactivate two-factor authentication."
+#~ msgstr "Je kunt twee-factor-authenticatie niet deactiveren."
+
+#~ msgid ""
+#~ "You cannot generate recovery codes without having two-factor "
+#~ "authentication enabled."
+#~ msgstr ""
+#~ "Je kunt geen herstelcodes genereren zonder dat twee-factor-authenticatie "
+#~ "actief is."
+
+#~ msgid ""
+#~ "You cannot activate two-factor authentication until you have verified "
+#~ "your email address."
+#~ msgstr ""
+#~ "Je moet eerst je e-mailadres verifiëren voordat je twee-factor-"
+#~ "authenticatie kunt activeren."
+
+#~ msgid "Master key"
+#~ msgstr "Hoofdsleutel"
+
+#~ msgid "Backup key"
+#~ msgstr "Reservesleutel"
+
+#, python-brace-format
+#~ msgid "Key nr. {number}"
+#~ msgstr "Sleutel nr. {number}"
+
+#~ msgid "MFA"
+#~ msgstr "MFA"
+
+#~ msgid "Recovery codes"
+#~ msgstr "Herstelcodes"
+
+#~ msgid "TOTP Authenticator"
+#~ msgstr "TOTP Authenticator"
+
+#~ msgid "WebAuthn"
+#~ msgstr "WebAuthn"
+
+#~ msgid "Authenticator code"
+#~ msgstr "Authenticator code"
+
+#~ msgid "Passwordless"
+#~ msgstr "Wachtwoordloos"
+
+#~ msgid ""
+#~ "Enabling passwordless operation allows you to sign in using just this "
+#~ "key, but imposes additional requirements such as biometrics or PIN "
+#~ "protection."
+#~ msgstr ""
+#~ "Door wachtwoordloos inloggen mogelijk te maken kun je je aanmelden met "
+#~ "deze sleutel. Dit brengt extra vereisten met zich mee, zoals biometrische "
+#~ "verificatie of PIN-bescherming."
+
+#, python-format
+#~ msgid ""
+#~ "An account already exists with this email address. Please sign in to that "
+#~ "account first, then connect your %s account."
+#~ msgstr ""
+#~ "Er bestaat al een account met dit e-mailadres. Meld je eerst aan met dit "
+#~ "account, verbind daarna je %s account."
+
+#~ msgid "Invalid token."
+#~ msgstr "Ongeldige sleutel."
+
+#~ msgid "Your account has no password set up."
+#~ msgstr "Je account heeft geen wachtwoord ingesteld."
+
+#~ msgid "Your account has no verified email address."
+#~ msgstr "Je account heeft geen geverifieerd e-mailadres."
+
+#~ msgid "You cannot disconnect your last remaining third-party account."
+#~ msgstr "Je kunt het laatste externe account niet verwijderen."
+
+#~ msgid "Social Accounts"
+#~ msgstr "Sociale accounts"
+
+#~ msgid "provider"
+#~ msgstr "provider"
+
+#~ msgid "provider ID"
+#~ msgstr "provider ID"
+
+#~ msgid "name"
+#~ msgstr "naam"
+
+#~ msgid "client id"
+#~ msgstr "client id"
+
+#~ msgid "App ID, or consumer key"
+#~ msgstr "App ID, of consumer key"
+
+#~ msgid "secret key"
+#~ msgstr "geheime sleutel"
+
+#~ msgid "API secret, client secret, or consumer secret"
+#~ msgstr "API secret, client secret, of consumer secret"
+
+#~ msgid "social application"
+#~ msgstr "social application"
+
+#~ msgid "social applications"
+#~ msgstr "social applications"
+
+#~ msgid "uid"
+#~ msgstr "uid"
+
+#~ msgid "last login"
+#~ msgstr "laatst ingelogd"
+
+#~ msgid "date joined"
+#~ msgstr "datum toegetreden"
+
+#~ msgid "extra data"
+#~ msgstr "extra data"
+
+#~ msgid "social account"
+#~ msgstr "social account"
+
+#~ msgid "social accounts"
+#~ msgstr "social accounts"
+
+#~ msgid "token"
+#~ msgstr "token"
+
+#~ msgid "\"oauth_token\" (OAuth1) or access token (OAuth2)"
+#~ msgstr "\"oauth_token\" (OAuth1) of toegangs-token (OAuth2)"
+
+#~ msgid "token secret"
+#~ msgstr "token geheim"
+
+#~ msgid "\"oauth_token_secret\" (OAuth1) or refresh token (OAuth2)"
+#~ msgstr "\"oauth_token_secret\" (OAuth1) of ververs token (OAuth2)"
+
+#~ msgid "expires at"
+#~ msgstr "verloopt op"
+
+#~ msgid "social application token"
+#~ msgstr "social applicatie token"
+
+#~ msgid "social application tokens"
+#~ msgstr "social applicatie tokens"
+
+#~ msgid "Invalid profile data"
+#~ msgstr "Ongeldige profiel data"
+
+#~ msgid "Login"
+#~ msgstr "Login"
+
+#, python-format
+#~ msgid ""
+#~ "Invalid response while obtaining request token from \"%s\". Response was: "
+#~ "%s."
+#~ msgstr ""
+#~ "Ongeldig antwoord ontvangen tijdens het ophalen van een verzoeksleutel "
+#~ "van \"%s\", antwoord: \"%s\"."
+
+#, python-format
+#~ msgid "Invalid response while obtaining access token from \"%s\"."
+#~ msgstr ""
+#~ "Ongeldig antwoord ontvangen tijdens het ophalen van een toegangssleutel "
+#~ "van \"%s\"."
+
+#, python-format
+#~ msgid "No request token saved for \"%s\"."
+#~ msgstr "Geen verzoeksleutel opgeslagen voor \"%s\"."
+
+#, python-format
+#~ msgid "No access token saved for \"%s\"."
+#~ msgstr "Geen toegangssleutel opgeslagen voor \"%s\"."
+
+#, python-format
+#~ msgid "No access to private resources at \"%s\"."
+#~ msgstr "Geen toegang tot privé data bij \"%s\"."
+
+#, python-format
+#~ msgid "Invalid response while obtaining request token from \"%s\"."
+#~ msgstr ""
+#~ "Ongeldig antwoord ontvangen tijdens het ophalen van een verzoeksleutel "
+#~ "van \"%s\"."
+
+#~ msgid "Email Addresses"
+#~ msgstr "E-mailadressen"
+
+#~ msgid "The following email addresses are associated with your account:"
+#~ msgstr "De volgende e-mailadressen zijn gekoppeld aan jouw account:"
+
+#~ msgid "Unverified"
+#~ msgstr "Ongeverifieerd"
+
+#~ msgid "Primary"
+#~ msgstr "Primair"
+
+#~ msgid "Make Primary"
+#~ msgstr "Maak primair"
+
+#~ msgid "Add Email Address"
+#~ msgstr "Voeg e-mailadres toe"
+
+#, python-format
+#~ msgid ""
+#~ "If you have not created an account yet, then please %(link)ssign "
+#~ "up%(end_link)s first."
+#~ msgstr ""
+#~ "Als je nog geen account hebt %(link)sregistreer%(end_link)s je dan eerst."
+
+#~ msgid "Sign in with a passkey"
+#~ msgstr "Meld je aan met een passkey"
+
+#~ msgid "Are you sure you want to sign out?"
+#~ msgstr "Weet je zeker dat je wilt afmelden?"
+
+#~ msgid "Forgot Password?"
+#~ msgstr "Wachtwoord vergeten?"
+
+#~ msgid ""
+#~ "Forgotten your password? Enter your email address below, and we'll send "
+#~ "you an email allowing you to reset it."
+#~ msgstr ""
+#~ "Wachtwoord vergeten? Vul je e-mailadres in en we sturen je een e-mail "
+#~ "waarmee je een nieuw wachtwoord kunt instellen."
+
+#~ msgid "Reset My Password"
+#~ msgstr "Herstel mijn wachtwoord"
+
+#~ msgid "Please contact us if you have any trouble resetting your password."
+#~ msgstr ""
+#~ "Neem a.u.b. contact met ons op als het niet lukt je wachtwoord opnieuw in "
+#~ "te stellen."
+
+#~ msgid "Messages:"
+#~ msgstr "Berichten:"
+
+#~ msgid ""
+#~ "You can sign in to your account using any of the following third-party "
+#~ "accounts:"
+#~ msgstr "Je kunt jezelf aanmelden met een van de volgende externe accounts:"
+
+#~ msgid ""
+#~ "You currently have no third-party accounts connected to this account."
+#~ msgstr "Je hebt momenteel geen externe accounts gekoppeld."
+
+#~ msgid "Add a Third-Party Account"
+#~ msgstr "Voeg een extern account toe"
+
+#~ msgid "Signed out of all other sessions."
+#~ msgstr "Afgemeld van alle andere sessies."
+
+#~ msgid "Started At"
+#~ msgstr "Gestart op"
+
+#~ msgid "IP Address"
+#~ msgstr "IP adres"
+
+#~ msgid "Browser"
+#~ msgstr "Browser"
+
+#~ msgid "Last seen at"
+#~ msgstr "Laatst gezien op"
+
+#~ msgid "Current"
+#~ msgstr "Huidig"
+
+#~ msgid "Sign Out Other Sessions"
+#~ msgstr "Elders uitloggen"
+
+#~ msgid "User Sessions"
+#~ msgstr "Gebruikerssessies"
+
+#~ msgid "session key"
+#~ msgstr "sessie sleutel"
+
+#~ msgid "Use security key or device"
+#~ msgstr "Gebruik een beveiligingssleutel"
+
+#~ msgid "Add Security Key or Device"
+#~ msgstr "Beveiligingssleutel toevoegen"
+
+#~ msgid "Add key or device"
+#~ msgstr "Beveiligingssleutel toevoegen"
+
+#~ msgid "Security Keys and Devices"
+#~ msgstr "Beveiligingssleutels"
+
+#~ msgid "You have not added any security keys/devices."
+#~ msgstr "Je hebt geen beveiligingssleutels toegevoegd."
+
+#~ msgid "Edit Security Key or Device"
+#~ msgstr "Bewerk beveiligingssleutel"
+
+#, python-brace-format
+#~ msgid "Password must be a minimum of {0} characters."
+#~ msgstr "Het wachtwoord moet minimaal {0} tekens bevatten."
+
+#, python-format
+#~ msgid ""
+#~ "You are receiving this email because you or someone else has requested a\n"
+#~ "password for your user account. However, we do not have any record of a "
+#~ "user\n"
+#~ "with email %(email)s in our database.\n"
+#~ "\n"
+#~ "This mail can be safely ignored if you did not request a password reset.\n"
+#~ "\n"
+#~ "If it was you, you can sign up for an account using the link below."
+#~ msgstr ""
+#~ "Je ontvang deze e-mail omdat er een verzoek is ingelegd om het wachtwoord "
+#~ "te\n"
+#~ "veranderen van account met e-mailadres %(email)s. Echter, dit account "
+#~ "bestaat\n"
+#~ "niet.\n"
+#~ "\n"
+#~ "Je kunt deze e-mail negeren als jij dit verzoek niet zelf hebt ingelegd.\n"
+#~ "\n"
+#~ "Als jij dit wel hebt gedaan, dan kun je je via de volgende link "
+#~ "registreren."
+
+#~ msgid "The following email address is associated with your account:"
+#~ msgstr "De volgende e-mailadressen zijn gekoppeld aan jouw account:"
+
+#~ msgid ""
+#~ "To safeguard the security of your account, please enter your password:"
+#~ msgstr ""
+#~ "Om de beveiliging van je account te waarborgen, voert eerst je wachtwoord "
+#~ "in:"
+
+#, fuzzy
+#~| msgid "Generate"
+#~ msgid "Regenerate"
+#~ msgstr "Genereer"
+
+#, python-format
+#~ msgid ""
+#~ "Please sign in with one\n"
+#~ "of your existing third party accounts. Or, <a "
+#~ "href=\"%(signup_url)s\">sign up</a>\n"
+#~ "for a %(site_name)s account and sign in below:"
+#~ msgstr ""
+#~ "Meld je aan met een van je bestaande externe accounts. Of, <a \n"
+#~ "href=\"%(signup_url)s\">registreer</a> voor een %(site_name)s account en "
+#~ "meld je hiermee aan:"
+
+#~ msgid "or"
+#~ msgstr "of"
+
+#~ msgid "change password"
+#~ msgstr "Wachtwoord wijzigen"
+
+#~ msgid "OpenID Sign In"
+#~ msgstr "Aanmelden via OpenID"
+
+#~ msgid "This email address is already associated with another account."
+#~ msgstr "Dit e-mailadres is al geassocieerd met een ander account."
+
+#~ msgid ""
+#~ "We have sent you an e-mail. Please contact us if you do not receive it "
+#~ "within a few minutes."
+#~ msgstr ""
+#~ "We hebben je een e-mail verstuurd. Neem a.u.b. contact met ons op als je "
+#~ "deze niet binnen enkele minuten ontvangen hebt."
+
+#~ msgid "The login and/or password you specified are not correct."
+#~ msgstr "Je login en wachtwoord komen niet overeen."
+
+#~ msgid "Usernames can only contain letters, digits and @/./+/-/_."
+#~ msgstr ""
+#~ "Gebruikersnamen mogen alleen letters, cijfers en @/./+/-/_ bevatten."
+
+#~ msgid "This username is already taken. Please choose another."
+#~ msgstr "Deze gebruikersnaam is al in gebruik. Kies a.u.b. een andere naam."
+
+#, fuzzy
+#~| msgid "Sign In"
+#~ msgid "Shopify Sign In"
+#~ msgstr "Aanmelden"
+
+#~ msgid ""
+#~ "You have confirmed that <a href=\"mailto:%(email)s\">%(email)s</a> is an "
+#~ "e-mail address for user %(user_display)s."
+#~ msgstr ""
+#~ "Je hebt bevestigd dat <a href=\"mailto:%(email)s\">%(email)s</a> een e-"
+#~ "mail adres is voor gebruiker %(user_display)s."
+
+#~ msgid "Thanks for using our site!"
+#~ msgstr "Bedankt voor het gebruik van onze site!"
+
+#~ msgid "Confirmation email sent to %(email)s"
+#~ msgstr "Bevestigings e-mail verzonden aan %(email)s"
+
+#~ msgid "Delete Password"
+#~ msgstr "Verwijder wachtwoord"
+
+#~ msgid ""
+#~ "You may delete your password since you are currently logged in using "
+#~ "OpenID."
+#~ msgstr ""
+#~ "Je kunt je wachtwoord verwijderen omdat je via OpenID bent ingelogd."
+
+#~ msgid "delete my password"
+#~ msgstr "Verwijder mijn wachtwoord"
+
+#~ msgid "Password Deleted"
+#~ msgstr "Wachtwoord verwijderd"

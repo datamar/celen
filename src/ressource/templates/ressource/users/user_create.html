@@ -1,0 +1,94 @@
+{% extends 'public/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% block titre %}Nouvel utilisateur{% endblock %}
+
+{% block css_supp %}
+{% endblock %}
+
+{% block contenu %}
+<div class="container min-vh-100 section col-md-6 mx-auto">
+    <div class="row mb-3">
+        <div class="col">
+            <h3>Nouvel utilisateur</h3>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-6">            
+                                    {{ form.first_name|as_crispy_field }}
+                                </div>
+                                <div class="col-lg-6">            
+                                    {{ form.last_name|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">            
+                                    {{ form.username|as_crispy_field }}
+                                </div>
+                                <div class="col-lg-6">            
+                                    {{ form.email|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <!-- Champ "groups" rendu manuellement en itérant sur ses widgets -->
+                                    <div class="form-group">
+                                        <label for="{{ form.groups.id_for_label }}">Type d'Utilisateur</label>
+                                        <ul class="list-inline">
+                                            {% for checkbox in form.groups %}
+                                                <li class="list-inline-item">
+                                                    <div class="form-check">
+                                                        {{ checkbox.tag }}
+                                                        <label class="form-check-label" for="{{ checkbox.id_for_label }}">
+                                                            {{ checkbox.choice_label }}
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                        {% if form.groups.errors %}
+                                            <div class="invalid-feedback d-block">
+                                                {{ form.groups.errors }}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">            
+                                    {{ form.password1|as_crispy_field }}
+                                </div>
+                                <div class="col-lg-6">            
+                                    {{ form.password2|as_crispy_field }}
+                                </div>
+                            </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body py-2">
+                    <div class="d-grid gap-2 d-md-block text-center">
+                        <button class="btn btn-primary btn-sm" type="submit"><i class="bi bi-save me-2"></i>Créer</button>
+                        <button class="btn btn-secondary btn-sm" onclick="history.back();"><i class="bi bi-arrow-left-circle me-2"></i>Annuler</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block js_supp %}
+{% endblock %}

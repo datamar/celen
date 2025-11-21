@@ -1,0 +1,29 @@
+{% extends 'public/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block css_supp %}
+<link rel="stylesheet" href="{% static 'css/aos.css' %}">
+{% endblock %}
+
+{% block titre %}Cellule Energie{% endblock %}
+
+{% block contenu %}
+<div class="container header min-vh-100">
+    <div class="row mb-3">
+        <div class="col-lg-4">
+            <h1 class="display-1 fw-bold">CELEN</h1>
+            <p class="lead">La Cellule Energie de la Direction Générale des Infrastructures du Secrétariat Général du Ministère de la Fédération Wallonie-Bruxelles</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_supp %}
+<script src="{% static 'js/aos.js' %}"></script>
+<script>AOS.init({
+  duration: 2000,
+  easing: 'ease-in-out',
+});</script>
+{% endblock %}

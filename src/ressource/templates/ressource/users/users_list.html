@@ -1,0 +1,106 @@
+{% extends 'public/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load utility %}
+
+{% block titre %}Utilisateurs{% endblock %}
+
+{% block css_supp %}
+<link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+<style>
+.hidden {
+  display: none;
+}
+</style>
+{% endblock %}
+
+{% block contenu %}
+<div class="container min-vh-100">
+    <div class="row mb-3 align-items-center">
+        <div class="col">
+            <h1>Utilisateurs</h1>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <table id="table_id" class="display" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Utilisateur</th>
+                                <th>Téléphone</th>
+                                <th>Inscrit</th>
+                                <th>Dern. Connexion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for p in object_list %}
+                            <tr class="align-items-center">
+                                <td>
+                                    <a class="d-flex align-items-center text-decoration-none" href="{% url 'ressource:user-details' pk=p.pk %}">
+                                        <img class="img-fluid rounded-circle" src="{{ p.photo.url }}" alt="{{ p }}" style="width:28px;height:28px;">
+                                        <div class="ms-3">
+                                            <span class="d-block text-inherit mb-0">
+                                                {{ p.user.username}}
+                                                {% if p.user.last_login %}
+                                                <i class="bi-patch-check-fill text-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Compte actif"></i>
+                                                {% else %}
+                                                <i class="bi-patch-minus-fill text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Jamais connecté"></i>
+                                                {% endif %}<br>
+                                                {{ p.user.email }}<br>
+                                                <span class="text-success" style="font-size:0.7rem;">
+                                                    {{ p.user.groups.first }}
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </a>
+                                </td>
+                                <td>{{ p.phone }}</td>
+                                <td>{{ p.user.date_joined|naturaltime }}</td>
+                                <td>
+                                    {% if p.user.last_login %}
+                                    {{ p.user.last_login|naturaltime }}
+                                    {% else %}
+                                    Jamas connecté
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>        
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body py-2">
+                    <div class="d-grid gap-2 d-md-block text-center">
+                        <a class="btn btn-sm btn-primary" role="button" href="{% url 'ressource:new-user' %}"><i class="bi bi-person-plus me-1"></i>Ajouter un Utilisateur</a>
+                        <a class="btn btn-sm btn-success" role="button" href="{% url 'ressource:users-import' %}"><i class="bi bi-plus-square me-1"></i>Importer plusieurs</a>
+                        <a class="btn btn-sm btn-secondary" role="button" href="{% url 'ressource:profile' %}"><i class="bi bi-arrow-left-circle me-1"></i>Retour</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_supp %}
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript">
+	$(document).ready( function () {
+    $('#table_id').DataTable({
+    responsive: true
+});
+} );
+</script>
+
+{% endblock %}

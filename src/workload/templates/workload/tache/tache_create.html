@@ -1,0 +1,66 @@
+{% extends 'public/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% block titre %}{% if '/modifier/' in request.path %}Modifier la {% else %}Nouvelle {% endif %}Tâche{% endblock %}
+
+{% block css_supp %}
+{% endblock %}
+
+{% block contenu %}
+<div class="container min-vh-100">
+    <div class="row mb-3">
+        <div class="col">
+            <h3>{% if '/modifier/' in request.path %}Modifier la {% else %}Nouvelle {% endif %}Tâche</h3>
+        </div>
+    </div>
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form.mission|as_crispy_field }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.projet|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            {{ form.nom|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form.description|as_crispy_field }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.tags|as_crispy_field }}
+                            {{ form.complete|as_crispy_field }}
+                        </div>
+                    </div>                  
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body py-2">
+                    <div class="d-grid gap-2 d-md-block text-center">
+                        <button class="btn btn-primary btn-sm" type="submit"><i class="bi bi-save me-2"></i>Créer</button>
+                        <button class="btn btn-secondary btn-sm" onclick="history.back();"><i class="bi bi-arrow-left-circle me-2"></i>Annuler</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block js_supp %}
+{% endblock %}

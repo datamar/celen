@@ -1,0 +1,690 @@
+{
+  "GeospatialFeature": {
+    "PhysicalFeature": {
+      "Geomorphology": {
+        "Elevation": {
+          "description": "Hauteur du terrain au-dessus du niveau moyen de la mer.",
+          "datatype": "float",
+          "unit": "m",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": null,
+          "temporal_scale": null
+        },
+        "Slope": {
+          "description": "Pente du terrain dérivée du modèle numérique d’élévation.",
+          "datatype": "float",
+          "unit": "°",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": null,
+          "temporal_scale": null
+        },
+        "Aspect": {
+          "description": "Orientation de la pente du terrain.",
+          "datatype": "float",
+          "unit": "°",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": null,
+          "temporal_scale": null
+        }
+      },
+      "Hydrology": {
+        "RiverNetwork": {
+          "description": "Réseau hydrographique de surface.",
+          "datatype": "geometry",
+          "unit": null,
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": null,
+          "temporal_scale": null
+        },
+        "WaterTableDepth": {
+          "description": "Profondeur de la nappe phréatique sous la surface.",
+          "datatype": "float",
+          "unit": "m",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": null,
+          "temporal_scale": null
+        }
+      },
+      "Topography": {
+        "DigitalElevationModel": {
+          "description": "Modèle numérique d’élévation représentant la surface terrestre.",
+          "datatype": "raster",
+          "unit": "m",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": null,
+          "temporal_scale": null
+        }
+      }
+    },
+    "EnvironmentalFeature": {
+      "Atmosphere": {
+        "Climate": {
+          "AirTemperature": {
+            "description": "Température de l’air à 2 mètres du sol.",
+            "datatype": "float",
+            "unit": "°C",
+            "protocol": null,
+            "endpoint": null,
+            "parameters": {},
+            "auth": "none",
+            "examples": [],
+            "spatial_scale": null,
+            "temporal_scale": null
+          },
+          "Precipitation": {
+            "description": "Précipitations totales sur une période donnée.",
+            "datatype": "float",
+            "unit": "mm",
+            "protocol": null,
+            "endpoint": null,
+            "parameters": {},
+            "auth": "none",
+            "examples": [],
+            "spatial_scale": null,
+            "temporal_scale": null
+          }
+        },
+        "AirChemistry": {
+          "Ozone": {
+            "description": "Concentration d’ozone dans l’atmosphère.",
+            "datatype": "float",
+            "unit": "ppb",
+            "protocol": null,
+            "endpoint": null,
+            "parameters": {},
+            "auth": "none",
+            "examples": [],
+            "spatial_scale": null,
+            "temporal_scale": null
+          }
+        }
+      },
+      "Biosphere": {
+        "VegetationIndices": {
+          "NDVI": {
+            "description": "Indice de végétation normalisé dérivé de la réflectance satellite.",
+            "datatype": "float",
+            "unit": "-",
+            "protocol": null,
+            "endpoint": null,
+            "parameters": {},
+            "auth": "none",
+            "examples": [],
+            "spatial_scale": null,
+            "temporal_scale": null
+          }
+        },
+        "LandCover": {
+          "Forest": {
+            "description": "Surface couverte par les forêts.",
+            "datatype": "categorical",
+            "unit": "%",
+            "protocol": null,
+            "endpoint": null,
+            "parameters": {},
+            "auth": "none",
+            "examples": [],
+            "spatial_scale": null,
+            "temporal_scale": null
+          }
+        }
+      },
+      "Hydrosphere": {
+        "SurfaceWater": {
+          "WaterExtent": {
+            "description": "Étendue des eaux de surface.",
+            "datatype": "float",
+            "unit": "km²",
+            "protocol": null,
+            "endpoint": null,
+            "parameters": {},
+            "auth": "none",
+            "examples": [],
+            "spatial_scale": null,
+            "temporal_scale": null
+          }
+        }
+      }
+    },
+    "AnthropogenicFeature": {
+      "BuiltEnvironment": {
+        "BuildingDensity": {
+          "description": "Densité de bâtiments sur une zone donnée.",
+          "datatype": "float",
+          "unit": "buildings/km²",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": null,
+          "temporal_scale": null
+        },
+        "RoadDensity": {
+          "description": "Densité du réseau routier.",
+          "datatype": "float",
+          "unit": "km/km²",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": null,
+          "temporal_scale": null
+        }
+      },
+      "Population": {
+        "PopulationDensity": {
+          "description": "Nombre d’habitants par kilomètre carré.",
+          "datatype": "float",
+          "unit": "hab/km²",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": null,
+          "temporal_scale": null
+        }
+      },
+      "EconomicActivity": {
+        "NightLightIntensity": {
+          "description": "Intensité lumineuse nocturne, indicateur de l’activité économique.",
+          "datatype": "float",
+          "unit": "nW/cm²/sr",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": null,
+          "temporal_scale": null
+        }
+      }
+    },
+    "HazardFeature": {
+      "NaturalHazards": {
+        "FloodRisk": {
+          "description": "Risque d’inondation selon les conditions hydrologiques locales.",
+          "datatype": "categorical",
+          "unit": null,
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": null,
+          "temporal_scale": null
+        },
+        "WildfireRisk": {
+          "description": "Risque de feux de forêt calculé à partir des conditions climatiques et de la végétation.",
+          "datatype": "categorical",
+          "unit": null,
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": null,
+          "temporal_scale": null
+        }
+      },
+      "AnthropogenicHazards": {
+        "IndustrialPollution": {
+          "description": "Présence de pollution issue d’activités industrielles.",
+          "datatype": "float",
+          "unit": "µg/m³",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": null,
+          "temporal_scale": null
+        }
+      }
+    },
+    "MetaFeature": {
+      "Geometry": {
+        "Type": {
+          "description": "Type géométrique (Point, Polygon, Line).",
+          "datatype": "string",
+          "unit": null,
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": null,
+          "temporal_scale": null
+        },
+        "CRS": {
+          "description": "Système de référence des coordonnées.",
+          "datatype": "string",
+          "unit": null,
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": null,
+          "temporal_scale": null
+        }
+      },
+      "Temporal": {
+        "ObservationDate": {
+          "description": "Date de l’observation.",
+          "datatype": "datetime",
+          "unit": null,
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": null,
+          "temporal_scale": null
+        }
+      },
+      "Provenance": {
+        "SourceName": {
+          "description": "Nom de la source de données (Copernicus, NASA, OSM, etc.).",
+          "datatype": "string",
+          "unit": null,
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": null,
+          "temporal_scale": null
+        }
+      },
+      "Quality": {
+        "Uncertainty": {
+          "description": "Incertitude associée à la donnée.",
+          "datatype": "float",
+          "unit": "%",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": null,
+          "temporal_scale": null
+        }
+      }
+    },
+    "InfrastructureFeature": {
+      "Transport": {
+        "RoadDensity": {
+          "description": "Longueur totale de routes par km².",
+          "datatype": "float",
+          "unit": "km/km²",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": "urban",
+          "temporal_scale": "annual"
+        },
+        "PublicTransportAccess": {
+          "description": "Distance moyenne au transport public le plus proche.",
+          "datatype": "float",
+          "unit": "m",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": "urban",
+          "temporal_scale": "annual"
+        }
+      },
+      "Energy": {
+        "GridDistance": {
+          "description": "Distance jusqu'au réseau électrique le plus proche.",
+          "datatype": "float",
+          "unit": "m",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": "regional",
+          "temporal_scale": "static"
+        },
+        "RenewablePotential": {
+          "description": "Potentiel de production d’énergie renouvelable (solaire, éolienne).",
+          "datatype": "float",
+          "unit": "kWh/m²/an",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": "regional",
+          "temporal_scale": "annual"
+        }
+      },
+      "Water": {
+        "PipelineProximity": {
+          "description": "Proximité du réseau d’eau potable.",
+          "datatype": "float",
+          "unit": "m",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": "urban",
+          "temporal_scale": "static"
+        },
+        "DrainageCapacity": {
+          "description": "Capacité d’évacuation des eaux pluviales dans la zone.",
+          "datatype": "float",
+          "unit": "m³/s",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": "urban",
+          "temporal_scale": "annual"
+        }
+      }
+    },
+    "AdministrativeFeature": {
+      "Zoning": {
+        "LandUseCode": {
+          "description": "Code d’usage du sol selon le plan local d’urbanisme.",
+          "datatype": "string",
+          "unit": null,
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": "local",
+          "temporal_scale": "static"
+        },
+        "ProtectionArea": {
+          "description": "Présence d’une zone protégée (Natura 2000, réserve naturelle).",
+          "datatype": "boolean",
+          "unit": null,
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": "regional",
+          "temporal_scale": "static"
+        },
+        "FloodZone": {
+          "description": "Appartenance à une zone inondable réglementée.",
+          "datatype": "boolean",
+          "unit": null,
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": "local",
+          "temporal_scale": "static"
+        },
+        "UrbanPlanningZone": {
+          "description": "Zone d’urbanisme (U, AU, N, A selon le PLU).",
+          "datatype": "string",
+          "spatial_scale": "local",
+          "temporal_scale": "static"
+        },
+        "BuildingRestrictionZone": {
+          "description": "Présence de servitudes ou restrictions de construction (monuments historiques, infrastructures).",
+          "datatype": "boolean",
+          "spatial_scale": "local",
+          "temporal_scale": "static"
+        },
+        "NoiseExposureZone": {
+          "description": "Niveau de gêne sonore selon les plans d’exposition au bruit (PEB, aéroport, transport).",
+          "datatype": "integer",
+          "unit": "dB",
+          "spatial_scale": "local",
+          "temporal_scale": "static"
+        }
+      },
+      "Boundaries": {
+        "Country": {
+          "description": "Nom du pays concerné.",
+          "datatype": "string",
+          "unit": null,
+          "protocol": "REST API",
+          "endpoint": "https://nominatim.openstreetmap.org/reverse",
+          "parameters": {
+            "lat": "<latitude>",
+            "lon": "<longitude>",
+            "format": "json"
+          },
+          "auth": "none",
+          "examples": ["France", "Morocco", "Germany"],
+          "spatial_scale": "administrative",
+          "temporal_scale": "static"
+        },
+        "Municipality": {
+          "description": "Nom de la commune d’appartenance.",
+          "datatype": "string",
+          "unit": null,
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": "administrative",
+          "temporal_scale": "static"
+        },
+        "CadastralParcel": {
+          "description": "Identifiant de la parcelle cadastrale.",
+          "datatype": "string",
+          "unit": null,
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": "local",
+          "temporal_scale": "static"
+        },
+        "Region": {
+          "description": "Région administrative de rattachement.",
+          "datatype": "string",
+          "protocol": null,
+          "endpoint": null,
+          "spatial_scale": "administrative",
+          "temporal_scale": "static"
+        },
+        "Department": {
+          "description": "Subdivision administrative intermédiaire (département, province).",
+          "datatype": "string",
+          "protocol": null,
+          "endpoint": null,
+          "spatial_scale": "administrative",
+          "temporal_scale": "static"
+        },
+        "UrbanArea": {
+          "description": "Appartenance à une aire urbaine ou unité statistique d’agglomération.",
+          "datatype": "string",
+          "protocol": null,
+          "endpoint": null,
+          "spatial_scale": "regional",
+          "temporal_scale": "static"
+        }
+      },
+      "Ownership": {
+        "OwnerType": {
+          "description": "Type de propriétaire (privé, public, institutionnel).",
+          "datatype": "string",
+          "spatial_scale": "parcel",
+          "temporal_scale": "static"
+        },
+        "LandRegistryReference": {
+          "description": "Référence officielle du bien dans le registre foncier.",
+          "datatype": "string",
+          "spatial_scale": "local",
+          "temporal_scale": "static"
+        },
+        "PropertyRights": {
+          "description": "Droits réels attachés à la parcelle (pleine propriété, usufruit, bail emphytéotique).",
+          "datatype": "string",
+          "spatial_scale": "local",
+          "temporal_scale": "static"
+        }
+      },
+      "AdministrativeUnits":{
+        "INSPIREID": {
+          "description": "Identifiant INSPIRE unique de l’unité administrative.",
+          "datatype": "string",
+          "spatial_scale": "administrative",
+          "temporal_scale": "static"
+        },
+        "NUTSCode": {
+          "description": "Code statistique européen (NUTS0, NUTS1, NUTS2, NUTS3).",
+          "datatype": "string",
+          "spatial_scale": "regional",
+          "temporal_scale": "static"
+        },
+        "PopulationDensity": {
+          "description": "Densité de population moyenne de l’unité administrative.",
+          "datatype": "float",
+          "unit": "hab/km²",
+          "protocol": "REST API",
+          "endpoint": "https://ec.europa.eu/eurostat/api/discoveries/population_density",
+          "spatial_scale": "regional",
+          "temporal_scale": "annual"
+        }
+      },
+      "Regulations": { 
+        "HeritageProtection": {
+          "description": "Présence d’un bâtiment ou d’une zone classée (Monuments historiques, UNESCO).",
+          "datatype": "boolean",
+          "spatial_scale": "local",
+          "temporal_scale": "static"
+        },
+        "EnvironmentalRestriction": {
+          "description": "Zone soumise à des contraintes environnementales (site Seveso, Natura 2000).",
+          "datatype": "boolean",
+          "spatial_scale": "regional",
+          "temporal_scale": "static"
+        },
+        "EnergyRegulationZone": {
+          "description": "Régime d’application de la réglementation énergétique (climatique, PEB).",
+          "datatype": "string",
+          "spatial_scale": "national",
+          "temporal_scale": "static"
+        }
+      }
+    },
+    "SocioEconomicFeature": {
+      "Economy": {
+        "MedianIncome": {
+          "description": "Revenu médian des ménages dans la zone.",
+          "datatype": "float",
+          "unit": "€",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": "communal",
+          "temporal_scale": "annual"
+        },
+        "UnemploymentRate": {
+          "description": "Taux de chômage de la population active.",
+          "datatype": "float",
+          "unit": "%",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": "communal",
+          "temporal_scale": "annual"
+        }
+      },
+      "Health": {
+        "PollutionExposure": {
+          "description": "Niveau d’exposition moyenne de la population à la pollution atmosphérique.",
+          "datatype": "float",
+          "unit": "µg/m³",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": "urban",
+          "temporal_scale": "annual"
+        },
+        "LifeExpectancy": {
+          "description": "Espérance de vie moyenne à la naissance.",
+          "datatype": "float",
+          "unit": "ans",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": "national",
+          "temporal_scale": "annual"
+        }
+      },
+      "Education": {
+        "SchoolAccess": {
+          "description": "Distance moyenne à l’établissement scolaire le plus proche.",
+          "datatype": "float",
+          "unit": "m",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": "urban",
+          "temporal_scale": "static"
+        },
+        "LiteracyRate": {
+          "description": "Taux d’alphabétisation de la population adulte.",
+          "datatype": "float",
+          "unit": "%",
+          "protocol": null,
+          "endpoint": null,
+          "parameters": {},
+          "auth": "none",
+          "examples": [],
+          "spatial_scale": "national",
+          "temporal_scale": "annual"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{% extends "account/base_entrance.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load socialaccount %}
+
+{% block head_title %}{% trans "Connexion" %}{% endblock %}
+
+{% block content %}
+<div class="container min-vh-100 section">
+    <div class="row">
+        <div class="col-lg-4 col-md-8 mx-auto">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <h2 class="mb-4 text-center">{% trans "Se connecter" %}</h2>
+                    <!-- CLASSIC LOGIN -->
+                    <form method="post" action="{% url 'account_login' %}">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="d-grid d-md-block text-center mt-3 gap-2">
+                          <button type="submit" class="btn btn-primary">{% trans "Se connecter" %}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

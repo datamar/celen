@@ -1,0 +1,62 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n socialaccount %}
+
+{% block head_title %}
+  {% trans "Connexions sociales" %}
+{% endblock %}
+
+{% block content %}
+<div class="container min-vh-100 section">
+  <div class="row">
+    <div class="col-lg-6 col-md-10 mx-auto">
+      <div class="card shadow-lg">
+        <div class="card-body">
+          <h2 class="mb-4 text-center">{% trans "Connexions au compte" %}</h2>
+
+          {% if form.accounts %}
+            <p class="text-muted">
+              {% blocktrans %}
+                Vous pouvez vous connecter à votre compte à l'aide de l'un des comptes tiers suivants :
+              {% endblocktrans %}
+            </p>
+
+            <form method="post" action="{% url 'socialaccount_connections' %}">
+              {% csrf_token %}
+
+              <div class="list-group mb-3">
+                {% for acc in form.fields.account.choices %}
+                  {% with account=acc.0.instance.get_provider_account %}
+                    <label class="list-group-item d-flex justify-content-between align-items-center">
+                      <input class="form-check-input me-2" type="radio" name="account" value="{{ account.account.pk }}">
+                      <span>
+                        {{ account }}
+                        <span class="badge bg-secondary ms-2">{{ account.get_brand.name }}</span>
+                      </span>
+                    </label>
+                  {% endwith %}
+                {% endfor %}
+              </div>
+
+              <div class="d-grid d-md-block text-center">
+                <button type="submit" class="btn btn-outline-danger">
+                  {% trans "Supprimer la connexion sélectionnée" %}
+                </button>
+              </div>
+            </form>
+          {% else %}
+            <div class="alert alert-info text-center" role="alert">
+              {% trans "Aucun compte tiers connecté pour l’instant." %}
+            </div>
+          {% endif %}
+
+          <hr class="my-4">
+          <h4 class="mb-3">{% trans "Ajouter une connexion" %}</h4>
+
+          {% include "socialaccount/snippets/provider_list.html" with process="connect" %}
+          {% include "socialaccount/snippets/login_extra.html" %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

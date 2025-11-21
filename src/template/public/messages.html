@@ -1,0 +1,11 @@
+{% load static %}
+<div class="message-container">
+    {% for message in messages %}
+        <div class="message-alert">
+            <div class="alert {{ message.tags }} alert-dismissible fade show border-3" role="alert">
+                {{ message|safe }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>    
+        </div>
+    {% endfor %}
+</div>
