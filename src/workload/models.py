@@ -129,7 +129,6 @@ class TimeBoundMixin(models.Model):
 
 		return min(dates), max(dates)
 
-
 ######################
 # Classes abstraites #
 ######################

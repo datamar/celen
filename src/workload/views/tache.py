@@ -32,7 +32,7 @@ class TacheCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 		if next_url:
 			return next_url
 		else:
-			return redirect("workload:accueil")
+			return reverse("workload:accueil")
 
 class TacheListView(LoginRequiredMixin, ListView):
 	model = Tache

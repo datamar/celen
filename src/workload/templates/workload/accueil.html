@@ -8,6 +8,7 @@
 
 
 {% block css_supp %}
+
 {% endblock %}
 
 {% block titre %}Tableau de bord{% endblock %}
@@ -28,6 +29,7 @@
                             </span>
                         </div>
                         <div class="col-lg-8 col-md-6">
+                            {% if ce_mois_ci.implications or ce_mois_ci.livrables or ce_mois_ci.projets %}
                             <h3>Ce mois ci</h3>
                             <div class="row justify-content-evenly">
                                 {% if ce_mois_ci.projets%}
@@ -81,13 +83,33 @@
                                 </div>
                                 {% endif %}
                             </div>
+                            {% else %}
+                            Aucun délai ce mois-ci
+                            {% endif %}
                         </div>
                     </div>                    
                 </div>
             </div>
         </div>
     </div>
-    <div class="row mb-3 justify-content-evenly g-3">
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                    {% for e in calendar_events %}
+                        <li class="d-flex justify-content-between">
+                            <span>{{ e.label }}</span>
+                            <span>{{ e.date|date }}</span>
+                            <span>{{ e.instance }}</span>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3 justify-content-center g-3">
         {% if mon_activite.livrables %}
         <div class="col-lg-4 col-md-6">
             <div class="card shadow-lg bg-body">

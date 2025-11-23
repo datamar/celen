@@ -5,6 +5,24 @@ from workload.models import *
 from django.db.models import Q
 from datetime import timedelta, date
 
+def get_calendar_events():
+    events = []
+
+    for model in (Projet, Livrable, Implication):
+        for obj in model.objects.all():
+            for label, date in obj.get_all_dates().items():
+                if date:
+                    events.append({
+                        "id": obj.id,
+                        "label": label,
+                        "date": date,  # important pour JS
+                        "type": obj.__class__.__name__.lower(),
+						"instance":obj
+                    })
+
+    return events
+
+
 def get_objects_this_month():
 	today = date.today()
 	first_day = today.replace(day=1)
@@ -60,6 +78,7 @@ def get_objects_grouped(user):
 def index(request):
 	mon_activite = get_objects_grouped(request.user)
 	ce_mois_ci = get_objects_this_month()
+	calendar_events = get_calendar_events()
 	return render(request, "workload/accueil.html",{
 		"users":User.objects.all(),
 		"missions":Mission.objects.all(),
@@ -70,6 +89,7 @@ def index(request):
 		"livrables":Livrable.objects.all(),
 		"mon_activite":mon_activite,
 		"ce_mois_ci":ce_mois_ci,
+		#"calendar_events":calendar_events,
 		})
 
 

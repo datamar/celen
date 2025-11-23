@@ -65,7 +65,7 @@ class DocumentForm(forms.ModelForm):
 class ProjetForm(forms.ModelForm):
     class Meta:
         model = Projet
-        exclude = ("documents", "commentaires")
+        exclude = ("documents", "commentaires","implications")
         widgets = {
             "start_date_prevue": forms.DateInput(attrs={"type": "date"}, format="%Y-%m-%d"),
             "end_date_prevue": forms.DateInput(attrs={"type": "date"}, format="%Y-%m-%d"),
