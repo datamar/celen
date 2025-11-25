@@ -212,10 +212,22 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
-ACCOUNT_LOGIN_METHODS = {"username"}
-#ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
+ACCOUNT_LOGIN_METHODS = {"username","email"}
+ACCOUNT_SIGNUP_FIELDS = ['username', 'email*', 'password1*', 'password2*']
 LOGIN_REDIRECT_URL = 'ressource:profile'
 SOCIALACCOUNT_AUTO_SIGNUP = True
+
+# Vérification de l'adresse e-mail
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # 'optional' ou 'none' si tu veux désactiver
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True       # Activation immédiate quand on clique (optionnel)
+
+# Connexion automatique après activation
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+
+# Envoi d'e-mail
+DEFAULT_FROM_EMAIL = "noreply@workloadr.com"
+
+
 #ACCOUNT_ADAPTER = 'ressource.adapters.kwargsAccountAdapter'
 #SOCIALACCOUNT_ADAPTER = 'ressource.adapters.kwargsSocialAccountAdapter'
 SOCIALACCOUNT_PROVIDERS = {

@@ -39,12 +39,11 @@ class CustomUserCreateForm(UserCreationForm):
 		if group == "Superadmin":
 			user.is_superuser = True
 		plain_password = self.cleaned_data.get('password1')
-		print ("mot de passe: "+plain_password)
 		user._plain_password = plain_password
 		user.save()  # Sauvegarder l'utilisateur pour qu'il ait un ID
 		user.groups.add(group)
-		user.profile.prenom = self.cleaned_data.get("first_name")
-		user.profile.nom_de_famille = self.cleaned_data.get('last_name')
+		user.first_name = self.cleaned_data.get("first_name")
+		user.last_name = self.cleaned_data.get('last_name')
 		user.profile.save()
 		return user
 
