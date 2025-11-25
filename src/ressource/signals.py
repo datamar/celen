@@ -10,6 +10,6 @@ def create_profile(sender, instance, created, **kwargs):
         requesting_user = get_current_user()
         profil = Profil.objects.create(user=instance, created_by=requesting_user)
         if instance.is_superuser:
-            admin_group, _ = Group.objects.get_or_create(name='Superadmin')
+            admin_group = Group.objects.get(name='Superadmin')
             instance.groups.add(admin_group)
         profil.save()

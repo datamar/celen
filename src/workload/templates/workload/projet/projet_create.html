@@ -30,6 +30,7 @@
                             </div>
                             <div class="col-md-3">
                                 {{ form.percent_complete|as_crispy_field }}
+                                <output for="id_percent_complete" id="rangeValue" aria-hidden="true"></output>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -84,4 +85,16 @@
 {% endblock %}
 
 {% block js_supp %}
+<script>
+  // This is a bootstrap 5 example script, please modify as needed
+  const rangeInput = document.getElementById('id_percent_complete');
+  const rangeOutput = document.getElementById('rangeValue');
+
+  // Set initial value
+  rangeOutput.textContent = rangeInput.value;
+
+  rangeInput.addEventListener('input', function() {
+    rangeOutput.textContent = this.value;
+  });
+</script>
 {% endblock %}

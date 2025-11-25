@@ -21,6 +21,12 @@ class ImplicationForm(forms.ModelForm):
             "end_date_prevue": forms.DateInput(attrs={"type": "date"}),
             "start_date_reel": forms.DateInput(attrs={"type": "date"}),
             "end_date_reel": forms.DateInput(attrs={"type": "date"}),
+            "contribution": forms.NumberInput(attrs={
+                "type": "range", 
+                "min": 0, 
+                "max": 100, 
+                "class": "form-range"}),
+
         }
 
     def clean(self):

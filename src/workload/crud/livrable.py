@@ -16,6 +16,13 @@ class LivrableCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     template_name = "workload/livrable/livrable_create.html"
     success_message = "Livrable créé avec succès"
 
+    def get_success_url(self):
+        # si next= est fourni dans l’URL, on le suit
+        next_url = self.request.GET.get("next") or self.request.POST.get("next")
+        if next_url:
+            return next_url
+        return reverse("workload:livrable_details", kwargs={"pk": self.pk})
+
 class LivrableUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Livrable
     form_class = LivrableForm

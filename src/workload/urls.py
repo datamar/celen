@@ -1,12 +1,13 @@
 from django.urls import path
-from workload.views.home import *
-from workload.views.mission import *
-from workload.views.document import *
-from workload.views.projet import *
-from workload.views.commentaire import *
-from workload.views.tache import *
-from workload.views.livrable import *
-from workload.views.implication import *
+from workload.views import index
+from workload.crud.mission import *
+from workload.crud.document import *
+from workload.crud.projet import *
+from workload.crud.commentaire import *
+from workload.crud.tache import *
+from workload.crud.livrable import *
+from workload.crud.implication import *
+
 app_name = 'workload'
 
 urlpatterns = [

@@ -1,0 +1,70 @@
+{% load static %}
+{% load i18n account %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+
+<div class="row mb-3">
+    <div class="col">
+        <div class="card shadow-lg bg-body">
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                        <div class="col">
+                            <h3 class="d-flex justify-content-between">
+                                Profil
+                                <div class="dropdown">
+                                    <button class="btn btn-sm border-secondary-subtle rounded-circle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'account_change_password' %}">{% trans "Changer le mot de passe" %}</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'account_email' %}">{% trans "Gérer les adresses de courriel" %}</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'socialaccount_connections' %}">{% trans "Comptes sociaux connectés" %}</a></li>
+                                    </ul>
+                                </div> 
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            {{ u_form.username|as_crispy_field }}
+                        </div>
+                        <div class="col-lg-6">
+                            {{ u_form.email|as_crispy_field }}
+                        </div>                  
+                    </div>                 
+                    <div class="row">
+                        <div class="col-lg-6">
+                            {{ u_form.first_name|as_crispy_field }}
+                        </div>
+                        <div class="col-lg-6">
+                            {{ u_form.last_name|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            {{ p_form.bio|as_crispy_field }}
+                        </div>
+                        <div class="col-md-4">
+                            {{ p_form.phone|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            {{ p_form.photo|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <div class="d-grid gap-2 d-md-block text-center">
+                                <button class="btn btn-primary btn-sm" type="submit"><i class="bi bi-save me-2"></i>Créer</button>
+                                <button class="btn btn-secondary btn-sm" onclick="history.back();"><i class="bi bi-arrow-left-circle me-2"></i>Annuler</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

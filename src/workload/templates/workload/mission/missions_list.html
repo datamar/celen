@@ -29,8 +29,7 @@
                                 <th>Mission</th>
                                 <th>Description</th>
                                 <th>Date</th>
-                                <th><i class="bi bi-person-badge"></i></th>
-                                <th><i class="bi bi-paperclip"></i></th>
+                                <th>Projets</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -40,12 +39,11 @@
                                 <td><a href="{% url 'workload:mission_details' m.pk %}">{{ m.nom }}</a></td>
                                 <td>{{ m.description|slice:"75" }}...</td>
                                 <td>{{ m.created|naturaltime }}</td>
-                                <td>{{ m.created_by }}</td>
-                                <td>{{ m.documents.all|length }}</td>
+                                <td>{{ m.projets.all|length }}</td>
                                 <td>
                                     <ul class="list-inline">
                                         <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-title="Ajouter un commentaire">
-                                            <a href=""><i class="bi bi-chat-dots text-warning"></i></a>
+                                            <a href="{% url 'workload:commentaire_create' m.get_content_type_id m.pk %}?next={{ request.path }}"><i class="bi bi-chat-dots text-warning"></i></a>
                                         </li>
                                         <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-title="Ajouter un document">
                                             <a href="{% url 'workload:document_create' m.get_content_type_id m.pk %}?next={{ request.path }}"><i class="bi bi-file-plus text-primary"></i></a>

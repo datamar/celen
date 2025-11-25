@@ -24,6 +24,7 @@
                     {{ form.nature|as_crispy_field }}
                     {{ form.role|as_crispy_field }}
                     {{ form.contribution|as_crispy_field }}
+                    <output for="id_contribution" id="rangeValue" aria-hidden="true"></output>
                 </div>
             </div>
         </div>
@@ -61,4 +62,16 @@
 {% endblock %}
 
 {% block js_supp %}
+<script>
+  // This is a bootstrap 5 example script, please modify as needed
+  const rangeInput = document.getElementById('id_contribution');
+  const rangeOutput = document.getElementById('rangeValue');
+
+  // Set initial value
+  rangeOutput.textContent = rangeInput.value;
+
+  rangeInput.addEventListener('input', function() {
+    rangeOutput.textContent = this.value;
+  });
+</script>
 {% endblock %}

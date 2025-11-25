@@ -1,0 +1,82 @@
+{% load static %}
+{% load i18n account %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+
+    <div class="row mb-3 justify-content-center g-3">
+        {% if mon_activite.livrables %}
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow-lg bg-body">
+                <div class="card-body">
+                    <h3 class="d-flex justify-content-between">
+                        Mes livrables
+                        <div class="dropdown">
+                            <button class="btn btn-sm border-secondary-subtle rounded-circle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'workload:livrable_create' %}?next={{ request.path }}">Ajouter</a></li>
+                                <li><a class="dropdown-item" href="{% url 'workload:livrable_list' %}">Voir la liste</a></li>
+                            </ul>
+                        </div>                        
+                    </h3>
+                    <ul class="list-unstyled">
+                        {% for l in mon_activite.livrables %}
+                        <li><a href="{% url 'workload:livrable_details' l.pk %}">{{ l }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if mon_activite.projets %}
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow-lg bg-body">
+                <div class="card-body">
+                    <h3 class="d-flex justify-content-between">
+                        Mes projets
+                        <div class="dropdown">
+                            <button class="btn btn-sm border-secondary-subtle rounded-circle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'workload:projet_create' %}?next={{ request.path }}">Ajouter</a></li>
+                                <li><a class="dropdown-item" href="{% url 'workload:projet_list' %}">Voir la liste</a></li>
+                            </ul>
+                        </div> 
+                    </h3>
+                    <ul class="list-unstyled small">
+                        {% for p in mon_activite.projets %}
+                        <li><a href="{% url 'workload:projet_details' p.pk %}">{{ p }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if mon_activite.taches %}
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow-lg bg-body">
+                <div class="card-body">
+                    <h3 class="d-flex justify-content-between">
+                        Mes tâches
+                        <div class="dropdown">
+                            <button class="btn btn-sm border-secondary-subtle rounded-circle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'workload:tache_create' %}?next={{ request.path }}">Ajouter</a></li>
+                                <li><a class="dropdown-item" href="{% url 'workload:tache_list' %}">Voir la liste</a></li>
+                            </ul>
+                        </div> 
+                    </h3>
+                    <ul class="list-unstyled small">
+                        {% for t in mon_activite.taches %}
+                        <li><a href="{% url 'workload:tache_details' t.pk %}">{{ t }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>

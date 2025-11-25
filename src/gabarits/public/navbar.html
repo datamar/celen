@@ -3,10 +3,12 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
 {% with current_path=request.get_full_path|slice:"3:" %}
-<nav class="navbar navbar-expand-lg sticky-top">
+<nav class="navbar navbar-expand sticky-top">
   <div class="container">
-    <a class="navbar-brand" href="/"><img class="me-2" src="{% static 'img/FWB_QUADRI_VERTI_1_.png' %}" alt="Logo"/><span class="fs-6">CELEN</span></a>
-
+    <a class="navbar-brand" href="/">
+        <img class="me-2" src="{% static 'img/logo.png' %}" alt="Logo"/>
+        <span class="fs-6">Workloadr</span>
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -14,34 +16,29 @@
       <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
       {% if user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'workload:accueil' %}">
-              {% trans "Tableau de bord" %}
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'ressource:profile' %}">
-              {% trans "Profil" %}
+          <a class="nav-link fs-5" href="{% url 'ressource:profile' %}">
+              <i class="bi bi-person-circle"></i>
           </a>
         </li>
         {% if user.is_superuser %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'admin:index' %}" target="_blank">
-              {% trans "Admin" %}
+          <a class="nav-link fs-5" href="{% url 'admin:index' %}" target="_blank">
+              <i class="bi bi-gear"></i>
           </a>
         </li>
         {% endif %}
         <li class="nav-item">
           <form method="post" action="/accounts/logout/" class="m-0">
               {% csrf_token %}
-              <button class="btn nav-link border-0 bg-transparent" type="submit">
-                  {% trans "Déconnexion" %}
+              <button class="btn fs-5 nav-link border-0 bg-transparent" type="submit">
+                  <i class="bi bi-box-arrow-up-left"></i>
               </button>
           </form>
         </li>
       {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'account_login' %}">
-              {% trans "Connexion" %}
+          <a class="nav-link fs-5" href="{% url 'account_login' %}">
+              <i class="bi bi-box-arrow-in-down-left"></i>
           </a>
         </li>
       {% endif %}

@@ -1,0 +1,36 @@
+{% extends 'public/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block css_supp %}
+<link rel="stylesheet" href="{% static 'css/aos.css' %}">
+{% endblock %}
+
+{% block titre %}Workloadr{% endblock %}
+
+{% block contenu %}
+<div class="container-fluid min-vh-100 d-flex justify-content-center align-items-center"
+     style="background-image:url('{% static 'img/wesley-tingey-workload.jpg' %}');
+            background-size:cover;
+            background-position:bottom;
+            background-repeat:no-repeat;
+            background-attachment:fixed;
+            ">
+    <div class="col-lg-4 text-center text-white bg-dark bg-opacity-75 p-3 rounded">
+        <h1 class="display-1 fw-bold">WorkLoadr</h1>
+        <p class="lead">
+            Gestionnaire de la charge de travail des Agents de la Cellule Energie de la Direction Générale des Infrastructures du Secrétariat Général du Ministère de la Fédération Wallonie-Bruxelles
+        </p>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block js_supp %}
+<script src="{% static 'js/aos.js' %}"></script>
+<script>AOS.init({
+  duration: 2000,
+  easing: 'ease-in-out',
+});</script>
+{% endblock %}

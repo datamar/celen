@@ -1,0 +1,139 @@
+{% load static %}
+{% load i18n account %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+
+<div class="row mb-3 g-3">
+    <div class="col-lg-2 col-md-6">
+        <div class="card shadow-lg bg-body">
+            <div class="card-body text-center">
+                <h3 class="d-flex justify-content-between">
+                    Equipe
+                    <div class="dropdown">
+                        <button class="btn btn-sm border-secondary-subtle rounded-circle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'ressource:new-user' %}?next={{ request.path }}">Ajouter</a></li>
+                            <li><a class="dropdown-item" href="{% url 'ressource:users-import' %}">Importer</a></li>
+                            <li><a class="dropdown-item" href="{% url 'ressource:users-list' %}">Liste</a></li>
+                        </ul>
+                    </div> 
+                </h3>
+                <span class="display-4 fw-bold">{{ users|length }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-6">
+        <div class="card shadow-lg bg-body">
+            <div class="card-body text-center">
+                <h3 class="d-flex justify-content-between">
+                    Mission
+                    <div class="dropdown">
+                        <button class="btn btn-sm border-secondary-subtle rounded-circle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'workload:mission_create' %}?next={{ request.path }}">Ajouter</a></li>
+                            <li><a class="dropdown-item" href="{% url 'workload:missions_list' %}">Liste</a></li>
+                        </ul>
+                    </div> 
+                </h3>
+                <span class="display-4 fw-bold">{{ missions|length }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-6">
+        <div class="card shadow-lg bg-body">
+            <div class="card-body text-center">
+                <h3 class="d-flex justify-content-between">
+                    Projet
+                    <div class="dropdown">
+                        <button class="btn btn-sm border-secondary-subtle rounded-circle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'workload:projet_create' %}?next={{ request.path }}">Ajouter</a></li>
+                            <li><a class="dropdown-item" href="{% url 'workload:projet_list' %}">Liste</a></li>
+                        </ul>
+                    </div> 
+                </h3>
+                <span class="display-4 fw-bold">{{ projets|length }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-6">
+        <div class="card shadow-lg bg-body">
+            <div class="card-body text-center">
+                <h3 class="d-flex justify-content-between">
+                    GED
+                    <div class="dropdown">
+                        <button class="btn btn-sm border-secondary-subtle rounded-circle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'workload:documents_list' %}">Liste</a></li>
+                        </ul>
+                    </div> 
+                </h3>
+                <span class="display-4 fw-bold">{{ documents|length }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-6">
+        <div class="card shadow-lg bg-body">
+            <div class="card-body text-center">
+                <h3 class="d-flex justify-content-between">
+                    Notes
+                    <div class="dropdown">
+                        <button class="btn btn-sm border-secondary-subtle rounded-circle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'workload:commentaire_list' %}">Liste</a></li>
+                        </ul>
+                    </div> 
+                </h3>
+                <span class="display-4 fw-bold">{{ commentaires|length }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-6">
+        <div class="card shadow-lg bg-body">
+            <div class="card-body text-center">
+                <h3 class="d-flex justify-content-between">
+                    Tâches
+                    <div class="dropdown">
+                        <button class="btn btn-sm border-secondary-subtle rounded-circle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'workload:tache_create' %}?next={{ request.path }}">Ajouter</a></li>
+                            <li><a class="dropdown-item" href="{% url 'workload:tache_list' %}">Liste</a></li>
+                        </ul>
+                    </div> 
+                </h3>
+                <span class="display-4 fw-bold">{{ taches|length }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-6">
+        <div class="card shadow-lg bg-body">
+            <div class="card-body text-center">
+                <h3 class="d-flex justify-content-between">
+                    Livrables
+                    <div class="dropdown">
+                        <button class="btn btn-sm border-secondary-subtle rounded-circle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'workload:livrable_create' %}?next={{ request.path }}">Ajouter</a></li>
+                            <li><a class="dropdown-item" href="{% url 'workload:livrable_list' %}">Liste</a></li>
+                        </ul>
+                    </div> 
+                </h3>
+                <span class="display-4 fw-bold">{{ livrables|length }}</span>
+            </div>
+        </div>
+    </div>
+</div>

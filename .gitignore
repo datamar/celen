@@ -2,12 +2,9 @@
 __pycache__/
 *.py[codz]
 *$py.class
-# Media folder
-media/
 # C extensions
 *.so
 /old_src/
-/old_old_src/
 
 # Distribution / packaging
 .Python

@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class StaticpagesConfig(AppConfig):
+class PageConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'staticpages'
+    name = 'page'

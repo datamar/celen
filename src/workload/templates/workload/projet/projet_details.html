@@ -36,15 +36,6 @@
                                 et modifiée {{ object.modified|naturaltime }} par {{ object.modified_by }}
                                 {% endif %}
                             </span>
-                            {% if object.duree_prevue or object.duree_reelle %}
-                            <ul class="list-unstyled">
-                                {% if object.duree_prevue %}
-                                <li><b>Durée prévue</b>: {{ object.duree_prevue }} jours</li>
-                                {% elif object.duree_reelle %}
-                                <li><b>Durée réelle</b>: {{ object.duree_reelle }} jours</li>
-                                {% endif %}
-                            </ul>
-                            {% endif %}
                         </div>
                         <div class="col-lg-2 col-md-3">
                             <ul class="list-unstyled">
@@ -57,12 +48,12 @@
                                 </li>
                                 {% if object.duree_prevue %}
                                 <li>
-                                    <b>Durée prévue</b>: {{ object.duree_prevue }} jours
+                                    <b>Durée prévue</b>: {{ object.duree_prevue|safe }} jours
                                 </li>
                                 {% endif %}
                                 {% if object.duree_reelle %}
                                 <li>
-                                    <b>Durée réelle</b>: {{ object.duree_reelle }} jours
+                                    <b>Durée réelle</b>: {{ object.duree_reelle|safe }} jours
                                 </li>
                                 {% endif %}
                             </ul>

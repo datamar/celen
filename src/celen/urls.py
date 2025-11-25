@@ -23,7 +23,7 @@ from django.conf.urls.i18n import i18n_patterns
 urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path("favicon.ico", include("django.contrib.staticfiles.urls")),
-    path('', include('staticpages.urls')),
+    path('', include('page.urls')),
     path('accounts/', include('allauth.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
     path('ressource/', include('ressource.urls')),

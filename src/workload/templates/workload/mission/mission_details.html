@@ -5,6 +5,20 @@
 {% block titre %}Mission {{ object }}{% endblock %}
 
 {% block css_supp %}
+<style>
+.avatar {
+    display: inline-block;
+    vertical-align: middle;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+}
+.avatars {
+    display: flex;
+    gap: 2px; /* ou 0 si tu veux collés */
+    align-items: center;
+}
+</style>
 {% endblock %}
 
 {% block contenu %}
@@ -19,6 +33,124 @@
                         et modifiée {{ object.modified|naturaltime }} par {{ object.modified_by }}
                         {% endif %}
                     </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3 g-3" data-masonry='{"percentPosition": true }'>
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <h3>Description</h3>
+                    <ul class="list-inline small mb-3">
+                        <li class="list-inline-item">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'workload:mission_update' object.pk %}?next={{ request.path }}">
+                            <i class="bi bi-pencil-square"></i>
+                            Editer
+                            </a>
+                        </li>
+                    </ul>
+                    <p>{{ object.description }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <h3>Projets</h3>
+                    <ul class="list-inline small mb-3">
+                        <li class="list-inline-item">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'workload:projet_create' %}?next={{ request.path }}">
+                            <i class="bi bi-plus-circle"></i>
+                            Ajouter
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled">
+                        {% for projet in object.projets.all %}
+                        <li class="py-1">
+                            <a href="{% url 'workload:projet_details' projet.pk %}" class="text-decoration-none">
+                                {{ projet }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <h3>{{ object.documents.all|length }} Documents</h3>
+                    <ul class="list-inline small mb-3">
+                        <li class="list-inline-item">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'workload:document_create' object.get_content_type_id object.pk %}?next={{ request.path }}">
+                            <i class="bi bi-plus-circle"></i>
+                            Ajouter
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled">
+                        {% for doc in object.documents.all %}
+                        <li class="d-flex justify-content-between">
+                            <a target="_blank" href="{{ doc.url }}" class="small">{{ doc.nom|slice:"25" }}...</a>
+                            <ul class="list-unstyled">
+                                <li class="list-inline-item">
+                                    <a href="{% url 'workload:document_update' pk=doc.pk %}?next={{ request.path }}"><i class="bi bi-pencil-square text-warning"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="{% url 'workload:document_delete' pk=doc.pk %}?next={{ request.path }}"><i class="bi bi-trash3 text-danger"></i></a>
+                                </li>
+                            </ul>
+                            
+                        </li>
+                        {% endfor %}
+                    </ul>                    
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <h3>{{ object.commentaires.all|length }} Commentaire{% if object.commentaires.all|length > 1 %}s{% endif %}</h3>
+                    <ul class="list-inline small mb-3">
+                        <li class="list-inline-item">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.400rem, 0);" href="{% url 'workload:commentaire_create' object.get_content_type_id object.pk %}?next={{ request.path }}">
+                            <i class="bi bi-plus-circle"></i>
+                            Ajouter
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled">
+                        {% for com in object.commentaires.all %}
+                        <li class="d-flex justify-content-between">
+                            <a href="{% url 'workload:commentaire_details' com.pk %}" class="small">
+                                {{ com.get_type_display }} {{ com.created|naturaltime }}
+                            </a>
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <a href="{% url 'workload:commentaire_update' pk=com.pk %}?next={{ request.path }}"><i class="bi bi-pencil-square text-warning"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="{% url 'workload:commentaire_delete' pk=com.pk %}?next={{ request.path }}"><i class="bi bi-trash3 text-danger"></i></a>
+                                </li>
+                            </ul>                            
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body py-2">
+                    <div class="d-grid gap-2 d-md-block text-center">
+                        <a class="btn btn-sm btn-secondary" role="button" href="{% url 'workload:accueil' %}"><i class="bi bi-arrow-left-circle me-1"></i>Retour</a>
+                    </div>
                 </div>
             </div>
         </div>

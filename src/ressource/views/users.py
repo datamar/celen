@@ -1,17 +1,48 @@
-import csv, io
+import io, csv
 from django.apps import apps
-from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
 from django.contrib import messages
-from ressource.forms.users import UserUpdateForm, ProfileUpdateForm, CustomUserCreateForm, ImportUserForm
-from ressource.models.users import Profil
-from ressource.models.utility import Cachet
-from workload.models import *
+from django.contrib.auth.models import User, Group
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.models import User, Group
-from django.views.generic import ListView, CreateView, DetailView,  DeleteView
+from django.contrib.auth.decorators import login_required
+from ressource.models.users import Profil
+from ressource.models.utility import Cachet
+from workload.views import get_objects_grouped
+from workload.models import Mission, Projet, Document, Commentaire, Tache, Livrable
+from django.views.generic import ListView, CreateView, DetailView
+from ressource.forms import UserUpdateForm, ProfileUpdateForm, CustomUserCreateForm, ImportUserForm
+
+
+@login_required
+def profile(request):
+	profil = request.user.profile
+	if request.method == "POST":
+		u_form = UserUpdateForm(request.POST, instance=request.user)
+		p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+		if u_form.is_valid() and p_form.is_valid():
+			u_form.save()
+			p_form.save()
+			messages.success(request, 'Vos informations ont été mises à jour.')
+			return redirect('ressource:profile')
+	else:        
+		u_form = UserUpdateForm(instance=request.user)
+		p_form = ProfileUpdateForm(instance=request.user.profile)
+	context = {
+		'u_form':u_form,
+		'p_form':p_form,
+		"profil":profil,
+		"users":User.objects.all(),
+		"mon_activite":get_objects_grouped(request.user),
+		"missions":Mission.objects.all(),
+		"projets":Projet.objects.all(),
+		"documents": Document.objects.all(),
+		"commentaires": Commentaire.objects.all(),
+		"taches": Tache.objects.all(),
+		"livrables": Livrable.objects.all(),
+	}
+	return render(request, 'ressource/users/profile.html', context)
 
 @login_required
 def import_utilisateurs(request):
@@ -53,7 +84,7 @@ def import_utilisateurs(request):
 				nbr_users_importes += 1	
 			messages.success(request, f"{nbr_users_importes} utilisateurs ont été créés avec succès.")
 
-			return redirect("workload:accueil")
+			return redirect("ressource:profile")
 	else:
 		form = ImportUserForm()
 	
@@ -88,38 +119,3 @@ class UsersList(LoginRequiredMixin, ListView):
 			messages.error(request, "Vous n'avez pas la permission d'accéder à cette page.")
 			return redirect('ressource:accueil')
 		return super().dispatch(request, *args, **kwargs)
-
-@login_required
-def profile(request):
-	profil = request.user.profile
-	if request.method == "POST":
-		u_form = UserUpdateForm(request.POST, instance=request.user)
-		p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
-		if u_form.is_valid() and p_form.is_valid():
-			u_form.save()
-			p_form.save()
-			messages.success(request, 'Vos informations ont été mises à jour.')
-			return redirect('ressource:profile')
-	else:        
-		u_form = UserUpdateForm(instance=request.user)
-		p_form = ProfileUpdateForm(instance=request.user.profile)
-	# historique des activités
-	all_objects = []	
-	for model in apps.get_models():
-		if issubclass(model,Cachet) and not model._meta.abstract:
-			queryset = model.objects.all()
-			all_objects.extend(queryset)
-	historique = sorted(all_objects, key=lambda x: x.modified, reverse=True)
-	users = User.objects.all()
-	#missions = Mission.objects.all().order_by("nom")
-	#projets = Projet.objects.all().order_by("modified")
-	context = {
-		"historique":historique,
-		'u_form':u_form,
-		'p_form':p_form,
-		"profil":profil,
-		"users":users,
-		#"missions":missions,
-		#"projets":projets
-	}
-	return render(request, 'ressource/users/profile.html', context)

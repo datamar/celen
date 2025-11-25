@@ -4,7 +4,7 @@ from ressource.models.utility import Cachet
 from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
 from django.utils.timezone import now
-from django.contrib import messages
+#from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericRelation, GenericForeignKey
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -18,10 +18,6 @@ class TimeBoundMixin(models.Model):
 	Mixin générique pour les objets disposant de :
 	- dates prévues (planned)
 	- dates réelles (actual)
-	Avec :
-	- validations automatiques
-	- calculs de durées
-	- détection du retard
 	"""
 	start_date_prevue = models.DateField("Date prévue de début", null=True, blank=True)
 	end_date_prevue = models.DateField("Date prévue de fin", null=True, blank=True)
@@ -31,21 +27,6 @@ class TimeBoundMixin(models.Model):
 
 	class Meta:
 		abstract = True
-
-	def clean(self):
-		"""Vérifie la cohérence des dates prévues et réelles."""
-		errors = {}
-
-		if self.start_date_prevue and self.end_date_prevue:
-			if self.end_date_prevue < self.start_date_prevue:
-				errors["end_date_prevue"] = "La date de fin prévue doit être après la date de début prévue."
-
-		if self.start_date_reel and self.end_date_reel:
-			if self.end_date_reel < self.start_date_reel:
-				errors["end_date_reel"] = "La date de fin réelle doit être après la date de début réelle."
-
-		if errors:
-			raise ValidationError(errors)
 
 	@property
 	def duree_prevue(self):
@@ -62,72 +43,12 @@ class TimeBoundMixin(models.Model):
 		return None
 
 	@property
-	def est_en_retard(self):
-		"""
-		Retourne True si :
-		- une date prévue existe
-		- la date du jour dépasse la fin prévue
-		"""
-		if self.end_date_prevue:
-			return now().date() > self.end_date_prevue
-		return False
-
-	@property
-	def jours_de_retard(self):
-		"""Retourne le nombre de jours de retard (0 si pas en retard)."""
-		if not self.est_en_retard:
-			return 0
-		return (now().date() - self.end_date_prevue).days
-
-	@property
 	def is_started(self):
 		return self.start_date_reel is not None
 
 	@property
 	def is_finished(self):
 		return self.end_date_reel is not None
-
-	def dates_prevues_str(self):
-		"""Affiche proprement les dates prévues."""
-		if not self.start_date_prevue and not self.end_date_prevue:
-			return "Dates prévues non définies"
-		return f"{self.start_date_prevue or '?'} → {self.end_date_prevue or '?'}"
-
-	def dates_reelles_str(self):
-		"""Affiche proprement les dates réelles."""
-		if not self.start_date_reel and not self.end_date_reel:
-			return "Dates réelles non définies"
-		return f"{self.start_date_reel or '?'} → {self.end_date_reel or '?'}"
-
-	def get_all_dates(self):
-		"""Retourne toutes les dates non nulles du Mixin sous forme de dictionnaire"""
-		fields = [
-			"start_date_prevue",
-			"end_date_prevue",
-			"start_date_reel",
-			"end_date_reel",
-		]
-
-		return {
-			field: getattr(self, field)
-			for field in fields
-			if getattr(self, field) is not None
-		}
-
-	def get_period(self):
-		dates = [
-			d for d in [
-				self.start_date_prevue,
-				self.end_date_prevue,
-				self.start_date_reel,
-				self.end_date_reel,
-			] if d
-		]
-
-		if not dates:
-			return None, None
-
-		return min(dates), max(dates)
 
 ######################
 # Classes abstraites #
