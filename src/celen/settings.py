@@ -21,21 +21,30 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env.bool("DEBUG")
 # Gestion des emails
 if DEBUG:
-#    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": "db.sqlite3",
     }
 }
-else:   
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     DATABASES = {
         'default': env.db(
             'DATABASE_URL',
             engine='django.db.backends.postgresql'
             ),
     }
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# Envoi d'e-mail
+EMAIL_HOST = env("EMAIL_HOST")  # ex: smtp-1.alwaysdata.com
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = env("HOST_USER")
+EMAIL_HOST_PASSWORD = env("HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = "kwargs SRL <info@kwargs.be>"
+EMAIL_SUBJECT_PREFIX = "[kwargs notification]"
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
@@ -224,8 +233,7 @@ ACCOUNT_CONFIRM_EMAIL_ON_GET = True       # Activation immédiate quand on cliqu
 # Connexion automatique après activation
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
-# Envoi d'e-mail
-DEFAULT_FROM_EMAIL = "info@kwargs.be"
+
 
 
 #ACCOUNT_ADAPTER = 'ressource.adapters.kwargsAccountAdapter'
