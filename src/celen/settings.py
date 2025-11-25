@@ -225,7 +225,7 @@ ACCOUNT_CONFIRM_EMAIL_ON_GET = True       # Activation immédiate quand on cliqu
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
 # Envoi d'e-mail
-DEFAULT_FROM_EMAIL = "noreply@workloadr.com"
+DEFAULT_FROM_EMAIL = "info@kwargs.be"
 
 
 #ACCOUNT_ADAPTER = 'ressource.adapters.kwargsAccountAdapter'
