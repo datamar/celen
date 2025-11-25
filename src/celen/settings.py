@@ -21,7 +21,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env.bool("DEBUG")
 # Gestion des emails
 if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -29,13 +29,13 @@ if DEBUG:
     }
 }
 else:   
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     DATABASES = {
         'default': env.db(
             'DATABASE_URL',
             engine='django.db.backends.postgresql'
             ),
     }
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
