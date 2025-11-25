@@ -22,8 +22,20 @@ DEBUG = env.bool("DEBUG")
 # Gestion des emails
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "db.sqlite3",
+    }
+}
 else:   
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    DATABASES = {
+        'default': env.db(
+            'DATABASE_URL',
+            engine='django.db.backends.postgresql'
+            ),
+    }
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
