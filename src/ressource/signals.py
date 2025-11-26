@@ -23,20 +23,3 @@ def create_profile(sender, instance, created, **kwargs):
             instance.groups.add(admin_group)
         except Group.DoesNotExist:
             pass
-
-    # --- ENVOI EMAIL DE CONFIRMATION (allauth 65.12.0) ---
-    if instance.email:
-        email_obj, _ = EmailAddress.objects.get_or_create(
-            user=instance,
-            email=instance.email.lower(),
-            defaults={
-                "verified": False,
-                "primary": True
-            }
-        )
-
-        # 👇 Appel officiel
-        email_obj.send_confirmation(
-            request=None,   # pas de request dans un signal
-            signup=False    # user créé hors signup allauth
-        )
