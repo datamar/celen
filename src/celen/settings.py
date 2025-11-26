@@ -234,7 +234,7 @@ ACCOUNT_CONFIRM_EMAIL_ON_GET = True       # Activation immédiate quand on cliqu
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
 
-
+ACCOUNT_ADAPTER = "ressource.adapters.KwargsAccountAdapter"
 
 #ACCOUNT_ADAPTER = 'ressource.adapters.kwargsAccountAdapter'
 #SOCIALACCOUNT_ADAPTER = 'ressource.adapters.kwargsSocialAccountAdapter'
