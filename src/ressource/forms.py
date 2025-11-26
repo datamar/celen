@@ -33,18 +33,34 @@ class CustomUserCreateForm(UserCreationForm):
 		Sauvegarde l'utilisateur et lui assigne le groupe sélectionné.
 		"""
 		user = super().save(commit=False)
-		current_user = get_current_user()
-		# Ajouter le groupe sélectionné à l'utilisateur
-		group = self.cleaned_data.get('groups')
-		if group == "Superadmin":
-			user.is_superuser = True
-		plain_password = self.cleaned_data.get('password1')
-		user._plain_password = plain_password
-		user.save()  # Sauvegarder l'utilisateur pour qu'il ait un ID
-		user.groups.add(group)
+
+		# Attribuer groupes + infos
+		group = self.cleaned_data.get("groups")
 		user.first_name = self.cleaned_data.get("first_name")
-		user.last_name = self.cleaned_data.get('last_name')
-		user.profile.save()
+		user.last_name = self.cleaned_data.get("last_name")
+
+		plain_password = self.cleaned_data.get("password1")
+		user.set_password(plain_password)
+
+		# Superadmin ?
+		if group.name == "Superadmin":
+			user.is_superuser = True
+
+		user.save()
+		user.groups.add(group)
+
+		# Créer EmailAddress allauth
+		from allauth.account.models import EmailAddress
+		email_address = EmailAddress.objects.create(
+			user=user,
+			email=user.email.lower(),
+			primary=True,
+			verified=False,
+		)
+
+		# Envoyer email confirmation
+		email_address.send_confirmation()
+
 		return user
 
 class UserUpdateForm(UserChangeForm):

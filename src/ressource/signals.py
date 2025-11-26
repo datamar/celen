@@ -7,7 +7,7 @@ from crum import get_current_user
 from django.core.mail import send_mail
 from django.conf import settings
 #from allauth.account.adapter import get_adapter
-from allauth.account.models import EmailAddress
+#from allauth.account.models import EmailAddress
 
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
