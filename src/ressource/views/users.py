@@ -10,37 +10,62 @@ from django.contrib.auth.decorators import login_required
 from ressource.models.users import Profil
 from ressource.models.utility import Cachet
 from workload.views import get_objects_grouped
-from workload.models import Mission, Projet, Document, Commentaire, Tache, Livrable
+from workload.models import Mission, Projet, Document, Commentaire, Tache, Livrable, Implication
 from django.views.generic import ListView, CreateView, DetailView
-from ressource.forms import UserUpdateForm, ProfileUpdateForm, CustomUserCreateForm, ImportUserForm
-
+from ressource.forms import UserUpdateForm, ProfileUpdateForm, CustomUserCreateForm, ImportUserForm, ImplicationForm
 
 @login_required
 def profile(request):
-	profil = request.user.profile
+	user = request.user
+	profil = user.profile
+	implications = Implication.objects.filter(agent=user)
 	if request.method == "POST":
 		u_form = UserUpdateForm(request.POST, instance=request.user)
 		p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+		imp_forms = [
+			ImplicationForm(request.POST, instance=imp, prefix=f"imp_{imp.pk}")
+			for imp in implications
+		]
 		if u_form.is_valid() and p_form.is_valid():
 			u_form.save()
 			p_form.save()
-			messages.success(request, 'Vos informations ont été mises à jour.')
+			messages.success(request, 'Votre profil a été mis à jour.')
 			return redirect('ressource:profile')
-	else:        
-		u_form = UserUpdateForm(instance=request.user)
-		p_form = ProfileUpdateForm(instance=request.user.profile)
+		if all(f.is_valid() for f in imp_forms):
+			total_contribution = sum(
+				f.cleaned_data.get("contribution", 0)
+				for f in imp_forms
+			)
+			if total_contribution > 100:
+				messages.error(request, f"Contributions cumulées trop élevées : {total_contribution}%")
+			else:
+				for f in imp_forms:
+					if f.has_changed():
+						f.save()
+				messages.success(request, 'Vos implications ont été mises à jour.')
+			return redirect('ressource:profile')
+	else:
+		u_form = UserUpdateForm(instance=user)
+		p_form = ProfileUpdateForm(instance=profil)
+		imp_forms = [
+			ImplicationForm(instance=imp, prefix=f"imp_{imp.pk}")
+			for imp in implications
+		]
+
 	context = {
-		'u_form':u_form,
-		'p_form':p_form,
-		"profil":profil,
-		"users":User.objects.all(),
-		"mon_activite":get_objects_grouped(request.user),
-		"missions":Mission.objects.all(),
-		"projets":Projet.objects.all(),
+		'u_form': u_form,
+		'p_form': p_form,
+		'implication_forms': imp_forms,
+		"profil": profil,
+		"users": User.objects.all(),
+		"mon_activite": get_objects_grouped(user),
+		"missions": Mission.objects.all(),
+		"projets": Projet.objects.all(),
 		"documents": Document.objects.all(),
 		"commentaires": Commentaire.objects.all(),
 		"taches": Tache.objects.all(),
 		"livrables": Livrable.objects.all(),
+		"working_agent": Implication.objects.select_related("agent").order_by("agent"),
 	}
 	return render(request, 'ressource/users/profile.html', context)
 

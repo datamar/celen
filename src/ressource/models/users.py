@@ -5,12 +5,13 @@ from django.contrib.auth import get_user_model
 from ressource.models.utility import Cachet
 from allauth.account.models import EmailAddress
 from django.utils.translation import gettext_lazy as _
+from workload.models import Implication
 
 User = get_user_model()
 
 class Profil(Cachet):
     def profile_image_upload_to(instance, filename):
-        user_folder = f'{instance.espace}/{instance.user.username}/avatar/'
+        user_folder = f'{instance.user.username}/avatar/'
         return os.path.join(user_folder, filename)
     
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
@@ -35,4 +36,12 @@ class Profil(Cachet):
     @property
     # Emails
     def emails_secondaires(self):
-        return EmailAddress.objects.filter(user=self.user).exclude(primary=True) 
+        return EmailAddress.objects.filter(user=self.user).exclude(primary=True)
+
+    @property
+    def total_contribution(self):
+        return (
+            Implication.objects
+            .filter(agent=self.user)
+            .aggregate(total=models.Sum("contribution"))["total"]
+        ) or 0

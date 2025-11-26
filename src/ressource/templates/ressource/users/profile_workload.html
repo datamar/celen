@@ -3,27 +3,48 @@
 {% load humanize %}
 {% load crispy_forms_tags %}
 
-<div class="row mb-3 g-3">
-    <div class="col-lg-2 col-md-6">
-        <div class="card shadow-lg bg-body">
-            <div class="card-body text-center">
-                <h3 class="d-flex justify-content-between">
-                    Equipe
-                    <div class="dropdown">
-                        <button class="btn btn-sm border-secondary-subtle rounded-circle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-three-dots-vertical"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'ressource:new-user' %}?next={{ request.path }}">Ajouter</a></li>
-                            <li><a class="dropdown-item" href="{% url 'ressource:users-import' %}">Importer</a></li>
-                            <li><a class="dropdown-item" href="{% url 'ressource:users-list' %}">Liste</a></li>
+<div class="row mb-3">
+    <div class="col">
+        <div class="card shaodw-lg bg-body">
+            <div class="card-body">
+                <div class="row align-items-center g-3">
+                    <div class="col-lg-3 col-md-5 text-center border-lg-end">
+                        <h3 class="d-flex justify-content-between">
+                            Equipe
+                            <div class="dropdown">
+                                <button class="btn btn-sm border-secondary-subtle rounded-circle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{% url 'ressource:new-user' %}?next={{ request.path }}">Ajouter</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'ressource:users-import' %}">Importer</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'ressource:users-list' %}">Liste</a></li>
+                                </ul>
+                            </div> 
+                        </h3>
+                        <span class="display-4 fw-bold">{{ users|length }}</span>
+                    </div>
+                    <div class="col-lg-9 col-md-7 text-lg-center">
+                        <ul class="list-inline">
+                        {% regroup working_agent by agent as grouped_agents %}
+                        {% for agent in grouped_agents %}
+                            <li class="list-inline-item text-center mx-3">
+                                {{ agent.grouper }}<br>
+                                <img src="{{ agent.grouper.profile.photo.url }}" alt="Photo de {{ agent.grouper }}" class="avatar"><br>
+                                {%with agent.grouper.profile.total_contribution as contribution %}
+                                <span class="fw-bold text-{% if contribution > 75 %}success{% elif 25 < contribution < 75 %}warning{% else %}danger{% endif %}">{{ contribution }}%</span>
+                                {% endwith %}
+                            </li>
+                        {% endfor %}
                         </ul>
-                    </div> 
-                </h3>
-                <span class="display-4 fw-bold">{{ users|length }}</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>
+
+<div class="row mb-3 g-3">
     <div class="col-lg-2 col-md-6">
         <div class="card shadow-lg bg-body">
             <div class="card-body text-center">

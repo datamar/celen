@@ -51,7 +51,11 @@ class ImplicationUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView)
 	success_message = "Mis à jour enregistré"
 
 	def get_success_url(self):
-		return self.object.cible.get_absolute_url()
+		next_url = self.request.GET.get("next") or self.request.POST.get("next")
+		if next_url:
+			return next_url
+		else:
+			return self.object.cible.get_absolute_url()
 
 class ImplicationListView(LoginRequiredMixin, ListView):
 	model = Implication

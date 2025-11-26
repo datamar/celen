@@ -2,6 +2,8 @@ from workload.models import *
 from workload.forms import TacheForm
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
+from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import DetailView, CreateView, ListView, UpdateView, DeleteView
 

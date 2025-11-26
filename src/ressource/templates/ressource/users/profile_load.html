@@ -1,0 +1,37 @@
+{% load static %}
+{% load i18n account %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+
+<div class="row mb-3">
+    <div class="col">
+        <h3>Ma charge de travail</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="row mb-3 g-3">
+            {% for form in implication_forms %}
+                <div class="col-lg-3 col-md-6">
+                    <div class="card shadow-lg bg-body h-100">
+                        <div class="card-body">
+                            <h5>{{ form.instance.cible }}</h5>
+                            <output class="form-range-value" aria-hidden="true"></output>
+                            {{ form|crispy }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="card shadow-lg bg-body">
+                        <div class="card-body">
+                            <div class="d-grid gap-2 d-md-block text-center">
+                                <button class="btn btn-primary btn-sm" type="submit"><i class="bi bi-wrench-adjustable-circle me-2"></i>Ajuster</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </form>
+    </div>
+</div>

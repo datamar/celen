@@ -3,6 +3,21 @@ from crum import get_current_user
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.contrib.auth.models import User, Group
 from ressource.models.users import Profil
+from workload.models import Implication
+
+class ImplicationForm(forms.ModelForm):
+    class Meta:
+        model = Implication
+        fields = ['nature', 'contribution', 'role']
+        widgets = {
+            'nature': forms.Select(attrs={'class': 'form-select'}),
+            'contribution': forms.NumberInput(attrs={
+                "type": "range", 
+                "min": 0, 
+                "max": 100, 
+                "class": "form-range"}),
+            'role': forms.TextInput(attrs={'class': 'form-control'}),
+        }
 
 class ImportUserForm(forms.Form):
     fichier = forms.FileField(label="Fichier CSV")
