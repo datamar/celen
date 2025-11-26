@@ -43,7 +43,7 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_HOST_USER = env("HOST_USER")
 EMAIL_HOST_PASSWORD = env("HOST_PASSWORD")
-DEFAULT_FROM_EMAIL = "kwargs SRL <info@kwargs.be>"
+DEFAULT_FROM_EMAIL = "WorkLoadr <" + EMAIL_HOST_USER + ">"
 EMAIL_SUBJECT_PREFIX = "[kwargs notification]"
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
