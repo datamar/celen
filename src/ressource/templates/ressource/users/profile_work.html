@@ -2,7 +2,7 @@
 {% load i18n account %}
 {% load humanize %}
 {% load crispy_forms_tags %}
-
+{% if mon_activite.livrables or mon_activite.projets or mon_activite.taches %}
 <div class="row mb-3 justify-content-center g-3">
     {% if mon_activite.livrables %}
     <div class="col-lg-4 col-md-6">
@@ -80,3 +80,10 @@
     </div>
     {% endif %}
 </div>
+{% else %}
+<div class="row">
+    <div class="col text-center">
+        <p class="text-muted"><i class="bi bi-info-circle me-2"></i>Vous n'êtes impliqué dans aucun projet, tâche ou livrable pour le moment.</p>
+    </div>
+</div>
+{% endif %}
