@@ -27,7 +27,7 @@ class DocumentDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 		if next_url:
 			return next_url
 		else:
-			return redirect("workload:accueil")
+			return redirect("ressource:profile")
 
 @login_required
 def document_update(request, pk):
@@ -45,7 +45,7 @@ def document_update(request, pk):
 			if next_url:
 				return redirect(next_url)
 			else:
-				return redirect("workload:accueil")
+				return redirect("ressource:profile")
 	else:
 		form = DocumentForm(instance=doc)
 	

@@ -34,7 +34,7 @@ class TacheCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 		if next_url:
 			return next_url
 		else:
-			return reverse("workload:accueil")
+			return reverse("ressource:profile")
 
 class TacheListView(LoginRequiredMixin, ListView):
 	model = Tache
@@ -64,4 +64,4 @@ class TacheDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 		if next_url:
 			return next_url
 		else:
-			return reverse("workload:accueil")
+			return reverse("ressource:profile")

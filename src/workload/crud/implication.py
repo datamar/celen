@@ -1,4 +1,6 @@
 from workload.models import *
+from django.db import IntegrityError
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from workload.forms import ImplicationForm
@@ -33,7 +35,11 @@ class ImplicationCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView)
 		implication.content_type = self.content_type
 		implication.object_id = self.target_object.id
 		implication.created_by = self.request.user
-		implication.save()
+		try:
+			implication.save()
+			messages.success(self.request, "Implication ajoutée avec succès.")
+		except IntegrityError:
+			messages.error(self.request, f"{implication.agent} est déjà impliqué dans cet élément.")
 		response = redirect(self.target_object.get_absolute_url())
 		return response
 
@@ -42,7 +48,7 @@ class ImplicationCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView)
 		if next_url:
 			return next_url
 		else:
-			return redirect("workload:accueil")
+			return redirect("ressource:profile")
 
 class ImplicationUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 	model = Implication
