@@ -1,0 +1,35 @@
+{% extends 'public/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% block titre %}Don't panic !{% endblock %}
+
+{% block contenu %}
+	<div class="container min-vh-100">
+		<div class="row pt-5 justify-content-between align-items-center">
+			<div class="col-lg-6">
+				<img src="{% static 'img/undraw_throw_away.svg' %}" class="img-fluid">
+			</div>
+			<div class="col-md-6">
+				<p class="lead fw-bold mt-5">Vous vous apprêtez à retirer un enregistrement* de la base de données.</p>
+				<h1 class="text-center"><strong>{{ object }}</strong></h1>
+				{% if object.created_by %}
+				<em>Enregistrement créé par {{ object.created_by }}</em>
+				{% elif object.profile.created_by %}
+				<em>Enregistrement créé par {{ object.profile.created_by }}</em>
+				{% endif %}
+				<p class="lead fw-bold">C'est une mauvaise idée.</p>
+				<p>Cette action est irréversible...vous pouvez encore faire marche
+				arrière avec le bouton "Annuler" ci-dessous.<br>Si vous savez ce que vous faites, confirmez.<br>Mais il vaut mieux pas.</p>
+				<p class="text-muted"><small>* Selon le type d'enregistrement, il peut s'agir d'une suppression logique (désactivation, archivage), physique (effacement définitif) ou relationnel (suppresion d'un lien entre deux enregistrements). Dans le doute, mieux vaut s'abstenir.</small></p>
+				<form method="POST">
+					{% csrf_token %}
+					<div class="form-group text-center mt-5">
+						<button type="submit" class="btn btn-danger" value="Confirm"><i class="bi bi-check-circle me-2"></i>Confirmer</button>
+						<button onclick="window.history.back();" class="btn btn-success"><i class="bi bi-x-circle me-2"></i>Annuler</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}
