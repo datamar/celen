@@ -23,58 +23,59 @@
 <div class="container section min-vh-100">
 <!-- En-tête de la page -->
     <div class="row mb-3 align-items-center">
-        <div class="col-md-10">
+        <div class="col">
             <div class="card shadow-lg bg-body">
                 <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="flex-shrink-0">
-                            <img class="rounded-circle mx-auto d-block position-relative img-thumbnail" src="{{ profil.photo.url }}" alt="{{ profil }}" style="width: 100px;height: 100px;">
+                    <div class="row align-items-center">
+                        <div class="col-md-9">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-shrink-0">
+                                    <img class="rounded-circle mx-auto d-block position-relative img-thumbnail" src="{{ profil.photo.url }}" alt="{{ profil }}" style="width: 100px;height: 100px;">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h1>
+                                        {% if profil.user.last_name or profil.user.first_name %}
+                                        {{ profil.user.get_full_name }}
+                                        {% else %}
+                                        {{ profil.user }}
+                                        {% endif %}
+                                    </h1>
+                                    <small>{{ profil.user.groups.first }} - Créé {{ profil.created|naturaltime }} et modifié {{ profil.modified|naturaltime }} -
+                                        Dernière connexion {{ profil.user.last_login|naturaltime }}
+                                    </small>
+                                </div>
+                            </div>
+                            <!-- Onglets -->
+                            <ul class="nav nav-underline">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#my_load" aria-current="page">
+                                        <i class="bi bi-house me-1"></i>My Load
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#my_work">
+                                        <i class="bi bi-folder2-open me-1"></i>My Work
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#settings">
+                                        <i class="bi bi-gear me-1"></i>Réglages
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#celen_wrkld">
+                                        <i class="bi bi-clipboard2-pulse me-1"></i>Dashboard Celen
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="flex-grow-1 ms-3">
-                            <h1>
-                                {% if profil.user.last_name or profil.user.first_name %}
-                                {{ profil.user.get_full_name }}
-                                {% else %}
-                                {{ profil.user }}
-                                {% endif %}
-                            </h1>
-                            <small>{{ profil.user.groups.first }} - Créé {{ profil.created|naturaltime }} et modifié {{ profil.modified|naturaltime }} -
-                                Dernière connexion {{ profil.user.last_login|naturaltime }}
-                            </small>
+                        <div class="col-md-3">
+                            <small class="text-muted fst-italic">Occupation totale (en % du temps de l'Agent)</small>
+                            <div class="display-3 fw-bold text-center">
+                                <span id="total-contribution" class="text-center">0</span>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Onglets -->
-                    <ul class="nav nav-underline">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#my_load" aria-current="page">
-                                <i class="bi bi-house me-1"></i>My Load
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#my_work">
-                                <i class="bi bi-folder2-open me-1"></i>My Work
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#settings">
-                                <i class="bi bi-gear me-1"></i>Réglages
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#celen_wrkld">
-                                <i class="bi bi-clipboard2-pulse me-1"></i>Dashboard Celen
-                            </a>
-                        </li>
-                    </ul>               
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2 text-center">
-            <div class="card shadow-lg bg-body">
-                <div class="card-body">
-                    <div class="display-3 fw-bold">
-                        {{ profil.total_contribution }}%
-                    </div>
+                    </div>               
                 </div>
             </div>
         </div>
@@ -109,25 +110,43 @@
 {% block js_supp %}
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    // Récupère tous les champs de type "range" qui font partie des implications
     const sliders = document.querySelectorAll('input[type="range"][name*="-contribution"]');
+    const totalDisplay = document.getElementById('total-contribution');
 
-    sliders.forEach(function (slider) {
-      // Crée un élément <output> s’il n’existe pas déjà après le champ
-      let output = slider.parentNode.querySelector('.form-range-value');
-      if (!output) {
-        output = document.createElement('output');
-        output.className = 'form-range-value';
-        slider.parentNode.appendChild(output);
-      }
+    function updateAllOutputs() {
+      let total = 0;
 
-      // Met la valeur initiale
-      output.textContent = slider.value + " %";
+      sliders.forEach(function (slider) {
+        // Cherche le output associé dans le même conteneur
+        const container = slider.closest('.mb-3');  // plus robuste
+        const output = container ? container.querySelector('.form-range-value') : null;
 
-      // Met à jour dynamiquement
-      slider.addEventListener('input', function () {
-        output.textContent = this.value + " %";
+        if (output) {
+          output.textContent = slider.value + " %";
+        }
+
+        total += parseInt(slider.value) || 0;
       });
+
+      // Affiche le total global
+      if (totalDisplay) {
+        totalDisplay.textContent = total;
+
+        if (total > 100) {
+          totalDisplay.classList.add('text-danger', 'fw-bold');
+          totalDisplay.innerHTML = total + " <span class='ms-1'>&#9888;</span>";
+        } else {
+          totalDisplay.classList.remove('text-danger', 'fw-bold');
+        }
+      }
+    }
+
+    // Initialisation
+    updateAllOutputs();
+
+    // Mise à jour à chaque interaction
+    sliders.forEach(function (slider) {
+      slider.addEventListener('input', updateAllOutputs);
     });
   });
 </script>

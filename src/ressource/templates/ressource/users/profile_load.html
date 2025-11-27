@@ -2,6 +2,7 @@
 {% load i18n account %}
 {% load humanize %}
 {% load crispy_forms_tags %}
+{% load utility %}
 
 <div class="row mb-3">
     <div class="col">
@@ -11,7 +12,11 @@
             <div class="row mb-3 g-3">
             {% for form in implication_forms %}
                 <div class="col-lg-3 col-md-6">
-                    <div class="card shadow-lg bg-body h-100">
+                    <div class="card shadow-lg h-100
+                    {% with form.instance.cible|get_class_name as type_objet %}
+                        {% if type_objet == "Projet" %}bg-primary-subtle{% elif type_objet == "Tache" %}bg-success-subtle{% elif type_objet == "Tache" %}bg-warning-subtle{% else %}bg-body{% endif %}
+                    {% endwith %}
+                    ">
                         <div class="card-body">
                             <h5>{{ form.instance.cible }}</h5>
                             <output class="form-range-value" aria-hidden="true"></output>

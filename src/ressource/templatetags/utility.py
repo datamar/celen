@@ -4,6 +4,10 @@ from workload.models import Projet
 register = template.Library() 
 
 @register.filter
+def get_class_name(value):
+    return value.__class__.__name__
+
+@register.filter
 def get_status_display(code):
     """Retourne le label lisible d'un status de projet"""
     try:
