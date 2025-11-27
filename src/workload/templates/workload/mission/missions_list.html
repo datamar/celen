@@ -52,7 +52,7 @@
                                             <a href="{% url 'workload:mission_update' m.pk %}"><i class="bi bi-pencil-square text-success"></i></a>
                                         </li>
                                         <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-title="Supprimer la mission">
-                                            <a href="{% url 'workload:mission_delete' m.pk %}"><i class="bi bi-trash3 text-danger"></i></a>
+                                            <a href="{% url 'workload:mission_delete' m.pk %}?next={{ request.path }}"><i class="bi bi-trash3 text-danger"></i></a>
                                         </li>
                                     </ul>
                                 </td>
@@ -69,7 +69,7 @@
             <div class="card shadow-lg bg-body">
                 <div class="card-body py-2">
                     <div class="d-grid gap-2 d-md-block text-center">
-                        <a class="btn btn-sm btn-primary" role="button" href="{% url 'workload:mission_create' %}"><i class="bi bi-plus-circle me-1"></i>Ajouter une Mission</a>
+                        <a class="btn btn-sm btn-primary" role="button" href="{% url 'workload:mission_create' %}?next={{ request.path }}"><i class="bi bi-plus-circle me-1"></i>Ajouter une Mission</a>
                         <a class="btn btn-sm btn-secondary" role="button" href="{% url 'ressource:profile' %}"><i class="bi bi-arrow-left-circle me-1"></i>Retour</a>
                     </div>
                 </div>

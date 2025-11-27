@@ -42,4 +42,4 @@ class MissionDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 		if next_url:
 			return next_url
 		else:
-			return redirect("ressource:profile")
+			return reverse("ressource:profile")

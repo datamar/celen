@@ -6,7 +6,12 @@
 
 <div class="row mb-3">
     <div class="col">
-        <h3>Ma charge de travail</h3>
+        <ul class="list-inline">
+            <li class="list-inline-item"><i class="bi bi-square-fill me-2" style="color: var(--bs-primary-bg-subtle);"></i>Projet</li>
+            <li class="list-inline-item"><i class="bi bi-square-fill me-2" style="color: var(--bs-success-bg-subtle);"></i>Tâche</li>
+            <li class="list-inline-item"><i class="bi bi-square-fill me-2" style="color: var(--bs-warning-bg-subtle);"></i>Livrable</li>
+        </ul>
+
         <form method="post">
             {% csrf_token %}
             <div class="row mb-3 g-3">
@@ -14,7 +19,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="card shadow-lg h-100
                     {% with form.instance.cible|get_class_name as type_objet %}
-                        {% if type_objet == "Projet" %}bg-primary-subtle{% elif type_objet == "Tache" %}bg-success-subtle{% elif type_objet == "Tache" %}bg-warning-subtle{% else %}bg-body{% endif %}
+                        {% if type_objet == "Projet" %}bg-primary-subtle{% elif type_objet == "Tache" %}bg-success-subtle{% elif type_objet == "Livrable" %}bg-warning-subtle{% else %}bg-body{% endif %}
                     {% endwith %}
                     ">
                         <div class="card-body">

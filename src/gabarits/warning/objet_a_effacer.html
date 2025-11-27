@@ -7,10 +7,10 @@
 {% block contenu %}
 	<div class="container min-vh-100">
 		<div class="row pt-5 justify-content-between align-items-center">
-			<div class="col-lg-6">
+			<div class="col-lg-6 last-md-order first-order">
 				<img src="{% static 'img/undraw_throw_away.svg' %}" class="img-fluid">
 			</div>
-			<div class="col-md-6">
+			<div class="col-lg-6">
 				<p class="lead fw-bold mt-5">Vous vous apprêtez à retirer un enregistrement* de la base de données.</p>
 				<h1 class="text-center"><strong>{{ object }}</strong></h1>
 				{% if object.created_by %}
