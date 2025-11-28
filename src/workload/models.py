@@ -191,8 +191,8 @@ class Projet(BaseApp, TimeBoundMixin):
 		HIGH = 3, "Haute"
 
 	mission = models.ForeignKey(Mission, on_delete=models.CASCADE, related_name="projets")
-	r1 = models.ForeignKey(User, verbose_name="Coordinateur", help_text="Responsable du projet", on_delete=models.PROTECT, related_name="projets_coordonnes")
-	r2 = models.ForeignKey(User, verbose_name="BackUp", help_text="Remplaçant du coordinateur", on_delete=models.PROTECT, related_name="projets_backup", null=True, blank=True)
+	r1 = models.ForeignKey(User, verbose_name="Coordinateur", help_text="Responsable du projet", on_delete=models.SET_NULL, related_name="projets_coordonnes", null=True, blank=True)
+	r2 = models.ForeignKey(User, verbose_name="BackUp", help_text="Remplaçant du coordinateur", on_delete=models.SET_NULL, related_name="projets_backup", null=True, blank=True)
 	status = models.CharField(max_length=16, choices=Status.choices, default=Status.PLANNED)
 	priorite = models.IntegerField(choices=Priority.choices, default=Priority.MEDIUM)
 	percent_complete = models.PositiveSmallIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(100)], verbose_name="Progression (%)")
@@ -261,7 +261,7 @@ class Livrable(BaseApp, TimeBoundMixin):
 	)
 	responsable = models.ForeignKey(
 		User,
-		on_delete=models.PROTECT,
+		on_delete=models.SET_NULL,
 		related_name="livrables_responsable",
 		verbose_name="Responsable du livrable",
 		null=True,
