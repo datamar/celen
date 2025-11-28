@@ -39,7 +39,9 @@
                         </div>
                         <div class="col-lg-2 col-md-3">
                             <ul class="list-unstyled">
+                                {% if object.r1 %}
                                 <li><b>responsable</b>: <a href="{% url 'ressource:user-details' object.r1.pk %}">{{ object.r1 }}</a></li>
+                                {% endif %}
                                 {% if object.r2 %}
                                 <li><b>backup</b>: <a href="{% url 'ressource:user-details' object.r2.pk %}">{{ object.r2 }}</a></li>
                                 {% endif %}
