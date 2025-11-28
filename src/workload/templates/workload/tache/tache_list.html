@@ -80,7 +80,7 @@
             <div class="card shadow-lg bg-body">
                 <div class="card-body py-2">
                     <div class="d-grid gap-2 d-md-block text-center">
-                        <a class="btn btn-sm btn-primary" role="button" href="{% url 'workload:tache_create' %}"><i class="bi bi-plus-circle me-1"></i>Ajouter une Tâche</a>
+                        <a class="btn btn-sm btn-primary" role="button" href="{% url 'workload:tache_create' %}?next={{ request.path }}"><i class="bi bi-plus-circle me-1"></i>Ajouter une Tâche</a>
                         <a class="btn btn-sm btn-secondary" role="button" href="{% url 'ressource:profile' %}"><i class="bi bi-arrow-left-circle me-1"></i>Retour</a>
                     </div>
                 </div>
