@@ -3,9 +3,9 @@
 {% load humanize %}
 {% load crispy_forms_tags %}
 {% if mon_activite.livrables or mon_activite.projets or mon_activite.taches %}
-<div class="row mb-3">
+<div class="row">
     <div class="col">
-        <ul class="list-inline">
+        <ul class="list-inline small float-end">
             <li class="list-inline-item"><i class="bi bi-square-fill me-2" style="color: var(--bs-primary-bg-subtle);"></i>Projet</li>
             <li class="list-inline-item"><i class="bi bi-square-fill me-2" style="color: var(--bs-success-bg-subtle);"></i>Tâche</li>
             <li class="list-inline-item"><i class="bi bi-square-fill me-2" style="color: var(--bs-warning-bg-subtle);"></i>Livrable</li>
@@ -13,10 +13,10 @@
     </div>
 </div>
 <div class="row mb-3 justify-content-center g-3">
-    {% if mon_activite.livrables %}
+    
     <div class="col-lg-4 col-md-6">
         <div class="card h-100 shadow-lg bg-warning-subtle">
-            <div class="card-body">
+            <div class="card-body">                
                 <h3 class="d-flex justify-content-between">
                     Mes livrables
                     <div class="dropdown">
@@ -29,16 +29,19 @@
                         </ul>
                     </div>                        
                 </h3>
+                {% if mon_activite.livrables %}
                 <ul class="list-unstyled">
                     {% for l in mon_activite.livrables %}
                     <li><a href="{% url 'workload:livrable_details' l.pk %}">{{ l }}</a></li>
                     {% endfor %}
                 </ul>
+                {% else %}
+                <p class="text-muted"><i class="bi bi-info-circle me-2"></i>Pour vous impliquer dans ou créer un nouveau livrable, cliquer sur l'icône <i class="bi bi-three-dots-vertical"></i> ci-dessus.</p>
+                {% endif %}
             </div>
         </div>
     </div>
-    {% endif %}
-    {% if mon_activite.projets %}
+    
     <div class="col-lg-4 col-md-6">
         <div class="card h-100 shadow-lg bg-primary-subtle">
             <div class="card-body">
@@ -54,16 +57,20 @@
                         </ul>
                     </div> 
                 </h3>
+                {% if mon_activite.projets %}
                 <ul class="list-unstyled small">
                     {% for p in mon_activite.projets %}
                     <li><a href="{% url 'workload:projet_details' p.pk %}">{{ p }}</a></li>
                     {% endfor %}
                 </ul>
+                {% else %}
+                <p class="text-muted"><i class="bi bi-info-circle me-2"></i>Pour vous impliquer dans ou créer un nouveau projet, cliquer sur l'icône <i class="bi bi-three-dots-vertical"></i> ci-dessus.</p>
+                {% endif %}
             </div>
         </div>
     </div>
-    {% endif %}
-    {% if mon_activite.taches %}
+
+    
     <div class="col-lg-4 col-md-6">
         <div class="card h-100 shadow-lg bg-success-subtle">
             <div class="card-body">
@@ -79,15 +86,18 @@
                         </ul>
                     </div> 
                 </h3>
+                {% if mon_activite.taches %}
                 <ul class="list-unstyled small">
                     {% for t in mon_activite.taches %}
                     <li><a href="{% url 'workload:tache_details' t.pk %}">{{ t }}</a></li>
                     {% endfor %}
                 </ul>
+                {% else %}
+                <p class="text-muted"><i class="bi bi-info-circle me-2"></i>Pour vous impliquer dans ou créer un nouvelle tâche, cliquer sur l'icône <i class="bi bi-three-dots-vertical"></i> ci-dessus.</p>
+                {% endif %}
             </div>
         </div>
     </div>
-    {% endif %}
 </div>
 {% else %}
 <div class="row">

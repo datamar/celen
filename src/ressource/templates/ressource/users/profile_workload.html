@@ -28,14 +28,16 @@
                         <ul class="list-inline">
                         {% regroup working_agent by agent as grouped_agents %}
                         {% for agent in grouped_agents %}
+                            {%with agent.grouper.profile.total_contribution as contribution %}
+                            {% if contribution > 0 %}
                             <a href="{% url 'ressource:user-details' agent.grouper.pk %}" class="text-decoration-none">
                             <li class="list-inline-item text-center mx-3">
                                 {{ agent.grouper }}<br>
                                 <img src="{{ agent.grouper.profile.photo.url }}" alt="Photo de {{ agent.grouper }}" class="avatar"><br>
-                                {%with agent.grouper.profile.total_contribution as contribution %}
                                 <span class="fw-bold text-{% if contribution > 75 %}success{% elif 25 < contribution < 75 %}warning{% else %}danger{% endif %}">{{ contribution }}%</span>
-                                {% endwith %}
                             </li>
+                            {% endif %}
+                            {% endwith %}
                             </a>
                         {% endfor %}
                         </ul>

@@ -7,9 +7,9 @@
 {% if implication_forms %}
 <form method="post">
     {% csrf_token %}
-<div class="row mb-3">
+<div class="row">
     <div class="col">
-        <ul class="list-inline">
+        <ul class="list-inline small float-end">
             <li class="list-inline-item"><i class="bi bi-square-fill me-2" style="color: var(--bs-primary-bg-subtle);"></i>Projet</li>
             <li class="list-inline-item"><i class="bi bi-square-fill me-2" style="color: var(--bs-success-bg-subtle);"></i>Tâche</li>
             <li class="list-inline-item"><i class="bi bi-square-fill me-2" style="color: var(--bs-warning-bg-subtle);"></i>Livrable</li>
@@ -20,18 +20,19 @@
     <div class="col">
         <div class="card shadow-lg bg-body">
             <div class="card-body">
-                    <table id="table_id" class="display" width="100%">
+                    <table id="table_id" class="display align-middle" width="100%">
                         <thead>
                             <tr>
                                 <th>Cible</th>
                                 <th>Rôle</th>
-                                <th>Contribution (%)</th>
+                                <th>Charge</th>
                                 <th>Nature</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for form in implication_forms %}
-                            <tr class="align-items-center 
+                            <tr class="
                             {% with form.instance.cible as cible %}
                                 {% if cible|get_class_name == "Projet" %}
                                 bg-primary-subtle
@@ -43,18 +44,22 @@
                             {% endwith %}
                             ">                           
                                 <td>
-                                    <a class="d-flex align-items-center text-decoration-none" href="{{ form.instance.cible.get_absolute_url }}">
+                                    <a class="text-decoration-none" href="{{ form.instance.cible.get_absolute_url }}">
                                         {{ form.instance.cible }}
                                     </a>
                                 </td>
                                 <td>{{ form.role|as_crispy_field }}</td>
-                                <td>{{ form.contribution|as_crispy_field }}</td>
+                                <td class="align-items-center">{{ form.contribution|as_crispy_field }}</td>
                                 <td>{{ form.nature|as_crispy_field }}</td>
+                                <td>
+                                    <a href="{% url 'workload:implication_delete' form.instance.pk %}?next={{ request.path }}" class="btn btn-danger btn-sm" title="Se désengager" data-bs-toggle="tooltip" data-bs-placement="top">
+                                        Se désengager
+                                    </a>
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>
-                    </table>
-                
+                    </table>                
             </div>
         </div>
     </div>
@@ -64,7 +69,7 @@
         <div class="card shadow-lg bg-body">
             <div class="card-body">
                 <div class="d-grid gap-2 d-md-block text-center">
-                    <button class="btn btn-primary btn-sm" type="submit"><i class="bi bi-wrench-adjustable-circle me-2"></i>Ajuster</button>
+                    <button class="btn btn-primary btn-sm" type="submit"><i class="bi bi-wrench-adjustable-circle me-2"></i>Enregistrer ma charge de travail</button>
                 </div>
             </div>
         </div>

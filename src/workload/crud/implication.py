@@ -54,7 +54,7 @@ class ImplicationUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView)
 	model = Implication
 	form_class = ImplicationForm
 	template_name = "workload/implication/implication_create.html"
-	success_message = "Mis à jour enregistré"
+	success_message = "Modifications de la charge de travail enregistrées."
 
 	def get_success_url(self):
 		next_url = self.request.GET.get("next") or self.request.POST.get("next")
@@ -69,8 +69,12 @@ class ImplicationListView(LoginRequiredMixin, ListView):
 
 class ImplicationDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 	model = Implication
-	template_name = "warning/objet_a_effacer.html"
-	success_message = "Correctement effacé"
+	template_name = "warning/desengagement.html"
+	success_message = "Modifications de la charge de travail enregistrées."
 
 	def get_success_url(self):
-		return self.object.cible.get_absolute_url()
+		next_url = self.request.GET.get("next") or self.request.POST.get("next")
+		if next_url:
+			return next_url
+		else:
+			return redirect("ressource:profile")

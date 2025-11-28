@@ -23,6 +23,36 @@
             </div>
         </div>
     </div>
+    <div class="row mb-3 g-3">
+        <div class="col-lg-4 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    {{ object.description }}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    {{ object.implications.all }}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    {{ object.commentaires.all }}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    {{ object.documents.all }}
+                </div>
+            </div>
+        </div>        
+    </div>
     <div class="row mb-3">
         <div class="col">
             <div class="card shadow-lg bg-body">
