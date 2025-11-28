@@ -2,7 +2,7 @@
 {% load static %}
 {% load humanize %}
 {% load crispy_forms_tags %}
-{% block titre %}Report d'un bug sur la page {{ request.META.HTTP_REFERER }}{% endblock %}
+{% block titre %}Report d'un bug{% endblock %}
 
 {% block css_supp %}
 {% endblock %}
@@ -13,15 +13,14 @@
 <div class="container min-vh-100 section col-md-6 mx-auto">
     <div class="row mb-3">
         <div class="col">
-            <h3>Report d'un bug sur la page {{ request.META.HTTP_REFERER }}</h3>
+            <h3>Report d'un bug</h3>
         </div>
     </div>
     <div class="row mb-3">
         <div class="col">
             <div class="card shadow-lg bg-body">
                 <div class="card-body">
-
-                        {{ form|crispy }}
+                    {{ form|crispy }}
                 </div>
             </div>
         </div>
