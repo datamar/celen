@@ -17,7 +17,14 @@
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col">
+        <div class="col-lg-4">
+            <div class="card shadow-lg bg-danger-subtle text-danger-emphasis h-100">
+                <div class="card-body">
+                    <i class="bi bi-lightbulb me-2 fw-bold"></i>Soyez le plus précis possible dans la description du bug rencontré afin de nous aider à le résoudre rapidement. Le délai de traitement dépendra de la complexité du bug reporté. Mais si au bout de plusieurs jours vous n'avez pas de retour, n'hésitez pas à nous relancer !
+                </div>
+            </div>            
+        </div>
+        <div class="col-lg-8">
             <div class="card shadow-lg bg-body">
                 <div class="card-body">
                     {{ form|crispy }}
@@ -30,7 +37,7 @@
             <div class="card shadow-lg bg-body">
                 <div class="card-body py-2">
                     <div class="d-grid gap-2 d-md-block text-center">
-                        <button class="btn btn-primary btn-sm" type="submit"><i class="bi bi-send me-2"></i>Signaler</button>
+                        <button class="btn btn-primary btn-sm" type="submit"><i class="bi bi-send me-2"></i>Merci !</button>
                         <button class="btn btn-secondary btn-sm" onclick="history.back();"><i class="bi bi-arrow-left-circle me-2"></i>Annuler</button>
                     </div>
                 </div>
