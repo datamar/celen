@@ -46,6 +46,20 @@
     <div class="row mb-3">
         <div class="col">
             <div class="card shadow-lg bg-body">
+                <div class="card-body">
+                    <p>{{ object }} est occupé à {{ object.total_contribution }}%, ventilé comme suit: </p>
+                    <ul class="list-unstyled">
+                    {% for item in object.user.implications.all %}
+                    <li>à {{ item.contribution }}% sur <a href='{{ item.cible.get_absolute_url }}'>{{ item.cible }}</a> de façon {{ item.get_nature_display|lower }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card shadow-lg bg-body">
                 <div class="card-body py-2">
                     <div class="d-grid gap-2 d-md-block text-center">
                         <a class="btn btn-sm btn-secondary" role="button" href="{% url 'ressource:profile' %}"><i class="bi bi-arrow-left-circle me-1"></i>Retour</a>

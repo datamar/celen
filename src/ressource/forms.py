@@ -5,6 +5,18 @@ from django.contrib.auth.models import User, Group
 from ressource.models.users import Profil
 from workload.models import Implication
 
+class BugReportForm(forms.Form):
+    sujet = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Sujet du problème'
+    }))
+    message = forms.CharField(widget=forms.Textarea(attrs={
+        'class': 'form-control',
+        'placeholder': 'Décrire ce qui ne fonctionne pas',
+        'rows': 5
+    }))
+
+
 class ImplicationForm(forms.ModelForm):
     class Meta:
         model = Implication
@@ -18,6 +30,11 @@ class ImplicationForm(forms.ModelForm):
                 "class": "form-range"}),
             'role': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.label = ""
 
 class ImportUserForm(forms.Form):
     fichier = forms.FileField(label="Fichier CSV")

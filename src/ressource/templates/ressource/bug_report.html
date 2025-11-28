@@ -1,0 +1,46 @@
+{% extends 'public/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% block titre %}Report d'un bug sur la page {{ request.META.HTTP_REFERER }}{% endblock %}
+
+{% block css_supp %}
+{% endblock %}
+
+{% block contenu %}
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<div class="container min-vh-100 section col-md-6 mx-auto">
+    <div class="row mb-3">
+        <div class="col">
+            <h3>Report d'un bug sur la page {{ request.META.HTTP_REFERER }}</h3>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body">
+
+                        {{ form|crispy }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card shadow-lg bg-body">
+                <div class="card-body py-2">
+                    <div class="d-grid gap-2 d-md-block text-center">
+                        <button class="btn btn-primary btn-sm" type="submit"><i class="bi bi-send me-2"></i>Signaler</button>
+                        <button class="btn btn-secondary btn-sm" onclick="history.back();"><i class="bi bi-arrow-left-circle me-2"></i>Annuler</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block js_supp %}
+{% endblock %}

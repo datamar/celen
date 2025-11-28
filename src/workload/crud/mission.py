@@ -14,6 +14,13 @@ class MissionCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 	template_name = "workload/mission/mission_create.html"
 	success_message = "Mission créée avec succès"
 
+	def get_success_url(self):
+		next_url = self.request.GET.get("next") or self.request.POST.get("next")
+		if next_url:
+			return next_url
+		else:
+			return reverse("ressource:profile")
+
 class MissionUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 	model = Mission
 	fields = ["nom","description","tags"]

@@ -6,6 +6,9 @@
 
 
 {% block css_supp %}
+<link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+
 <style>
 .avatar {
     display: inline-block;
@@ -109,45 +112,58 @@
 
 {% block js_supp %}
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const sliders = document.querySelectorAll('input[type="range"][name*="-contribution"]');
-    const totalDisplay = document.getElementById('total-contribution');
+document.addEventListener('DOMContentLoaded', function () {
+  const sliders = document.querySelectorAll('input[type="range"][name*="-contribution"]');
+  const totalDisplay = document.getElementById('total-contribution');
 
-    function updateAllOutputs() {
-      let total = 0;
+  function updateAllOutputs() {
+    let total = 0;
 
-      sliders.forEach(function (slider) {
-        // Cherche le output associé dans le même conteneur
-        const container = slider.closest('.mb-3');  // plus robuste
-        const output = container ? container.querySelector('.form-range-value') : null;
+    sliders.forEach(function (slider) {
+      const container = slider.closest('.mb-3');
+      let output = container ? container.querySelector('.form-range-value') : null;
 
-        if (output) {
-          output.textContent = slider.value + " %";
-        }
+      // Si pas de output trouvé, on le crée juste après le slider
+      if (!output && slider) {
+        output = document.createElement('output');
+        output.className = 'form-range-value';
+        slider.insertAdjacentElement('afterend', output);
+      }
 
-        total += parseInt(slider.value) || 0;
-      });
+      if (output) {
+        output.textContent = slider.value + " %";
+      }
 
-      // Affiche le total global
-      if (totalDisplay) {
-        totalDisplay.textContent = total;
+      total += parseInt(slider.value) || 0;
+    });
 
-        if (total > 100) {
-          totalDisplay.classList.add('text-danger', 'fw-bold');
-          totalDisplay.innerHTML = total + " <span class='ms-1'>&#9888;</span>";
-        } else {
-          totalDisplay.classList.remove('text-danger', 'fw-bold');
-        }
+    if (totalDisplay) {
+      totalDisplay.textContent = total;
+      if (total > 100) {
+        totalDisplay.classList.add('text-danger', 'fw-bold');
+        totalDisplay.innerHTML = total + " <span class='ms-1'>&#9888;</span>";
+      } else {
+        totalDisplay.classList.remove('text-danger', 'fw-bold');
       }
     }
+  }
 
-    // Initialisation
-    updateAllOutputs();
+  // Initial update
+  updateAllOutputs();
 
-    // Mise à jour à chaque interaction
-    sliders.forEach(function (slider) {
-      slider.addEventListener('input', updateAllOutputs);
-    });
+  // On met à jour dès qu’un slider change
+  sliders.forEach(function (slider) {
+    slider.addEventListener('input', updateAllOutputs);
   });
+});
+</script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript">
+	$(document).ready( function () {
+    $('#table_id').DataTable({
+    responsive: true
+});
+} );
 </script>
 {% endblock %}

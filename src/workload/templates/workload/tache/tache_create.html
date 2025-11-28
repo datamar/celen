@@ -23,9 +23,15 @@
                     <div class="row">
                         <div class="col-md-6">
                             {{ form.mission|as_crispy_field }}
+                            <span class="float-end">
+                                <a href="{% url 'workload:mission_create' %}?next={{ request.path }}">Ajouter une mission</a>
+                            </span>
                         </div>
                         <div class="col-md-6">
                             {{ form.projet|as_crispy_field }}
+                            <span class="float-end">
+                                <a href="{% url 'workload:projet_create' %}?next={{ request.path }}">Ajouter un projet</a>
+                            </span>                            
                         </div>
                     </div>
                     <div class="row">

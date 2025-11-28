@@ -130,9 +130,8 @@ class Implication(Cachet, TimeBoundMixin):
 	contribution = models.PositiveSmallIntegerField(
 		default=0, 
 		validators=[MinValueValidator(0), MaxValueValidator(100)],
-		help_text="Implication de l'Agent (%)"
 	)
-	role = models.CharField(max_length=124, blank=True, help_text="Rôle tenu par l'Agent", verbose_name="Rôle")
+	role = models.CharField(max_length=124, blank=True, verbose_name="Rôle")
 
 	def __str__(self):
 		return f"{self.agent} - {self.role} dans {self.cible}"

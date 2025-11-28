@@ -5,7 +5,7 @@
 
 <div class="row mb-3">
     <div class="col">
-        <div class="card shaodw-lg bg-body">
+        <div class="card shadow-lg bg-body">
             <div class="card-body">
                 <div class="row align-items-center g-3">
                     <div class="col-lg-3 col-md-5 text-center border-lg-end">
@@ -28,6 +28,7 @@
                         <ul class="list-inline">
                         {% regroup working_agent by agent as grouped_agents %}
                         {% for agent in grouped_agents %}
+                            <a href="{% url 'ressource:user-details' agent.grouper.pk %}" class="text-decoration-none">
                             <li class="list-inline-item text-center mx-3">
                                 {{ agent.grouper }}<br>
                                 <img src="{{ agent.grouper.profile.photo.url }}" alt="Photo de {{ agent.grouper }}" class="avatar"><br>
@@ -35,6 +36,7 @@
                                 <span class="fw-bold text-{% if contribution > 75 %}success{% elif 25 < contribution < 75 %}warning{% else %}danger{% endif %}">{{ contribution }}%</span>
                                 {% endwith %}
                             </li>
+                            </a>
                         {% endfor %}
                         </ul>
                     </div>

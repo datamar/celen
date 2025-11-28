@@ -12,7 +12,40 @@ from ressource.models.utility import Cachet
 from workload.views import get_objects_grouped
 from workload.models import Mission, Projet, Document, Commentaire, Tache, Livrable, Implication
 from django.views.generic import ListView, CreateView, DetailView
-from ressource.forms import UserUpdateForm, ProfileUpdateForm, CustomUserCreateForm, ImportUserForm, ImplicationForm
+from ressource.forms import UserUpdateForm, ProfileUpdateForm, CustomUserCreateForm, ImportUserForm, ImplicationForm, BugReportForm
+from django.core.mail import send_mail
+from django.conf import settings
+
+@login_required
+def signaler_bug(request):
+    if request.method == 'POST':
+        form = BugReportForm(request.POST)
+        if form.is_valid():
+            sujet = f"[BUG] {form.cleaned_data['sujet']}"
+            message = form.cleaned_data['message']
+
+            user_info = f"""
+					---
+					Utilisateur : {request.user.get_full_name() or request.user.username}
+					ID : {request.user.id}
+					Email : {request.user.email}
+					Page d'origine : {request.META.get('HTTP_REFERER', 'Non disponible')}
+					"""
+
+            send_mail(
+                subject=sujet,
+                message=message + user_info,
+                from_email=request.user.email,
+                recipient_list=[settings.DEFAULT_FROM_EMAIL],
+                fail_silently=False,
+            )
+            messages.success(request, "Merci ! Votre message a été transmis.")
+            return redirect('ressource:profile')  # ou autre vue
+    else:
+        form = BugReportForm()
+
+    return render(request, 'ressource/bug_report.html', {'form': form})
+
 
 @login_required
 def profile(request):

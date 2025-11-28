@@ -22,6 +22,13 @@ class ProjetCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 		form.instance.created_by = self.request.user
 		return super().form_valid(form)
 
+	def get_success_url(self):
+		next_url = self.request.GET.get("next") or self.request.POST.get("next")
+		if next_url:
+			return next_url
+		else:
+			return reverse("ressource:profile")
+
 class ProjetUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 	model = Projet
 	form_class = ProjetForm

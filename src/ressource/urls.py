@@ -13,4 +13,7 @@ urlpatterns = [
     path('user/<int:pk>/', UserDetailsView.as_view(), name="user-details"),
     path('users/', UsersList.as_view(), name="users-list"),
     path("users/import/", import_utilisateurs, name="users-import"),
+    # PROBLEME REPORT #
+    path('signaler-un-bug/', signaler_bug, name='signaler_bug')
+
 ]

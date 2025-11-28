@@ -5,6 +5,8 @@
 {% load utility %}
 
 {% if implication_forms %}
+<form method="post">
+    {% csrf_token %}
 <div class="row mb-3">
     <div class="col">
         <ul class="list-inline">
@@ -12,40 +14,63 @@
             <li class="list-inline-item"><i class="bi bi-square-fill me-2" style="color: var(--bs-success-bg-subtle);"></i>Tâche</li>
             <li class="list-inline-item"><i class="bi bi-square-fill me-2" style="color: var(--bs-warning-bg-subtle);"></i>Livrable</li>
         </ul>
-
-        <form method="post">
-            {% csrf_token %}
-            <div class="row mb-3 g-3">
-            {% for form in implication_forms %}
-                <div class="col-lg-3 col-md-6">
-                    <div class="card shadow-lg h-100
-                    {% with form.instance.cible|get_class_name as type_objet %}
-                        {% if type_objet == "Projet" %}bg-primary-subtle{% elif type_objet == "Tache" %}bg-success-subtle{% elif type_objet == "Livrable" %}bg-warning-subtle{% else %}bg-body{% endif %}
-                    {% endwith %}
-                    ">
-                        <div class="card-body">
-                            <h5>{{ form.instance.cible }}</h5>
-                            <output class="form-range-value" aria-hidden="true"></output>
-                            {{ form|crispy }}
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-            </div>
-            <div class="row mb-3">
-                <div class="col">
-                    <div class="card shadow-lg bg-body">
-                        <div class="card-body">
-                            <div class="d-grid gap-2 d-md-block text-center">
-                                <button class="btn btn-primary btn-sm" type="submit"><i class="bi bi-wrench-adjustable-circle me-2"></i>Ajuster</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>  
-        </form>
     </div>
 </div>
+<div class="row mb-3">
+    <div class="col">
+        <div class="card shadow-lg bg-body">
+            <div class="card-body">
+                    <table id="table_id" class="display" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Cible</th>
+                                <th>Rôle</th>
+                                <th>Contribution (%)</th>
+                                <th>Nature</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for form in implication_forms %}
+                            <tr class="align-items-center 
+                            {% with form.instance.cible as cible %}
+                                {% if cible|get_class_name == "Projet" %}
+                                bg-primary-subtle
+                                {% elif cible|get_class_name == "Tache" %}
+                                bg-success-subtle
+                                {% elif cible|get_class_name == "Livrable" %}
+                                bg-warning-subtle
+                                {% endif %}
+                            {% endwith %}
+                            ">                           
+                                <td>
+                                    <a class="d-flex align-items-center text-decoration-none" href="{{ form.instance.cible.get_absolute_url }}">
+                                        {{ form.instance.cible }}
+                                    </a>
+                                </td>
+                                <td>{{ form.role|as_crispy_field }}</td>
+                                <td>{{ form.contribution|as_crispy_field }}</td>
+                                <td>{{ form.nature|as_crispy_field }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col">
+        <div class="card shadow-lg bg-body">
+            <div class="card-body">
+                <div class="d-grid gap-2 d-md-block text-center">
+                    <button class="btn btn-primary btn-sm" type="submit"><i class="bi bi-wrench-adjustable-circle me-2"></i>Ajuster</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
 {% else %}
 <div class="row">
     <div class="col text-center">
